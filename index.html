@@ -2,14 +2,19 @@
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8T8S9X8309"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8T8S9X8309"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'G-8T8S9X8309');
-</script>
+      gtag("config", "G-8T8S9X8309");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,6 +46,186 @@
         --stat-negative: #d21027;
         --border-radius: 6px;
         --transition-speed: 0.3s;
+      }
+
+      /* Primer Carousel Styles */
+      .primer-carousel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(8, 8, 38, 0.85);
+
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .primer-carousel.hidden {
+        display: none;
+      }
+
+      .carousel-track {
+        flex: 1;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .carousel-slide {
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 85vh;
+        padding-top: 5vh;
+        scroll-snap-align: start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background: var(--text-dark); */
+      }
+
+      .carousel-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .carousel-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        background: var(--text-light);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity var(--transition-speed) ease,
+          background var(--transition-speed) ease;
+        z-index: 2001;
+      }
+
+      .carousel-close.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .carousel-close:hover {
+        background: var(--forest-light);
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 2001;
+      }
+
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(239, 236, 232, 0.4);
+        border: none;
+        cursor: pointer;
+        transition:
+          background var(--transition-speed) ease,
+          transform var(--transition-speed) ease;
+      }
+
+      .carousel-dot.active {
+        background: var(--text-light);
+        transform: scale(1.2);
+      }
+
+      .carousel-dot:hover {
+        background: var(--forest-light);
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: rgba(239, 236, 232, 0.2);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        font-size: 1.5rem;
+        transition:
+          background var(--transition-speed) ease,
+          opacity var(--transition-speed) ease;
+        z-index: 2001;
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(239, 236, 232, 0.4);
+      }
+
+      .carousel-arrow.disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+
+      .carousel-arrow-left {
+        left: 20px;
+      }
+
+      .carousel-arrow-right {
+        right: 20px;
+      }
+
+      /* Hide arrows on mobile, show on desktop */
+      @media (max-width: 768px) {
+        .carousel-slide img {
+          max-width: 96vw;
+        }
+
+        .carousel-arrow {
+          display: none;
+        }
+
+        .carousel-close {
+          top: 15px;
+          right: 15px;
+          width: 40px;
+          height: 40px;
+          font-size: 1.3rem;
+        }
+
+        .carousel-dots {
+          bottom: 20px;
+        }
+
+        .carousel-dot {
+          width: 10px;
+          height: 10px;
+        }
       }
 
       .bodi {
@@ -268,117 +453,6 @@
         flex: 1;
         min-height: 0;
         overflow: hidden;
-        position: relative;
-      }
-
-      /* Primer Overlay Styles */
-      .primer-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        background: var(--text-dark);
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-
-        border-radius: var(--border-radius);
-        overflow-y: auto;
-      }
-
-      .primer-overlay.hidden {
-        display: none;
-      }
-
-      .primer-content {
-        width: 100%;
-        padding: 0 20vw 0 20vw;
-        text-align: left;
-      }
-
-      .primer-content h4 {
-        color: var(--forest-light);
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 10px 0 10px 0;
-      }
-
-      .primer-content h4:first-child {
-        margin-top: 0;
-      }
-
-      .primer-content p {
-        color: var(--text-light);
-        font-size: 0.9rem;
-        line-height: 1.2rem;
-        margin: 0 0 12px 0;
-      }
-
-      .primer-content p:last-child {
-        margin-bottom: 0;
-      }
-
-      .primer-overlay::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      .primer-overlay::-webkit-scrollbar-track {
-        background: var(--text-dark);
-      }
-
-      .primer-overlay::-webkit-scrollbar-thumb {
-        background: var(--forest-light);
-      }
-
-      .primer-close-btn {
-        margin-top: 2vh;
-        background: var(--forest-light);
-        color: var(--text-dark);
-        border: solid 2px var(--forest-light);
-        padding: 4px 8px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 0.9rem;
-        font-weight: 500;
-        font-family: inherit;
-        transition: all var(--transition-speed) ease;
-      }
-
-      .primer-close-btn:hover {
-        background: var(--forest-medium);
-        color: var(--text-light);
-        border-color: var(--forest-pale);
-      }
-
-      @media (max-width: 768px) {
-        .primer-overlay {
-          padding-top: 3vh;
-          padding-bottom: 3vh;
-        }
-
-        .primer-content {
-          padding: 0 5vw;
-        }
-
-        .primer-content h4 {
-          font-size: 1rem;
-        }
-
-        .primer-content p {
-          font-size: 0.9rem;
-          line-height: 1.6;
-        }
-
-        .primer-close-btn {
-          padding: 8px 20px;
-          font-size: 0.95rem;
-        }
       }
 
       .table-header {
@@ -977,6 +1051,55 @@
     </style>
   </head>
   <body>
+    <!-- Primer Carousel -->
+    <div class="primer-carousel" id="primer-carousel">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide">
+          <img
+            src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/1.png"
+            alt="Slide 1"
+          />
+        </div>
+        <div class="carousel-slide">
+          <img
+            src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/2.png"
+            alt="Slide 2"
+          />
+        </div>
+        <div class="carousel-slide">
+          <img
+            src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/3.png"
+            alt="Slide 3"
+          />
+        </div>
+      </div>
+
+      <button
+        class="carousel-arrow carousel-arrow-left disabled"
+        id="carousel-arrow-left"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        </svg>
+      </button>
+      <button
+        class="carousel-arrow carousel-arrow-right"
+        id="carousel-arrow-right"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+        </svg>
+      </button>
+
+      <button class="carousel-close" id="carousel-close">✕</button>
+
+      <div class="carousel-dots" id="carousel-dots">
+        <button class="carousel-dot active" data-slide="0"></button>
+        <button class="carousel-dot" data-slide="1"></button>
+        <button class="carousel-dot" data-slide="2"></button>
+      </div>
+    </div>
+
     <div class="bodi">
       <!-- Navigation Bar -->
       <div class="navigation" id="nav-bar">
@@ -1035,56 +1158,6 @@
         </div>
 
         <div class="table-container">
-          <!-- Primer Overlay -->
-          <div class="primer-overlay" id="primer-overlay">
-            <div class="primer-content">
-              <h4>What's here?</h4>
-              <p>
-                This platform shows <strong>all official changes</strong> in
-                areas of forest reserves in Peninsular Malaysia since January 1,
-                2002 to <span id="primer-update-date"></span>. All changes
-                reported here were published in government <em>gazettes</em>.
-              </p>
-              <p>
-                The changes are presented in tables, charts, and maps. You can
-                also review and retrieve the original gazettes for every change.
-              </p>
-
-              <h4>Why Gazettes?</h4>
-              <p>
-                In Malaysia, only state governments have the authority to add,
-                remove, or classify forest reserves.
-              </p>
-              <p>
-                As per forestry laws, when states add or remove forest reserves,
-                they must (1) publish the change in a government document called
-                'gazette', and (2) the change would take effect on the date
-                indicated in the gazette.
-              </p>
-              <p>
-                Therefore, gazettes are the essential, ultimate, and legally
-                binding documents on the status of forest reserves. You need
-                gazettes to monitor or verify forest reserve area changes. A map
-                of forest reserves would be helpful too.
-              </p>
-
-              <h4>For you</h4>
-              <p>
-                But most gazettes and forest reserve maps are inaccessible, even
-                to many government agencies, universities, and auditors. The
-                documents are kept behind paywalls or demand time and expertise
-                to use.
-              </p>
-              <p>
-                I collected, compiled, and cleaned those documents, and
-                visualised the data for you here.
-              </p>
-            </div>
-            <button class="primer-close-btn" id="primer-close-btn">
-              Okay! Show me recent changes.
-            </button>
-          </div>
-
           <div class="table-header">
             <div class="table-title-row">
               <span class="table-title-text">Changes in</span>
@@ -1665,26 +1738,134 @@
           downloadFilteredDataAsCSV();
         });
 
-      // Primer overlay functionality
-      function initPrimerOverlay() {
-        const primerOverlay = document.getElementById("primer-overlay");
-        const primerCloseBtn = document.getElementById("primer-close-btn");
+      // Primer Carousel Functionality
+      function initPrimerCarousel() {
+        const carousel = document.getElementById("primer-carousel");
+        const track = document.getElementById("carousel-track");
+        const closeBtn = document.getElementById("carousel-close");
+        const dots = document.querySelectorAll(".carousel-dot");
+        const arrowLeft = document.getElementById("carousel-arrow-left");
+        const arrowRight = document.getElementById("carousel-arrow-right");
+        const totalSlides = 3;
+        let currentSlide = 0;
 
-        // Check localStorage - hide overlay if user has already seen it
-        const primerDismissed = localStorage.getItem("primerDismissed");
-        if (primerDismissed === "true") {
-          primerOverlay.classList.add("hidden");
+        // Check localStorage - hide carousel if user has already seen it
+        const carouselSeen = localStorage.getItem("primerCarouselSeen");
+        if (carouselSeen === "true") {
+          carousel.classList.add("hidden");
+          return;
         }
 
-        // Close button handler
-        primerCloseBtn.addEventListener("click", function () {
-          primerOverlay.classList.add("hidden");
-          localStorage.setItem("primerDismissed", "true");
+        // Update UI based on current slide
+        function updateCarouselUI() {
+          // Update dots
+          dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentSlide);
+          });
+
+          // Update arrow states
+          arrowLeft.classList.toggle("disabled", currentSlide === 0);
+          arrowRight.classList.toggle(
+            "disabled",
+            currentSlide === totalSlides - 1,
+          );
+
+          // Show close button only on last slide
+          closeBtn.classList.toggle(
+            "visible",
+            currentSlide === totalSlides - 1,
+          );
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+          if (index < 0 || index >= totalSlides) return;
+          currentSlide = index;
+          track.scrollTo({
+            left: index * window.innerWidth,
+            behavior: "smooth",
+          });
+          updateCarouselUI();
+        }
+
+        // Handle scroll to detect current slide
+        function handleScroll() {
+          const scrollLeft = track.scrollLeft;
+          const slideWidth = window.innerWidth;
+          const newSlide = Math.round(scrollLeft / slideWidth);
+          if (
+            newSlide !== currentSlide &&
+            newSlide >= 0 &&
+            newSlide < totalSlides
+          ) {
+            currentSlide = newSlide;
+            updateCarouselUI();
+          }
+        }
+
+        // Debounced scroll handler
+        let scrollTimeout;
+        track.addEventListener("scroll", function () {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(handleScroll, 50);
         });
+
+        // Arrow button handlers
+        arrowLeft.addEventListener("click", function () {
+          if (currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+          }
+        });
+
+        arrowRight.addEventListener("click", function () {
+          if (currentSlide < totalSlides - 1) {
+            goToSlide(currentSlide + 1);
+          }
+        });
+
+        // Dot click handlers
+        dots.forEach((dot) => {
+          dot.addEventListener("click", function () {
+            const slideIndex = parseInt(this.dataset.slide);
+            goToSlide(slideIndex);
+          });
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", function (e) {
+          if (carousel.classList.contains("hidden")) return;
+
+          if (e.key === "ArrowLeft" && currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+          } else if (e.key === "ArrowRight" && currentSlide < totalSlides - 1) {
+            goToSlide(currentSlide + 1);
+          } else if (e.key === "Escape" && currentSlide === totalSlides - 1) {
+            closeCarousel();
+          }
+        });
+
+        // Close button handler
+        function closeCarousel() {
+          carousel.classList.add("hidden");
+          localStorage.setItem("primerCarouselSeen", "true");
+        }
+
+        closeBtn.addEventListener("click", closeCarousel);
+
+        // Handle window resize (recalculate scroll position)
+        window.addEventListener("resize", function () {
+          track.scrollTo({
+            left: currentSlide * window.innerWidth,
+            behavior: "auto",
+          });
+        });
+
+        // Initialize UI
+        updateCarouselUI();
       }
 
-      // Initialize primer overlay on page load
-      initPrimerOverlay();
+      // Initialize primer carousel on page load
+      initPrimerCarousel();
 
       // Load and parse CSV data
       Papa.parse(CONFIG.CSV_URL, {
@@ -1728,16 +1909,12 @@
       function updateDateDisplays() {
         const updateDateEl1 = document.getElementById("update-date1");
         const updateDateEl2 = document.getElementById("update-date2");
-        const primerDateEl = document.getElementById("primer-update-date");
         const formattedDate = appState.lastUpdatedDate.toLocaleDateString(
           "en-US",
           CONFIG.DATE_FORMAT_SHORT,
         );
         updateDateEl1.textContent = formattedDate;
         updateDateEl2.textContent = formattedDate;
-        if (primerDateEl) {
-          primerDateEl.textContent = formattedDate;
-        }
       }
 
       function filterAndDisplayData() {
@@ -2588,5 +2765,3 @@
     </script>
   </body>
 </html>
-
-
