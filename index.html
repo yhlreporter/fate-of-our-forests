@@ -48,186 +48,6 @@
         --transition-speed: 0.3s;
       }
 
-      /* Primer Carousel Styles */
-      .primer-carousel {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(8, 8, 38, 0.85);
-
-        z-index: 2000;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .primer-carousel.hidden {
-        display: none;
-      }
-
-      .carousel-track {
-        flex: 1;
-        display: flex;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-
-      .carousel-track::-webkit-scrollbar {
-        display: none;
-      }
-
-      .carousel-slide {
-        flex: 0 0 100vw;
-        width: 100vw;
-        height: 85vh;
-        padding-top: 5vh;
-        scroll-snap-align: start;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* background: var(--text-dark); */
-      }
-
-      .carousel-slide img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-      }
-
-      .carousel-close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 44px;
-        height: 44px;
-        background: var(--text-light);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: var(--text-dark);
-        opacity: 0;
-        visibility: hidden;
-        transition:
-          opacity var(--transition-speed) ease,
-          background var(--transition-speed) ease;
-        z-index: 2001;
-      }
-
-      .carousel-close.visible {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .carousel-close:hover {
-        background: var(--forest-light);
-      }
-
-      .carousel-dots {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 12px;
-        z-index: 2001;
-      }
-
-      .carousel-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: rgba(239, 236, 232, 0.4);
-        border: none;
-        cursor: pointer;
-        transition:
-          background var(--transition-speed) ease,
-          transform var(--transition-speed) ease;
-      }
-
-      .carousel-dot.active {
-        background: var(--text-light);
-        transform: scale(1.2);
-      }
-
-      .carousel-dot:hover {
-        background: var(--forest-light);
-      }
-
-      .carousel-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        background: rgba(239, 236, 232, 0.2);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-light);
-        font-size: 1.5rem;
-        transition:
-          background var(--transition-speed) ease,
-          opacity var(--transition-speed) ease;
-        z-index: 2001;
-      }
-
-      .carousel-arrow:hover {
-        background: rgba(239, 236, 232, 0.4);
-      }
-
-      .carousel-arrow.disabled {
-        opacity: 0.3;
-        cursor: default;
-      }
-
-      .carousel-arrow-left {
-        left: 20px;
-      }
-
-      .carousel-arrow-right {
-        right: 20px;
-      }
-
-      /* Hide arrows on mobile, show on desktop */
-      @media (max-width: 768px) {
-        .carousel-slide img {
-          max-width: 96vw;
-        }
-
-        .carousel-arrow {
-          display: none;
-        }
-
-        .carousel-close {
-          top: 15px;
-          right: 15px;
-          width: 40px;
-          height: 40px;
-          font-size: 1.3rem;
-        }
-
-        .carousel-dots {
-          bottom: 20px;
-        }
-
-        .carousel-dot {
-          width: 10px;
-          height: 10px;
-        }
-      }
-
       .bodi {
         font-family:
           "Nunito",
@@ -240,7 +60,7 @@
       .navigation {
         position: sticky;
         height: 6vh;
-        margin-bottom: -5vh;
+        margin-bottom: -6vh;
         top: 0;
         z-index: 1000;
         background: var(--text-dark);
@@ -250,6 +70,12 @@
         overflow-y: hidden;
         scrollbar-width: none;
         scrollbar-color: var(--forest-light) var(--text-dark);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .navigation.nav-visible {
+        transform: translateY(0);
       }
 
       .navigation::before,
@@ -357,13 +183,178 @@
       .landing-section {
         width: 100%;
         height: 100vh;
-        padding: 6vh 20px 30px 20px;
+        padding: -1vh 5vw 5vh 5vw;
+        display: flex;
+        flex-direction: row;
+        align-items: top;
+        justify-content: center;
+
+        background: var(--text-dark);
+        color: var(--text-light);
+        overflow: hidden;
+      }
+
+      .landing-left {
+        flex: 0 0 54%;
+        padding: 10vh 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .landing-left .header {
+        max-width: 100%;
+        margin-bottom: 8vh;
+      }
+
+      .landing-left .header h1 {
+        font-family: "Rufina", serif;
+        font-size: 5rem;
+        font-weight: 600;
+        margin-bottom: 2vh;
+      }
+
+      .landing-left .header p {
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.5;
+        max-width: 80%;
+      }
+
+      .landing-nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .landing-nav-button {
+        background: var(--forest-light);
+        color: var(--text-dark);
+        border: solid 2px var(--forest-light);
+        padding: 8px 16px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all var(--transition-speed) ease;
+        font-family: inherit;
+      }
+
+      .landing-nav-button:hover {
+        background: var(--forest-medium);
+        color: var(--text-light);
+        border-color: var(--forest-pale);
+      }
+
+      .landing-right {
+        flex: 0 0 36%;
+        padding: 10vh 0;
+        /* height: 70vh; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Image Carousel Styles */
+      .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        background: var(--text-dark);
+      }
+
+      .carousel-slides {
+        display: flex;
+        height: 100%;
+        transition: transform 0.4s ease-in-out;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(8, 8, 38, 0.7);
+        color: var(--text-light);
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background var(--transition-speed) ease;
+        z-index: 10;
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(8, 8, 38, 0.9);
+      }
+
+      .carousel-arrow-left {
+        left: 15px;
+      }
+
+      .carousel-arrow-right {
+        right: 15px;
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--forest-dark);
+        border: none;
+        cursor: pointer;
+        transition: background var(--transition-speed) ease;
+      }
+
+      .carousel-dot:hover {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .carousel-dot.active {
+        background: var(--forest-light);
+      }
+
+      /* Recent Changes Section */
+      .recent-changes-section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 60px 20px 30px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
         background: var(--forest-pale);
         text-align: center;
-        overflow: hidden;
       }
 
       .section {
@@ -418,7 +409,7 @@
         background: var(--forest-pale);
       }
 
-      .header {
+      .recent-changes-section .header {
         font-size: 48px;
         font-weight: 700;
         margin-bottom: 2vh;
@@ -427,14 +418,14 @@
         max-width: 60vw;
       }
 
-      .header h1 {
+      .recent-changes-section .header h1 {
         font-family: "Rufina", serif;
         font-size: 3rem;
-        font-weight: 700;
+        font-weight: 600;
         margin-bottom: 1vh;
       }
 
-      .header p {
+      .recent-changes-section .header p {
         font-size: 1.1rem;
         line-height: 1.5;
         margin: 0 auto;
@@ -453,6 +444,7 @@
         flex: 1;
         min-height: 0;
         overflow: hidden;
+        position: relative;
       }
 
       .table-header {
@@ -621,6 +613,71 @@
 
       @media (max-width: 768px) {
         .landing-section {
+          flex-direction: column;
+          padding: 7vh 15px 20px 15px;
+          gap: 3vh;
+        }
+
+        .landing-left {
+          flex: 0 0 auto;
+          height: 45%;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
+        }
+
+        .landing-left .header {
+          margin-bottom: 2vh;
+        }
+
+        .landing-left .header h1 {
+          font-size: 2rem;
+        }
+
+        .landing-left .header p {
+          font-size: 0.9rem;
+          line-height: 1.3rem;
+        }
+
+        .landing-nav-buttons {
+          justify-content: center;
+        }
+
+        .landing-nav-button {
+          font-size: 0.8rem;
+          padding: 6px 12px;
+        }
+
+        .landing-right {
+          flex: 0 0 auto;
+          height: 45%;
+          width: 100%;
+        }
+
+        .carousel-arrow {
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+        }
+
+        .carousel-arrow-left {
+          left: 10px;
+        }
+
+        .carousel-arrow-right {
+          right: 10px;
+        }
+
+        .carousel-dots {
+          bottom: 10px;
+        }
+
+        .carousel-dot {
+          width: 10px;
+          height: 10px;
+        }
+
+        .recent-changes-section {
           padding: 7vh 10px 30px 10px;
         }
 
@@ -848,6 +905,10 @@
         color: var(--stat-negative);
       }
 
+      .stat-value.zero {
+        color: #6c757d;
+      }
+
       .stat-label {
         font-size: 0.75rem;
         color: #aaa;
@@ -872,7 +933,7 @@
 
       .table-card {
         background: var(--text-dark);
-        padding: 20px;
+        padding: 0px 20px;
         border-radius: var(--border-radius);
         border: none;
         margin-bottom: 20px;
@@ -929,25 +990,143 @@
         color: var(--text-light);
         position: sticky;
         top: 0;
+        z-index: 10;
       }
 
       .table-card th {
         padding: 8px 6px;
-        text-align: left;
+        text-align: center;
         font-weight: 600;
         font-size: 0.8rem;
         color: var(--text-light);
+        text-transform: capitalize;
       }
 
       .table-card td {
         padding: 8px 6px;
         border-bottom: 1px solid #dddddd2b;
         color: var(--text-light);
-        text-align: left;
+        text-align: center;
+      }
+
+      .table-card td.change-add {
+        color: var(--stat-positive);
+        font-weight: 600;
+      }
+
+      .table-card td.change-remove {
+        color: var(--stat-negative);
+        font-weight: 600;
       }
 
       .table-card tr:hover {
         background-color: rgba(82, 183, 136, 0.1);
+      }
+
+      /* Reserve Search Control */
+      .leaflet-control-search {
+        background: #f4f4f4;
+        border-radius: var(--border-radius);
+        border: 2px solid var(--forest-medium);
+        padding: 0;
+        width: 180px;
+        font-family: "Nunito", sans-serif;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        position: relative;
+      }
+
+      .leaflet-control-search .search-input-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 6px 10px;
+        gap: 6px;
+      }
+
+      .leaflet-control-search .search-icon {
+        color: var(--forest-light);
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .leaflet-control-search input[type="text"] {
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--text-dark);
+        font-size: 0.85rem;
+        font-family: "Nunito", sans-serif;
+      }
+
+      .leaflet-control-search input[type="text"]::placeholder {
+        color: var(--text-dark);
+      }
+
+      .leaflet-control-search .search-clear {
+        background: none;
+        border: none;
+        color: var(--text-dark);
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0 2px;
+        line-height: 1;
+        display: none;
+      }
+
+      .leaflet-control-search .search-clear:hover {
+        color: var(--text-dark);
+      }
+
+      .leaflet-control-search .search-results {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: 220px;
+        overflow-y: auto;
+        border-top: 1px solid var(--forest-medium);
+        display: none;
+      }
+
+      .leaflet-control-search .search-results li {
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        color: var(--text-dark);
+        border-bottom: 1px solid rgba(45, 106, 79, 0.3);
+      }
+
+      .leaflet-control-search .search-results li:last-child {
+        border-bottom: none;
+      }
+
+      .leaflet-control-search .search-results li:hover,
+      .leaflet-control-search .search-results li.active {
+        background: var(--forest-light);
+      }
+
+      .leaflet-control-search .search-results li .result-reserve {
+        display: block;
+        font-weight: 600;
+      }
+
+      .leaflet-control-search .search-results li .result-state {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-dark);
+        margin-top: 1px;
+      }
+
+      .leaflet-control-search .search-no-results {
+        padding: 10px 12px;
+        color: rgba(239, 236, 232, 0.5);
+        font-size: 0.82rem;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        .leaflet-control-search {
+          width: 180px;
+        }
       }
 
       /* Leaflet label customization */
@@ -1051,55 +1230,6 @@
     </style>
   </head>
   <body>
-    <!-- Primer Carousel -->
-    <div class="primer-carousel" id="primer-carousel">
-      <div class="carousel-track" id="carousel-track">
-        <div class="carousel-slide">
-          <img
-            src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_1.webp"
-            alt="Slide 1"
-          />
-        </div>
-        <div class="carousel-slide">
-          <img
-            src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_2.webp"
-            alt="Slide 2"
-          />
-        </div>
-        <div class="carousel-slide">
-          <img
-            src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_3.webp"
-            alt="Slide 3"
-          />
-        </div>
-      </div>
-
-      <button
-        class="carousel-arrow carousel-arrow-left disabled"
-        id="carousel-arrow-left"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-        </svg>
-      </button>
-      <button
-        class="carousel-arrow carousel-arrow-right"
-        id="carousel-arrow-right"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-        </svg>
-      </button>
-
-      <button class="carousel-close" id="carousel-close">✕</button>
-
-      <div class="carousel-dots" id="carousel-dots">
-        <button class="carousel-dot active" data-slide="0"></button>
-        <button class="carousel-dot" data-slide="1"></button>
-        <button class="carousel-dot" data-slide="2"></button>
-      </div>
-    </div>
-
     <div class="bodi">
       <!-- Navigation Bar -->
       <div class="navigation" id="nav-bar">
@@ -1116,7 +1246,7 @@
         <div class="nav-buttons">
           <button
             class="nav-button"
-            onclick="scrollToSection('recent-changes')"
+            onclick="scrollToSection('recent-changes-section')"
           >
             Recent Changes
           </button>
@@ -1147,14 +1277,107 @@
         </div>
       </div>
 
-      <div class="landing-section" id="recent-changes">
+      <!-- Landing Section -->
+      <div class="landing-section" id="landing">
+        <div class="landing-left">
+          <div class="header">
+            <h1>Forest Reserve Tracker</h1>
+            <p>
+              Addition and removal of forest reserves in Peninsular Malaysia as
+              published in government gazettes.
+            </p>
+            <br />
+            <p style="text-decoration: underline">
+              Coverage: Jan 1, 2002 to <span id="update-date1"></span>
+            </p>
+          </div>
+          <div class="landing-nav-buttons">
+            <button
+              class="landing-nav-button"
+              onclick="scrollToSection('recent-changes-section')"
+            >
+              Recent Changes
+            </button>
+            <button
+              class="landing-nav-button"
+              onclick="scrollToSection('map-section')"
+            >
+              Map
+            </button>
+            <button
+              class="landing-nav-button"
+              onclick="scrollToSection('data-table-section')"
+            >
+              Full Data
+            </button>
+            <button
+              class="landing-nav-button"
+              onclick="scrollToSection('about-section')"
+            >
+              About
+            </button>
+            <button
+              class="landing-nav-button"
+              onclick="scrollToSection('methodology-section')"
+            >
+              Methodology
+            </button>
+            <button
+              class="landing-nav-button"
+              onclick="scrollToSection('investigations-section')"
+            >
+              Investigations
+            </button>
+          </div>
+        </div>
+
+        <div class="landing-right">
+          <div class="carousel-container" id="carousel">
+            <div class="carousel-slides" id="carousel-slides">
+              <div class="carousel-slide">
+                <img
+                  src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_1.webp"
+                  alt="Carousel Image 1"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_2.webp"
+                  alt="Carousel Image 2"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_3.webp"
+                  alt="Carousel Image 3"
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-arrow carousel-arrow-left"
+              id="carousel-prev"
+            >
+              &#10094;
+            </button>
+            <button
+              class="carousel-arrow carousel-arrow-right"
+              id="carousel-next"
+            >
+              &#10095;
+            </button>
+            <div class="carousel-dots" id="carousel-dots">
+              <button class="carousel-dot active" data-index="0"></button>
+              <button class="carousel-dot" data-index="1"></button>
+              <button class="carousel-dot" data-index="2"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Changes Section -->
+      <section class="recent-changes-section" id="recent-changes-section">
         <div class="header">
-          <h1>Forest Reserve Tracker</h1>
-          <p>
-            Addition and removal of forest reserves in Peninsular Malaysia as
-            published in government gazettes.
-          </p>
-          <p>From Jan 1, 2002 to <span id="update-date1"></span></p>
+          <h1>Recent Changes</h1>
         </div>
 
         <div class="table-container">
@@ -1198,7 +1421,7 @@
             <div class="loading">Loading data...</div>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- Map Section -->
       <section id="map-section" class="section">
@@ -1241,25 +1464,30 @@
               <div class="table-card">
                 <h4>
                   <span id="recent-changes-title">10 Most Recent Changes</span>
-                  <button class="expand-toggle" id="toggle-recent">▼</button>
                 </h4>
-                <div class="table-content-expandable" id="recent-changes-table">
+                <div class="table-content-small" id="recent-changes-table">
                   Loading...
                 </div>
               </div>
 
               <!-- Top 5 Additions -->
               <div class="table-card">
-                <h4>Top 5 Additions by Area</h4>
-                <div class="table-content-small" id="top-additions-table">
+                <h4>
+                  Top 5 Biggest Additions
+                  <button class="expand-toggle" id="toggle-additions">▼</button>
+                </h4>
+                <div class="table-content-expandable" id="top-additions-table">
                   Loading...
                 </div>
               </div>
 
               <!-- Top 5 Removals -->
               <div class="table-card">
-                <h4>Top 5 Removals by Area</h4>
-                <div class="table-content-small" id="top-removals-table">
+                <h4>
+                  Top 5 Biggest Removals
+                  <button class="expand-toggle" id="toggle-removals">▼</button>
+                </h4>
+                <div class="table-content-expandable" id="top-removals-table">
                   Loading...
                 </div>
               </div>
@@ -1397,6 +1625,213 @@
           timeout = setTimeout(() => func.apply(this, args), wait);
         };
       }
+
+      // Reserve Search Control
+      const ReserveSearchControl = L.Control.extend({
+        options: {
+          position: "topleft",
+          placeholder: "Search reserves...",
+          minChars: 2,
+          maxResults: 12,
+        },
+
+        initialize: function (options) {
+          L.Util.setOptions(this, options);
+          this._reserveIndex = [];
+          this._activeIndex = -1;
+        },
+
+        onAdd: function (map) {
+          const container = L.DomUtil.create("div", "leaflet-control-search");
+          L.DomEvent.disableClickPropagation(container);
+          L.DomEvent.disableScrollPropagation(container);
+
+          // Input wrapper
+          const wrapper = L.DomUtil.create(
+            "div",
+            "search-input-wrapper",
+            container,
+          );
+
+          const icon = L.DomUtil.create("span", "search-icon", wrapper);
+          icon.textContent = "\u{1F50D}";
+
+          this._input = L.DomUtil.create("input", "", wrapper);
+          this._input.type = "text";
+          this._input.placeholder = this.options.placeholder;
+          this._input.autocomplete = "off";
+
+          this._clearBtn = L.DomUtil.create("button", "search-clear", wrapper);
+          this._clearBtn.innerHTML = "&times;";
+          this._clearBtn.title = "Clear search";
+
+          // Results dropdown
+          this._resultsList = L.DomUtil.create(
+            "ul",
+            "search-results",
+            container,
+          );
+
+          // Wire events
+          this._input.addEventListener("input", this._onInput.bind(this));
+          this._input.addEventListener("keydown", this._onKeyDown.bind(this));
+          this._input.addEventListener("focus", this._onFocus.bind(this));
+          this._clearBtn.addEventListener("click", this._onClear.bind(this));
+
+          document.addEventListener("click", (e) => {
+            if (!container.contains(e.target)) {
+              this._hideResults();
+            }
+          });
+
+          // Move search control above zoom controls
+          setTimeout(() => {
+            const corner = container.parentNode;
+            if (corner) {
+              corner.insertBefore(container, corner.firstChild);
+            }
+          }, 0);
+
+          this._container = container;
+          return container;
+        },
+
+        buildIndex: function () {
+          this._reserveIndex = [];
+          if (!appState.reservesData || !appState.reservesData.features) return;
+
+          const seen = new Set();
+          appState.reservesData.features.forEach((feature) => {
+            const reserve = feature.properties.reserve;
+            const state = feature.properties.state;
+            const key = `${reserve}||${state}`;
+            if (!seen.has(key)) {
+              seen.add(key);
+              this._reserveIndex.push({
+                reserve: reserve,
+                state: state,
+                lowerReserve: reserve.toLowerCase(),
+              });
+            }
+          });
+
+          this._reserveIndex.sort((a, b) => a.reserve.localeCompare(b.reserve));
+        },
+
+        _onInput: function () {
+          const query = this._input.value.trim();
+          this._clearBtn.style.display = query.length > 0 ? "block" : "none";
+
+          if (query.length < this.options.minChars) {
+            this._hideResults();
+            return;
+          }
+
+          const matches = this._search(query);
+          this._showResults(matches);
+        },
+
+        _onFocus: function () {
+          const query = this._input.value.trim();
+          if (query.length >= this.options.minChars) {
+            const matches = this._search(query);
+            this._showResults(matches);
+          }
+        },
+
+        _onKeyDown: function (e) {
+          const items = this._resultsList.querySelectorAll(
+            "li:not(.search-no-results)",
+          );
+          if (!items.length) return;
+
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            this._activeIndex = Math.min(
+              this._activeIndex + 1,
+              items.length - 1,
+            );
+            this._highlightItem(items);
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            this._activeIndex = Math.max(this._activeIndex - 1, 0);
+            this._highlightItem(items);
+          } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (this._activeIndex >= 0 && items[this._activeIndex]) {
+              items[this._activeIndex].click();
+            }
+          } else if (e.key === "Escape") {
+            this._onClear();
+            this._input.blur();
+          }
+        },
+
+        _onClear: function () {
+          this._input.value = "";
+          this._clearBtn.style.display = "none";
+          this._hideResults();
+        },
+
+        _search: function (query) {
+          const lowerQuery = query.toLowerCase();
+          return this._reserveIndex
+            .filter((item) => item.lowerReserve.includes(lowerQuery))
+            .slice(0, this.options.maxResults);
+        },
+
+        _showResults: function (matches) {
+          this._resultsList.innerHTML = "";
+          this._activeIndex = -1;
+
+          if (matches.length === 0) {
+            const noResult = L.DomUtil.create(
+              "li",
+              "search-no-results",
+              this._resultsList,
+            );
+            noResult.textContent = "No reserves found";
+            this._resultsList.style.display = "block";
+            return;
+          }
+
+          matches.forEach((item) => {
+            const li = L.DomUtil.create("li", "", this._resultsList);
+
+            const nameSpan = L.DomUtil.create("span", "result-reserve", li);
+            nameSpan.textContent = item.reserve;
+
+            const stateSpan = L.DomUtil.create("span", "result-state", li);
+            stateSpan.textContent = item.state;
+
+            li.addEventListener("click", () => {
+              this._selectReserve(item.reserve, item.state);
+            });
+          });
+
+          this._resultsList.style.display = "block";
+        },
+
+        _hideResults: function () {
+          this._resultsList.style.display = "none";
+          this._resultsList.innerHTML = "";
+          this._activeIndex = -1;
+        },
+
+        _highlightItem: function (items) {
+          items.forEach((item, i) => {
+            item.classList.toggle("active", i === this._activeIndex);
+          });
+          if (items[this._activeIndex]) {
+            items[this._activeIndex].scrollIntoView({ block: "nearest" });
+          }
+        },
+
+        _selectReserve: function (reserveName, stateName) {
+          this._onClear();
+          selectReserveBySearch(reserveName, stateName);
+        },
+      });
 
       // Data Validation Functions
       function validateRowData(row) {
@@ -1717,6 +2152,23 @@
       }, 250);
       window.addEventListener("resize", handleMapResize);
 
+      // Navigation visibility on scroll
+      function handleNavVisibility() {
+        const landing = document.getElementById("landing");
+        const nav = document.getElementById("nav-bar");
+        const threshold = landing.offsetHeight * 0.6;
+
+        if (window.scrollY >= threshold) {
+          nav.classList.add("nav-visible");
+        } else {
+          nav.classList.remove("nav-visible");
+        }
+      }
+
+      const debouncedNavHandler = debounce(handleNavVisibility, 50);
+      window.addEventListener("scroll", debouncedNavHandler);
+      window.addEventListener("load", handleNavVisibility);
+
       // Set up dropdown event listeners once
       document
         .getElementById("state-dropdown")
@@ -1738,134 +2190,80 @@
           downloadFilteredDataAsCSV();
         });
 
-      // Primer Carousel Functionality
-      function initPrimerCarousel() {
-        const carousel = document.getElementById("primer-carousel");
-        const track = document.getElementById("carousel-track");
-        const closeBtn = document.getElementById("carousel-close");
+      // Primer overlay functionality
+
+      // Carousel functionality
+      const carouselState = {
+        currentIndex: 0,
+        totalSlides: 3,
+      };
+
+      function initCarousel() {
+        const prevBtn = document.getElementById("carousel-prev");
+        const nextBtn = document.getElementById("carousel-next");
         const dots = document.querySelectorAll(".carousel-dot");
-        const arrowLeft = document.getElementById("carousel-arrow-left");
-        const arrowRight = document.getElementById("carousel-arrow-right");
-        const totalSlides = 3;
-        let currentSlide = 0;
 
-        // Check localStorage - hide carousel if user has already seen it
-        const carouselSeen = localStorage.getItem("primerCarouselSeen");
-        if (carouselSeen === "true") {
-          carousel.classList.add("hidden");
-          return;
-        }
-
-        // Update UI based on current slide
-        function updateCarouselUI() {
-          // Update dots
-          dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentSlide);
-          });
-
-          // Update arrow states
-          arrowLeft.classList.toggle("disabled", currentSlide === 0);
-          arrowRight.classList.toggle(
-            "disabled",
-            currentSlide === totalSlides - 1,
-          );
-
-          // Show close button only on last slide
-          closeBtn.classList.toggle(
-            "visible",
-            currentSlide === totalSlides - 1,
-          );
-        }
-
-        // Go to specific slide
-        function goToSlide(index) {
-          if (index < 0 || index >= totalSlides) return;
-          currentSlide = index;
-          track.scrollTo({
-            left: index * window.innerWidth,
-            behavior: "smooth",
-          });
-          updateCarouselUI();
-        }
-
-        // Handle scroll to detect current slide
-        function handleScroll() {
-          const scrollLeft = track.scrollLeft;
-          const slideWidth = window.innerWidth;
-          const newSlide = Math.round(scrollLeft / slideWidth);
-          if (
-            newSlide !== currentSlide &&
-            newSlide >= 0 &&
-            newSlide < totalSlides
-          ) {
-            currentSlide = newSlide;
-            updateCarouselUI();
-          }
-        }
-
-        // Debounced scroll handler
-        let scrollTimeout;
-        track.addEventListener("scroll", function () {
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(handleScroll, 50);
+        // Arrow button click handlers
+        prevBtn.addEventListener("click", function () {
+          goToSlide(carouselState.currentIndex - 1);
         });
 
-        // Arrow button handlers
-        arrowLeft.addEventListener("click", function () {
-          if (currentSlide > 0) {
-            goToSlide(currentSlide - 1);
-          }
-        });
-
-        arrowRight.addEventListener("click", function () {
-          if (currentSlide < totalSlides - 1) {
-            goToSlide(currentSlide + 1);
-          }
+        nextBtn.addEventListener("click", function () {
+          goToSlide(carouselState.currentIndex + 1);
         });
 
         // Dot click handlers
-        dots.forEach((dot) => {
+        dots.forEach(function (dot) {
           dot.addEventListener("click", function () {
-            const slideIndex = parseInt(this.dataset.slide);
-            goToSlide(slideIndex);
+            const index = parseInt(this.getAttribute("data-index"));
+            goToSlide(index);
           });
         });
 
         // Keyboard navigation
         document.addEventListener("keydown", function (e) {
-          if (carousel.classList.contains("hidden")) return;
+          // Only respond to arrow keys when carousel is in view
+          const carousel = document.getElementById("carousel");
+          const rect = carousel.getBoundingClientRect();
+          const isInView = rect.top < window.innerHeight && rect.bottom > 0;
 
-          if (e.key === "ArrowLeft" && currentSlide > 0) {
-            goToSlide(currentSlide - 1);
-          } else if (e.key === "ArrowRight" && currentSlide < totalSlides - 1) {
-            goToSlide(currentSlide + 1);
-          } else if (e.key === "Escape" && currentSlide === totalSlides - 1) {
-            closeCarousel();
+          if (isInView) {
+            if (e.key === "ArrowLeft") {
+              goToSlide(carouselState.currentIndex - 1);
+            } else if (e.key === "ArrowRight") {
+              goToSlide(carouselState.currentIndex + 1);
+            }
           }
         });
-
-        // Close button handler
-        function closeCarousel() {
-          carousel.classList.add("hidden");
-          localStorage.setItem("primerCarouselSeen", "true");
-        }
-
-        closeBtn.addEventListener("click", closeCarousel);
-
-        // Handle window resize (recalculate scroll position)
-        window.addEventListener("resize", function () {
-          track.scrollTo({
-            left: currentSlide * window.innerWidth,
-            behavior: "auto",
-          });
-        });
-
-        // Initialize UI
-        updateCarouselUI();
       }
 
-      // Initialize primer carousel on page load
-      initPrimerCarousel();
+      function goToSlide(index) {
+        // Handle wrapping
+        if (index < 0) {
+          index = carouselState.totalSlides - 1;
+        } else if (index >= carouselState.totalSlides) {
+          index = 0;
+        }
+
+        carouselState.currentIndex = index;
+
+        // Update slide position
+        const slides = document.getElementById("carousel-slides");
+        slides.style.transform = `translateX(-${index * 100}%)`;
+
+        // Update dots
+        const dots = document.querySelectorAll(".carousel-dot");
+        dots.forEach(function (dot, i) {
+          if (i === index) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      // Initialize carousel on page load
+      initCarousel();
 
       // Load and parse CSV data
       Papa.parse(CONFIG.CSV_URL, {
@@ -1909,12 +2307,16 @@
       function updateDateDisplays() {
         const updateDateEl1 = document.getElementById("update-date1");
         const updateDateEl2 = document.getElementById("update-date2");
+        const primerDateEl = document.getElementById("primer-update-date");
         const formattedDate = appState.lastUpdatedDate.toLocaleDateString(
           "en-US",
           CONFIG.DATE_FORMAT_SHORT,
         );
         updateDateEl1.textContent = formattedDate;
         updateDateEl2.textContent = formattedDate;
+        if (primerDateEl) {
+          primerDateEl.textContent = formattedDate;
+        }
       }
 
       function filterAndDisplayData() {
@@ -2035,7 +2437,7 @@
           return;
         }
 
-        let html = `<table><thead><tr><th>Gazette Date</th><th>Forest Reserve</th><th>Change</th><th>Area (ha)</th><th>State and District</th><th>Gazette Number</th></tr></thead><tbody>`;
+        let html = `<table><thead><tr><th>Gazette Date</th><th>Forest Reserve</th><th>Area (ha)</th><th>State | District</th><th>Gazette Number</th></tr></thead><tbody>`;
 
         data.forEach((row) => {
           const gazetteDate = formatGazetteDate(row);
@@ -2053,7 +2455,14 @@
 
           const changeInfo = getChangeInfo(row);
           const areaFormatted = changeInfo.area
-            ? Math.round(parseFloat(changeInfo.area)).toLocaleString()
+            ? parseFloat(changeInfo.area).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+            : "";
+          const sign = changeInfo.type === "Add" ? "+" : "-";
+          const changeFormatted = areaFormatted
+            ? `${sign}${areaFormatted}`
             : "";
 
           let gazetteNum = "-";
@@ -2067,10 +2476,10 @@
 
           let stateDistrict = row.state || "-";
           if (row.district && row.district.trim() !== "") {
-            stateDistrict = `${row.state || "-"}, ${row.district}`;
+            stateDistrict = `${row.state || "-"} | ${row.district}`;
           }
 
-          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeInfo.type}</td><td>${areaFormatted}</td><td>${stateDistrict}</td><td>${gazetteNum}</td></tr>`;
+          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeFormatted}</td><td>${stateDistrict}</td><td>${gazetteNum}</td></tr>`;
         });
 
         html += `</tbody></table><div class="table-footer">Note: Area rounded off. Click <a href="${CONFIG.CSV_URL}" target="_blank">here</a> to download full data.</div>`;
@@ -2096,6 +2505,16 @@
         loadGeoJSON();
         loadAllReserves();
 
+        // Add search control
+        const searchControl = new ReserveSearchControl();
+        searchControl.addTo(appState.map);
+        appState.searchControl = searchControl;
+
+        // Build search index once reserves data has loaded
+        loadReservesData().then(() => {
+          searchControl.buildIndex();
+        });
+
         // Set up reset button
         document
           .getElementById("reset-map")
@@ -2103,12 +2522,21 @@
             resetMapView();
           });
 
-        // Set up expandable table toggle
+        // Set up expandable table toggles
         document
-          .getElementById("toggle-recent")
+          .getElementById("toggle-additions")
           .addEventListener("click", function () {
-            const table = document.getElementById("recent-changes-table");
-            const button = document.getElementById("toggle-recent");
+            const table = document.getElementById("top-additions-table");
+            const button = document.getElementById("toggle-additions");
+            table.classList.toggle("expanded");
+            button.classList.toggle("expanded");
+          });
+
+        document
+          .getElementById("toggle-removals")
+          .addEventListener("click", function () {
+            const table = document.getElementById("top-removals-table");
+            const button = document.getElementById("toggle-removals");
             table.classList.toggle("expanded");
             button.classList.toggle("expanded");
           });
@@ -2246,7 +2674,7 @@
         }
 
         // Load and filter reserves data
-        loadReservesData()
+        return loadReservesData()
           .then((reservesData) => {
             // Filter features for the selected state
             const filteredFeatures = reservesData.features.filter(
@@ -2471,6 +2899,87 @@
         updateMapPanelForReserve(reserveName, stateName);
       }
 
+      function selectReserveBySearch(reserveName, stateName) {
+        const needsStateSwitch = appState.mapSelectedState !== stateName;
+
+        if (needsStateSwitch) {
+          // Find the state layer in geojsonLayer
+          let stateLayer = null;
+          appState.geojsonLayer.eachLayer(function (layer) {
+            const layerStateName =
+              layer.feature.properties.name || layer.feature.properties.state;
+            if (layerStateName === stateName) {
+              stateLayer = layer;
+            }
+          });
+
+          if (!stateLayer) {
+            console.error("Could not find state layer for:", stateName);
+            return;
+          }
+
+          // Trigger state selection (this calls showReservesForState internally)
+          onStateClick(stateName, stateLayer);
+
+          // Wait for the reserves layer to be populated, then select the reserve
+          waitForReservesLayer(reserveName, stateName, 0);
+        } else {
+          findAndSelectReserveLayer(reserveName, stateName);
+        }
+      }
+
+      function waitForReservesLayer(reserveName, stateName, attempts) {
+        const maxAttempts = 20; // 20 * 100ms = 2 seconds max wait
+        if (attempts >= maxAttempts) {
+          console.error("Timed out waiting for reserves layer to load");
+          return;
+        }
+
+        if (appState.reservesLayer) {
+          let layerCount = 0;
+          appState.reservesLayer.eachLayer(() => {
+            layerCount++;
+          });
+          if (layerCount > 0) {
+            findAndSelectReserveLayer(reserveName, stateName);
+            return;
+          }
+        }
+
+        setTimeout(() => {
+          waitForReservesLayer(reserveName, stateName, attempts + 1);
+        }, 100);
+      }
+
+      function findAndSelectReserveLayer(reserveName, stateName) {
+        if (!appState.reservesLayer) {
+          console.error("Reserves layer not available");
+          return;
+        }
+
+        let targetLayer = null;
+        appState.reservesLayer.eachLayer(function (layer) {
+          if (
+            layer.feature &&
+            layer.feature.properties.reserve === reserveName &&
+            layer.feature.properties.state === stateName
+          ) {
+            targetLayer = layer;
+          }
+        });
+
+        if (targetLayer) {
+          onReserveClick(reserveName, stateName, targetLayer);
+        } else {
+          console.error(
+            "Could not find reserve layer:",
+            reserveName,
+            "in",
+            stateName,
+          );
+        }
+      }
+
       function updateMapPanel(stateName) {
         // Clear selected reserve
         appState.selectedReserve = null;
@@ -2491,8 +3000,8 @@
 
         // Update net change
         const netChangeEl = document.getElementById("net-change-value");
-        const netChangeFormatted = Math.round(
-          analysis.netChange,
+        const netChangeFormatted = parseFloat(
+          analysis.netChange.toFixed(2),
         ).toLocaleString();
         netChangeEl.textContent = `${analysis.netChange >= 0 ? "+" : ""}${netChangeFormatted} ha`;
         netChangeEl.className = "stat-value";
@@ -2500,6 +3009,8 @@
           netChangeEl.classList.add("positive");
         } else if (analysis.netChange < 0) {
           netChangeEl.classList.add("negative");
+        } else {
+          netChangeEl.classList.add("zero");
         }
 
         // Update chart
@@ -2539,8 +3050,8 @@
 
         // Update net change
         const netChangeEl = document.getElementById("net-change-value");
-        const netChangeFormatted = Math.round(
-          analysis.netChange,
+        const netChangeFormatted = parseFloat(
+          analysis.netChange.toFixed(2),
         ).toLocaleString();
         netChangeEl.textContent = `${analysis.netChange >= 0 ? "+" : ""}${netChangeFormatted} ha`;
         netChangeEl.className = "stat-value";
@@ -2548,6 +3059,8 @@
           netChangeEl.classList.add("positive");
         } else if (analysis.netChange < 0) {
           netChangeEl.classList.add("negative");
+        } else {
+          netChangeEl.classList.add("zero");
         }
 
         // Update chart with reserve data
@@ -2699,7 +3212,7 @@
           return;
         }
 
-        let html = `<table><thead><tr><th>Date</th><th>Reserve</th><th>Type</th><th>Area (ha)</th></tr></thead><tbody>`;
+        let html = `<table><thead><tr><th>Date</th><th>Forest Reserve</th><th>Change (ha)</th><th>Gazette Number</th></tr></thead><tbody>`;
 
         recentChanges.forEach((row) => {
           const gazetteDate = formatGazetteDate(row);
@@ -2711,10 +3224,25 @@
           );
           const changeInfo = getChangeInfo(row);
           const areaFormatted = changeInfo.area
-            ? Math.round(parseFloat(changeInfo.area)).toLocaleString()
+            ? parseFloat(changeInfo.area).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
             : "";
+          const sign = changeInfo.type === "Add" ? "+" : "-";
+          const changeFormatted = areaFormatted
+            ? `${sign}${areaFormatted}`
+            : "";
+          let gazetteNum = "-";
+          if (
+            row.gaznum !== undefined &&
+            row.gaznum !== null &&
+            row.gaznum !== ""
+          ) {
+            gazetteNum = String(row.gaznum);
+          }
 
-          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeInfo.type}</td><td>${areaFormatted}</td></tr>`;
+          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeFormatted}</td><td>${gazetteNum}</td></tr>`;
         });
 
         html += `</tbody></table>`;
@@ -2730,7 +3258,7 @@
           return;
         }
 
-        let html = `<table><thead><tr><th>Reserve</th><th>State</th><th>Area (ha)</th><th>Date</th></tr></thead><tbody>`;
+        let html = `<table><thead><tr><th>Date</th><th>Forest Reserve</th><th>Area (ha)</th><th>Gazette Number</th></tr></thead><tbody>`;
 
         data.forEach((row) => {
           const gazetteDate = formatGazetteDate(row);
@@ -2742,10 +3270,22 @@
           );
           const changeInfo = getChangeInfo(row);
           const areaFormatted = changeInfo.area
-            ? Math.round(parseFloat(changeInfo.area)).toLocaleString()
+            ? parseFloat(changeInfo.area).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
             : "";
 
-          html += `<tr><td>${row.reserve || "-"}</td><td>${row.state || "-"}</td><td>${areaFormatted}</td><td>${dateStr}</td></tr>`;
+          let gazetteNum = "-";
+          if (
+            row.gaznum !== undefined &&
+            row.gaznum !== null &&
+            row.gaznum !== ""
+          ) {
+            gazetteNum = String(row.gaznum);
+          }
+
+          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td>${areaFormatted}</td><td>${gazetteNum}</td></tr>`;
         });
 
         html += `</tbody></table>`;
@@ -2765,4 +3305,3 @@
     </script>
   </body>
 </html>
-
