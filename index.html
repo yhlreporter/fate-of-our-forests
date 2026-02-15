@@ -397,6 +397,14 @@
         background: var(--forest-pale);
       }
 
+      #data-table-section h2 {
+        font-family: "Rufina", serif;
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 2vh;
+      }
+
       #about-section {
         background: var(--forest-pale);
       }
@@ -536,7 +544,7 @@
       }
 
       #table-content::-webkit-scrollbar-thumb {
-        background: var(--forest-pale);
+        background: var(--forest-light);
       }
 
       .loading {
@@ -609,6 +617,206 @@
 
       .table-footer a:hover {
         text-decoration: underline;
+      }
+
+      /* Data Table Section */
+      .data-table-container {
+        background: var(--text-dark);
+        border-radius: var(--border-radius);
+        padding: 2vh 1vw;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5vh;
+      }
+
+      .data-table-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 12px 0;
+      }
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .filter-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .filter-text-input {
+        background: var(--forest-light);
+        color: var(--text-dark);
+        border: 2px solid var(--forest-light);
+        padding: 4px 10px;
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: inherit;
+        transition: all var(--transition-speed) ease;
+        min-width: 200px;
+      }
+
+      .filter-text-input::placeholder {
+        color: var(--text-light);
+        opacity: 0.6;
+      }
+
+      .filter-text-input:hover,
+      .filter-text-input:focus {
+        background: var(--forest-medium);
+        color: var(--text-light);
+        border-color: var(--forest-pale);
+        outline: none;
+      }
+
+      .filter-group-years {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .year-checkboxes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .year-checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-light);
+        padding: 2px 8px;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--forest-medium);
+        transition: all var(--transition-speed) ease;
+        user-select: none;
+      }
+
+      .year-checkbox-label:hover {
+        border-color: var(--forest-light);
+      }
+
+      .year-checkbox-label input[type="checkbox"] {
+        accent-color: var(--forest-medium);
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+      }
+
+      .year-checkbox-label.unchecked {
+        opacity: 0.5;
+      }
+
+      .year-toggle-btn {
+        background: none;
+        border: 1px solid var(--forest-medium);
+        color: var(--text-light);
+        font-size: 0.7rem;
+        font-family: inherit;
+        font-weight: 600;
+        padding: 1px 6px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        margin-left: 6px;
+        text-transform: none;
+        letter-spacing: 0;
+        transition: all var(--transition-speed) ease;
+      }
+
+      .year-toggle-btn:hover {
+        background: var(--forest-medium);
+        color: var(--text-light);
+        border-color: var(--forest-light);
+      }
+
+      .data-table-status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.9rem;
+        color: var(--text-light);
+        padding: 4px 0;
+      }
+
+      .data-table-scroll {
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 70vh;
+        border-radius: var(--border-radius);
+      }
+
+      .data-table-scroll::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .data-table-scroll::-webkit-scrollbar-track {
+        background: var(--text-dark);
+      }
+
+      .data-table-scroll::-webkit-scrollbar-thumb {
+        background: var(--forest-light);
+      }
+
+      #all-changes-table th {
+        background-color: #2d6a4f;
+      }
+
+      #all-changes-table th.sortable {
+        cursor: pointer;
+        position: relative;
+        white-space: nowrap;
+        transition: background-color var(--transition-speed) ease;
+      }
+
+      #all-changes-table th.sortable:hover {
+        background-color: #52b788;
+      }
+
+      #all-changes-table th.active-sort {
+        background-color: #52b788;
+      }
+
+      .sort-indicator {
+        font-size: 0.7rem;
+        margin-left: 4px;
+        opacity: 0.7;
+      }
+
+      #all-changes-table th.active-sort .sort-indicator {
+        opacity: 1;
+      }
+
+      #all-changes-table td:nth-child(8) {
+        max-width: 180px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.8rem;
+        text-align: left;
+      }
+
+      #all-changes-table td:nth-child(8):hover {
+        white-space: normal;
+        overflow: visible;
+        word-wrap: break-word;
+      }
+
+      #all-changes-table td:nth-child(2) {
+        text-align: center;
+        min-width: 120px;
       }
 
       @media (max-width: 768px) {
@@ -774,6 +982,32 @@
         td:nth-child(6) {
           min-width: 50px;
         }
+
+        .data-table-filters {
+          flex-direction: column;
+        }
+
+        .filter-text-input {
+          min-width: 100%;
+        }
+
+        .data-table-scroll {
+          max-height: 60vh;
+        }
+
+        #all-changes-table th,
+        #all-changes-table td {
+          padding: 8px 4px;
+          font-size: 0.75rem;
+        }
+
+        #all-changes-table td:nth-child(8) {
+          max-width: 100px;
+        }
+
+        #data-table-section h2 {
+          font-size: 2rem;
+        }
       }
 
       /* Map Section Styles */
@@ -803,6 +1037,7 @@
         border-radius: var(--border-radius);
         border: solid 2px var(--forest-dark);
         overflow: hidden;
+        isolation: isolate;
       }
 
       .map-data-panel {
@@ -1251,13 +1486,13 @@
             Recent Changes
           </button>
           <button class="nav-button" onclick="scrollToSection('map-section')">
-            Map
+            Map (All Changes)
           </button>
           <button
             class="nav-button"
             onclick="scrollToSection('data-table-section')"
           >
-            Full Data
+            Table (All Changes)
           </button>
           <button class="nav-button" onclick="scrollToSection('about-section')">
             About
@@ -1272,7 +1507,7 @@
             class="nav-button"
             onclick="scrollToSection('investigations-section')"
           >
-            Investigations
+            Puzzles
           </button>
         </div>
       </div>
@@ -1302,13 +1537,13 @@
               class="landing-nav-button"
               onclick="scrollToSection('map-section')"
             >
-              Map
+              Map (All Changes)
             </button>
             <button
               class="landing-nav-button"
               onclick="scrollToSection('data-table-section')"
             >
-              Full Data
+              Table (All Changes)
             </button>
             <button
               class="landing-nav-button"
@@ -1326,7 +1561,7 @@
               class="landing-nav-button"
               onclick="scrollToSection('investigations-section')"
             >
-              Investigations
+              Puzzles
             </button>
           </div>
         </div>
@@ -1411,8 +1646,14 @@
 
             <div class="update-date-row">
               Updated: <span id="update-date2"></span>
-              <button class="download-button" id="download-csv">
-                Download Table Data
+              <button
+                class="download-button"
+                id="download-table-recent-changes"
+              >
+                Download Table
+              </button>
+              <button class="download-button" id="download-full-csv">
+                Download All Changes
               </button>
             </div>
           </div>
@@ -1498,12 +1739,96 @@
 
       <!-- Full Data Table Section -->
       <section id="data-table-section" class="section">
-        <h2>Complete Data Table</h2>
+        <h2>All Changes up to <span id="update-date3"></span></h2>
         <div class="section-content">
-          <p style="text-align: center; color: #666; font-size: 1.2rem">
-            A comprehensive table of all forest reserve changes will be
-            displayed here, with advanced filtering and sorting options.
-          </p>
+          <div class="data-table-container">
+            <div class="data-table-filters">
+              <div class="filter-group">
+                <label class="filter-label" for="dt-state-filter">State</label>
+                <select class="filter-dropdown" id="dt-state-filter">
+                  <option value="All">All States</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label" for="dt-reserve-filter"
+                  >Forest Reserve</label
+                >
+                <input
+                  type="text"
+                  class="filter-text-input"
+                  id="dt-reserve-filter"
+                  placeholder="Search reserves..."
+                />
+              </div>
+
+              <div class="filter-group filter-group-years">
+                <label class="filter-label"
+                  >Year
+                  <button class="year-toggle-btn" id="dt-select-all-years">
+                    All
+                  </button>
+                  <button class="year-toggle-btn" id="dt-deselect-all-years">
+                    None
+                  </button>
+                </label>
+                <div class="year-checkboxes" id="dt-year-checkboxes"></div>
+              </div>
+            </div>
+
+            <div class="data-table-status">
+              <span id="dt-result-count">Loading...</span>
+              <button class="download-button" id="download-table-all-changes">
+                Download Table
+              </button>
+              <button class="download-button" id="download-full-csv-2">
+                Download All Changes
+              </button>
+            </div>
+
+            <div class="data-table-scroll" id="dt-table-wrapper">
+              <table id="all-changes-table">
+                <thead>
+                  <tr>
+                    <th
+                      data-sort-key="gazetteDate"
+                      class="sortable active-sort sort-desc"
+                    >
+                      Gazette Date <span class="sort-indicator">&#9660;</span>
+                    </th>
+                    <th data-sort-key="reserve" class="sortable">
+                      Forest Reserve <span class="sort-indicator"></span>
+                    </th>
+                    <th data-sort-key="change" class="sortable">
+                      Change (ha) <span class="sort-indicator"></span>
+                    </th>
+                    <th data-sort-key="gaznum" class="sortable">
+                      Gazette Number <span class="sort-indicator"></span>
+                    </th>
+                    <th data-sort-key="state" class="sortable">
+                      State <span class="sort-indicator"></span>
+                    </th>
+                    <th data-sort-key="district" class="sortable">
+                      District | Mukim <span class="sort-indicator"></span>
+                    </th>
+                    <th data-sort-key="effectiveDate" class="sortable">
+                      Effective Date <span class="sort-indicator"></span>
+                    </th>
+                    <th data-sort-key="notes" class="sortable">
+                      Notes <span class="sort-indicator"></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="dt-table-body"></tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              Note: Click
+              <a id="dt-csv-link" href="" target="_blank">here</a> to download
+              full data.
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1937,6 +2262,35 @@
         return { type: "", area: "", cssClass: "" };
       }
 
+      // Helper function: Format effective date from row data
+      function formatEffectiveDate(row) {
+        try {
+          const year = parseInt(row.gazeff_year);
+          const month = parseInt(row.gazeff_month) - 1;
+          const day = parseInt(row.gazeff_day);
+
+          if (isNaN(year) || isNaN(month) || isNaN(day)) {
+            return null;
+          }
+
+          const date = new Date(year, month, day);
+          if (isNaN(date.getTime())) {
+            return null;
+          }
+
+          return date;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      // Helper: Get signed numeric change value for a row
+      function getChangeValue(row) {
+        const changeInfo = getChangeInfo(row);
+        const area = parseFloat(changeInfo.area) || 0;
+        return changeInfo.type === "Remove" ? -area : area;
+      }
+
       // Map Data Analysis Functions
       function analyzeDataForState(stateName) {
         // Filter data by state
@@ -2185,9 +2539,15 @@
         });
 
       document
-        .getElementById("download-csv")
+        .getElementById("download-table-recent-changes")
         .addEventListener("click", function () {
-          downloadFilteredDataAsCSV();
+          downloadRecentChangesAsCSV();
+        });
+
+      document
+        .getElementById("download-full-csv")
+        .addEventListener("click", function () {
+          window.open(CONFIG.CSV_URL, "_blank");
         });
 
       // Primer overlay functionality
@@ -2296,6 +2656,9 @@
 
         // Filter and display the data
         filterAndDisplayData();
+
+        // Initialize the full data table
+        initDataTable();
       }
 
       function setUpdateDate() {
@@ -2307,6 +2670,7 @@
       function updateDateDisplays() {
         const updateDateEl1 = document.getElementById("update-date1");
         const updateDateEl2 = document.getElementById("update-date2");
+        const updateDateEl3 = document.getElementById("update-date3");
         const primerDateEl = document.getElementById("primer-update-date");
         const formattedDate = appState.lastUpdatedDate.toLocaleDateString(
           "en-US",
@@ -2314,6 +2678,7 @@
         );
         updateDateEl1.textContent = formattedDate;
         updateDateEl2.textContent = formattedDate;
+        updateDateEl3.textContent = formattedDate;
         if (primerDateEl) {
           primerDateEl.textContent = formattedDate;
         }
@@ -2358,7 +2723,7 @@
         displayTable(filteredData);
       }
 
-      function downloadFilteredDataAsCSV() {
+      function downloadRecentChangesAsCSV() {
         if (appState.currentFilteredData.length === 0) {
           alert("No data to download. Please adjust your filters.");
           return;
@@ -3290,6 +3655,394 @@
 
         html += `</tbody></table>`;
         container.innerHTML = html;
+      }
+
+      // ==============================
+      // DATA TABLE: State & Logic
+      // ==============================
+      const dataTableState = {
+        sortKey: "gazetteDate",
+        sortDirection: "desc",
+        filterState: "All",
+        filterReserve: "",
+        filterYears: new Set(),
+        allYears: [],
+      };
+
+      function initDataTable() {
+        const data = appState.allData;
+        if (!data || data.length === 0) return;
+
+        // Populate state dropdown
+        const stateDropdown = document.getElementById("dt-state-filter");
+        CONFIG.STATES.forEach(function (state) {
+          const opt = document.createElement("option");
+          opt.value = state;
+          opt.textContent = state;
+          stateDropdown.appendChild(opt);
+        });
+
+        // Discover years and populate checkboxes
+        const yearsSet = new Set();
+        data.forEach(function (row) {
+          const y = parseInt(row.gaz_year);
+          if (!isNaN(y)) yearsSet.add(y);
+        });
+        dataTableState.allYears = Array.from(yearsSet).sort(function (a, b) {
+          return a - b;
+        });
+        dataTableState.filterYears = new Set(dataTableState.allYears);
+
+        const yearContainer = document.getElementById("dt-year-checkboxes");
+        dataTableState.allYears.forEach(function (year) {
+          const label = document.createElement("label");
+          label.className = "year-checkbox-label";
+          const cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.checked = true;
+          cb.value = year;
+          cb.addEventListener("change", function () {
+            if (this.checked) {
+              dataTableState.filterYears.add(year);
+              label.classList.remove("unchecked");
+            } else {
+              dataTableState.filterYears.delete(year);
+              label.classList.add("unchecked");
+            }
+            renderDataTable();
+          });
+          label.appendChild(cb);
+          label.appendChild(document.createTextNode(year));
+          yearContainer.appendChild(label);
+        });
+
+        // Select All / Deselect All year buttons
+        document
+          .getElementById("dt-select-all-years")
+          .addEventListener("click", function () {
+            dataTableState.filterYears = new Set(dataTableState.allYears);
+            yearContainer
+              .querySelectorAll("input[type='checkbox']")
+              .forEach(function (cb) {
+                cb.checked = true;
+                cb.parentElement.classList.remove("unchecked");
+              });
+            renderDataTable();
+          });
+
+        document
+          .getElementById("dt-deselect-all-years")
+          .addEventListener("click", function () {
+            dataTableState.filterYears.clear();
+            yearContainer
+              .querySelectorAll("input[type='checkbox']")
+              .forEach(function (cb) {
+                cb.checked = false;
+                cb.parentElement.classList.add("unchecked");
+              });
+            renderDataTable();
+          });
+
+        // Set CSV download link
+        const csvLink = document.getElementById("dt-csv-link");
+        if (csvLink) csvLink.href = CONFIG.CSV_URL;
+
+        // Download buttons
+        document
+          .getElementById("download-table-all-changes")
+          .addEventListener("click", function () {
+            downloadAllChangesTableAsCSV();
+          });
+
+        document
+          .getElementById("download-full-csv-2")
+          .addEventListener("click", function () {
+            window.open(CONFIG.CSV_URL, "_blank");
+          });
+
+        // State dropdown listener
+        stateDropdown.addEventListener("change", function () {
+          dataTableState.filterState = this.value;
+          renderDataTable();
+        });
+
+        // Reserve text input listener (debounced)
+        const reserveInput = document.getElementById("dt-reserve-filter");
+        reserveInput.addEventListener(
+          "input",
+          debounce(function () {
+            dataTableState.filterReserve = reserveInput.value
+              .trim()
+              .toLowerCase();
+            renderDataTable();
+          }, 250),
+        );
+
+        // Sort header listeners
+        const headers = document.querySelectorAll(
+          "#all-changes-table th.sortable",
+        );
+        headers.forEach(function (th) {
+          th.addEventListener("click", function () {
+            const key = this.getAttribute("data-sort-key");
+
+            if (dataTableState.sortKey === key) {
+              dataTableState.sortDirection =
+                dataTableState.sortDirection === "asc" ? "desc" : "asc";
+            } else {
+              dataTableState.sortKey = key;
+              dataTableState.sortDirection = "asc";
+            }
+
+            // Update header classes
+            headers.forEach(function (h) {
+              h.classList.remove("active-sort", "sort-asc", "sort-desc");
+              h.querySelector(".sort-indicator").textContent = "";
+            });
+            this.classList.add("active-sort");
+            this.classList.add(
+              dataTableState.sortDirection === "asc" ? "sort-asc" : "sort-desc",
+            );
+            this.querySelector(".sort-indicator").innerHTML =
+              dataTableState.sortDirection === "asc" ? "&#9650;" : "&#9660;";
+
+            renderDataTable();
+          });
+        });
+
+        // Initial render
+        renderDataTable();
+      }
+
+      function renderDataTable() {
+        const data = appState.allData;
+        const tbody = document.getElementById("dt-table-body");
+        const countEl = document.getElementById("dt-result-count");
+
+        // Filter
+        let filtered = data.filter(function (row) {
+          if (
+            dataTableState.filterState !== "All" &&
+            row.state !== dataTableState.filterState
+          ) {
+            return false;
+          }
+
+          if (dataTableState.filterReserve) {
+            const reserve = (row.reserve || "").toLowerCase();
+            if (reserve.indexOf(dataTableState.filterReserve) === -1) {
+              return false;
+            }
+          }
+
+          const year = parseInt(row.gaz_year);
+          if (!dataTableState.filterYears.has(year)) {
+            return false;
+          }
+
+          return true;
+        });
+
+        // Sort
+        const key = dataTableState.sortKey;
+        const dir = dataTableState.sortDirection === "asc" ? 1 : -1;
+
+        filtered.sort(function (a, b) {
+          let valA, valB;
+
+          switch (key) {
+            case "gazetteDate":
+              valA = formatGazetteDate(a);
+              valB = formatGazetteDate(b);
+              if (!valA && !valB) return 0;
+              if (!valA) return 1;
+              if (!valB) return -1;
+              return (valA - valB) * dir;
+
+            case "effectiveDate":
+              valA = formatEffectiveDate(a);
+              valB = formatEffectiveDate(b);
+              if (!valA && !valB) return 0;
+              if (!valA) return 1;
+              if (!valB) return -1;
+              return (valA - valB) * dir;
+
+            case "change":
+              valA = getChangeValue(a);
+              valB = getChangeValue(b);
+              return (valA - valB) * dir;
+
+            case "gaznum":
+              valA = parseInt(a.gaznum) || 0;
+              valB = parseInt(b.gaznum) || 0;
+              return (valA - valB) * dir;
+
+            case "reserve":
+              valA = (a.reserve || "").toLowerCase();
+              valB = (b.reserve || "").toLowerCase();
+              return valA < valB ? -1 * dir : valA > valB ? 1 * dir : 0;
+
+            case "state":
+              valA = (a.state || "").toLowerCase();
+              valB = (b.state || "").toLowerCase();
+              return valA < valB ? -1 * dir : valA > valB ? 1 * dir : 0;
+
+            case "district":
+              valA = (a.district || "").toLowerCase();
+              valB = (b.district || "").toLowerCase();
+              return valA < valB ? -1 * dir : valA > valB ? 1 * dir : 0;
+
+            case "notes":
+              valA = (a.gaz_notes || "").toLowerCase();
+              valB = (b.gaz_notes || "").toLowerCase();
+              return valA < valB ? -1 * dir : valA > valB ? 1 * dir : 0;
+
+            default:
+              return 0;
+          }
+        });
+
+        // Cache filtered data for download
+        dataTableState.currentFilteredData = filtered;
+
+        // Update result count
+        countEl.textContent =
+          "Showing " +
+          filtered.length.toLocaleString() +
+          " of " +
+          data.length.toLocaleString() +
+          " records";
+
+        // Build rows
+        if (filtered.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="8" class="no-data">No records match the current filters.</td></tr>';
+          return;
+        }
+
+        let html = "";
+        filtered.forEach(function (row) {
+          const gazetteDate = formatGazetteDate(row);
+          const gazDateStr = gazetteDate
+            ? gazetteDate.toLocaleDateString("en-US", CONFIG.DATE_FORMAT_SHORT)
+            : "-";
+
+          const effectiveDate = formatEffectiveDate(row);
+          const effDateStr = effectiveDate
+            ? effectiveDate.toLocaleDateString(
+                "en-US",
+                CONFIG.DATE_FORMAT_SHORT,
+              )
+            : "-";
+
+          const changeInfo = getChangeInfo(row);
+          const area = parseFloat(changeInfo.area) || 0;
+          const areaFormatted = area.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          });
+          const sign = changeInfo.type === "Add" ? "+" : "-";
+          const changeFormatted = changeInfo.area ? sign + areaFormatted : "-";
+
+          const notes = row.gaz_notes || "";
+
+          html +=
+            "<tr>" +
+            "<td>" +
+            gazDateStr +
+            "</td>" +
+            "<td>" +
+            (row.reserve || "-") +
+            "</td>" +
+            '<td class="' +
+            changeInfo.cssClass +
+            '">' +
+            changeFormatted +
+            "</td>" +
+            "<td>" +
+            (row.gaznum || "-") +
+            "</td>" +
+            "<td>" +
+            (row.state || "-") +
+            "</td>" +
+            "<td>" +
+            (row.district || "-") +
+            (row.mukim && row.mukim.trim() !== "" ? " | " + row.mukim : "") +
+            "</td>" +
+            "<td>" +
+            effDateStr +
+            "</td>" +
+            '<td title="' +
+            notes.replace(/"/g, "&quot;") +
+            '">' +
+            notes +
+            "</td>" +
+            "</tr>";
+        });
+
+        tbody.innerHTML = html;
+      }
+
+      function formatDateISO(date) {
+        if (!date) return "";
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}-${m}-${d}`;
+      }
+
+      function downloadAllChangesTableAsCSV() {
+        const filtered = dataTableState.currentFilteredData;
+        if (!filtered || filtered.length === 0) {
+          alert("No data to download. Please adjust your filters.");
+          return;
+        }
+
+        const headers = [
+          "Gazette Date",
+          "Forest Reserve",
+          "Change (ha)",
+          "Gazette Number",
+          "State",
+          "District | Mukim",
+          "Effective Date",
+          "Notes",
+        ];
+
+        const rows = filtered.map(function (row) {
+          const gazDateStr = formatDateISO(formatGazetteDate(row));
+          const effDateStr = formatDateISO(formatEffectiveDate(row));
+          const changeInfo = getChangeInfo(row);
+          const area = parseFloat(changeInfo.area) || 0;
+          const sign = changeInfo.type === "Add" ? "+" : "-";
+          const changeVal = changeInfo.area ? sign + area.toFixed(2) : "";
+          const districtMukim =
+            (row.district || "-") +
+            (row.mukim && row.mukim.trim() !== "" ? " | " + row.mukim : "");
+
+          return [
+            `"${gazDateStr}"`,
+            `"${(row.reserve || "-").replace(/"/g, '""')}"`,
+            changeVal,
+            `"${(row.gaznum || "-").toString().replace(/"/g, '""')}"`,
+            `"${(row.state || "-").replace(/"/g, '""')}"`,
+            `"${districtMukim.replace(/"/g, '""')}"`,
+            `"${effDateStr}"`,
+            `"${(row.gaz_notes || "").replace(/"/g, '""')}"`,
+          ].join(",");
+        });
+
+        const csvContent = [headers.join(","), ...rows].join("\n");
+        const blob = new Blob([csvContent], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "forest-reserves-all-changes.csv";
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
 
       // Initialize map when data is loaded
