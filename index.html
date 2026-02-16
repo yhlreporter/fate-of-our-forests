@@ -57,7 +57,7 @@
         color: var(--text-dark);
       }
 
-      .navigation {
+      .nav-wrapper {
         position: sticky;
         height: 6vh;
         margin-bottom: -6vh;
@@ -66,81 +66,42 @@
         background: var(--text-dark);
         width: 100%;
         box-shadow: 0 2px 6px var(--text-dark);
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-width: none;
-        scrollbar-color: var(--forest-light) var(--text-dark);
         transform: translateY(-100%);
         transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
       }
 
-      .navigation.nav-visible {
+      .nav-wrapper.nav-visible {
         transform: translateY(0);
       }
 
-      .navigation::before,
-      .navigation::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 30px;
-        pointer-events: none;
-        z-index: 1001;
-        display: none;
-      }
-
-      .navigation::before {
-        left: 0;
-        background: linear-gradient(
-          to right,
-          var(--text-dark) 0%,
-          transparent 100%
-        );
-      }
-
-      .navigation::after {
-        right: 0;
-        background: linear-gradient(
-          to left,
-          var(--text-dark) 0%,
-          transparent 100%
-        );
-      }
-
-      .navigation.show-left-arrow::before,
-      .navigation.show-right-arrow::after {
-        display: block;
+      .navigation {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .scroll-indicator {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
-        pointer-events: none;
-        z-index: 1002;
         display: none;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        min-width: 28px;
+        height: 100%;
+        pointer-events: none;
+        background: var(--text-dark);
       }
 
       .scroll-indicator svg {
-        width: 100%;
-        height: 100%;
+        width: 20px;
+        height: 20px;
         fill: var(--forest-light);
-      }
-
-      .scroll-indicator-left {
-        left: 5px;
-      }
-
-      .scroll-indicator-right {
-        right: 5px;
-      }
-
-      .navigation.show-left-arrow .scroll-indicator-left,
-      .navigation.show-right-arrow .scroll-indicator-right {
-        display: block;
       }
 
       .nav-buttons {
@@ -358,11 +319,19 @@
       }
 
       .section {
+        width: 100%;
         min-height: 100vh;
         padding: 60px 20px 30px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background: var(--forest-pale);
+        /* text-align: center;
+        min-height: 100vh;
+        padding: 60px 20px 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; */
       }
 
       .section-content {
@@ -370,6 +339,13 @@
         width: 100%;
       }
 
+      .section h2 {
+        font-family: "Rufina", serif;
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 2vh;
+      }
       #map-section {
         height: 100vh;
         overflow: hidden;
@@ -397,14 +373,6 @@
         background: var(--forest-pale);
       }
 
-      #data-table-section h2 {
-        font-family: "Rufina", serif;
-        font-size: 3rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 2vh;
-      }
-
       #about-section {
         background: var(--forest-pale);
       }
@@ -415,28 +383,6 @@
 
       #investigations-section {
         background: var(--forest-pale);
-      }
-
-      .recent-changes-section .header {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 2vh;
-        line-height: 1.2;
-        flex-shrink: 0;
-        max-width: 60vw;
-      }
-
-      .recent-changes-section .header h1 {
-        font-family: "Rufina", serif;
-        font-size: 3rem;
-        font-weight: 600;
-        margin-bottom: 1vh;
-      }
-
-      .recent-changes-section .header p {
-        font-size: 1.1rem;
-        line-height: 1.5;
-        margin: 0 auto;
       }
 
       .table-container {
@@ -741,6 +687,10 @@
         border-color: var(--forest-light);
       }
 
+      .year-accordion-btn {
+        display: none;
+      }
+
       .data-table-status {
         display: flex;
         align-items: center;
@@ -824,6 +774,15 @@
           flex-direction: column;
           padding: 7vh 15px 20px 15px;
           gap: 3vh;
+        }
+
+        .section h2 {
+          font-size: 2rem;
+          line-height: 1.6rem;
+        }
+
+        .section-content {
+          max-width: 100%;
         }
 
         .landing-left {
@@ -914,12 +873,23 @@
 
         .navigation {
           -webkit-overflow-scrolling: touch;
+          justify-content: left;
+        }
+
+        .scroll-indicator {
+          display: flex;
+          /* border-right: 1px solid var(--forest-medium); */
+        }
+
+        .scroll-indicator-right {
+          border-right: none;
+          /* border-left: 1px solid var(--forest-medium); */
         }
 
         .nav-buttons {
           justify-content: flex-start;
           flex-wrap: nowrap;
-          padding: 0 10px;
+          padding: 0 6px;
         }
 
         .nav-button {
@@ -991,6 +961,34 @@
           min-width: 100%;
         }
 
+        .year-accordion-btn {
+          display: inline-block;
+          background: none;
+          border: 1px solid var(--forest-medium);
+          color: var(--forest-light);
+          font-size: 0.65rem;
+          padding: 1px 6px;
+          border-radius: var(--border-radius);
+          cursor: pointer;
+          margin-left: 6px;
+          transition: transform var(--transition-speed) ease;
+        }
+
+        .year-accordion-btn.expanded {
+          transform: rotate(180deg);
+        }
+
+        .year-checkboxes {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .year-checkboxes.expanded {
+          max-height: 200px;
+          overflow-y: auto;
+        }
+
         .data-table-scroll {
           max-height: 60vh;
         }
@@ -1003,6 +1001,11 @@
 
         #all-changes-table td:nth-child(8) {
           max-width: 100px;
+        }
+
+        /*put in @media */
+        #data-table-section {
+          padding: 7vh 10px 1vh 10px;
         }
 
         #data-table-section h2 {
@@ -1462,53 +1465,60 @@
           padding: 6px 4px;
         }
       }
+
+      /*end of @media styling */
     </style>
   </head>
   <body>
     <div class="bodi">
       <!-- Navigation Bar -->
-      <div class="navigation" id="nav-bar">
+      <div class="nav-wrapper" id="nav-wrapper">
         <div class="scroll-indicator scroll-indicator-left">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
           </svg>
         </div>
+        <div class="navigation" id="nav-bar">
+          <div class="nav-buttons">
+            <button
+              class="nav-button"
+              onclick="scrollToSection('recent-changes-section')"
+            >
+              Recent Changes
+            </button>
+            <button class="nav-button" onclick="scrollToSection('map-section')">
+              Map (All Changes)
+            </button>
+            <button
+              class="nav-button"
+              onclick="scrollToSection('data-table-section')"
+            >
+              Table (All Changes)
+            </button>
+            <button
+              class="nav-button"
+              onclick="scrollToSection('about-section')"
+            >
+              About
+            </button>
+            <button
+              class="nav-button"
+              onclick="scrollToSection('methodology-section')"
+            >
+              Methodology
+            </button>
+            <button
+              class="nav-button"
+              onclick="scrollToSection('investigations-section')"
+            >
+              Puzzles
+            </button>
+          </div>
+        </div>
         <div class="scroll-indicator scroll-indicator-right">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
           </svg>
-        </div>
-        <div class="nav-buttons">
-          <button
-            class="nav-button"
-            onclick="scrollToSection('recent-changes-section')"
-          >
-            Recent Changes
-          </button>
-          <button class="nav-button" onclick="scrollToSection('map-section')">
-            Map (All Changes)
-          </button>
-          <button
-            class="nav-button"
-            onclick="scrollToSection('data-table-section')"
-          >
-            Table (All Changes)
-          </button>
-          <button class="nav-button" onclick="scrollToSection('about-section')">
-            About
-          </button>
-          <button
-            class="nav-button"
-            onclick="scrollToSection('methodology-section')"
-          >
-            Methodology
-          </button>
-          <button
-            class="nav-button"
-            onclick="scrollToSection('investigations-section')"
-          >
-            Puzzles
-          </button>
         </div>
       </div>
 
@@ -1610,10 +1620,8 @@
       </div>
 
       <!-- Recent Changes Section -->
-      <section class="recent-changes-section" id="recent-changes-section">
-        <div class="header">
-          <h1>Recent Changes</h1>
-        </div>
+      <section class="section" id="recent-changes-section">
+        <h2>Recent Changes</h2>
 
         <div class="table-container">
           <div class="table-header">
@@ -1771,6 +1779,7 @@
                   <button class="year-toggle-btn" id="dt-deselect-all-years">
                     None
                   </button>
+                  <button class="year-accordion-btn" id="dt-year-accordion">&#9660;</button>
                 </label>
                 <div class="year-checkboxes" id="dt-year-checkboxes"></div>
               </div>
@@ -2509,13 +2518,13 @@
       // Navigation visibility on scroll
       function handleNavVisibility() {
         const landing = document.getElementById("landing");
-        const nav = document.getElementById("nav-bar");
+        const wrapper = document.getElementById("nav-wrapper");
         const threshold = landing.offsetHeight * 0.6;
 
         if (window.scrollY >= threshold) {
-          nav.classList.add("nav-visible");
+          wrapper.classList.add("nav-visible");
         } else {
-          nav.classList.remove("nav-visible");
+          wrapper.classList.remove("nav-visible");
         }
       }
 
@@ -3741,6 +3750,14 @@
                 cb.parentElement.classList.add("unchecked");
               });
             renderDataTable();
+          });
+
+        // Year accordion toggle (mobile)
+        document
+          .getElementById("dt-year-accordion")
+          .addEventListener("click", function () {
+            this.classList.toggle("expanded");
+            yearContainer.classList.toggle("expanded");
           });
 
         // Set CSV download link
