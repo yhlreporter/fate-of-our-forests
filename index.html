@@ -115,25 +115,35 @@
         padding: 0 10px;
       }
 
-      .nav-button {
+      .nav-button,
+      .landing-nav-button,
+      .download-button,
+      .reset-map-button {
         background: var(--forest-light);
         color: var(--text-dark);
         border: solid 2px;
-        padding: 5px 10px;
         border-radius: var(--border-radius);
         cursor: pointer;
         font-size: 0.8rem;
-        font-weight: 400;
+        font-weight: 500;
         transition: all var(--transition-speed) ease;
         font-family: inherit;
-        white-space: nowrap;
-        flex-shrink: 0;
       }
 
-      .nav-button:hover {
+      .nav-button:hover,
+      .landing-nav-button:hover,
+      .download-button:hover,
+      .reset-map-button:hover {
         background: var(--forest-medium);
         color: var(--text-light);
         border-color: var(--forest-pale);
+      }
+
+      .nav-button {
+        padding: 5px 10px;
+        font-weight: 400;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
 
       .nav-button.active {
@@ -190,22 +200,9 @@
       }
 
       .landing-nav-button {
-        background: var(--forest-light);
-        color: var(--text-dark);
-        border: solid 2px var(--forest-light);
+        border-color: var(--forest-light);
         padding: 8px 16px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
         font-size: 0.9rem;
-        font-weight: 500;
-        transition: all var(--transition-speed) ease;
-        font-family: inherit;
-      }
-
-      .landing-nav-button:hover {
-        background: var(--forest-medium);
-        color: var(--text-light);
-        border-color: var(--forest-pale);
       }
 
       .landing-right {
@@ -307,17 +304,6 @@
       }
 
       /* Recent Changes Section */
-      .recent-changes-section {
-        width: 100%;
-        min-height: 100vh;
-        padding: 60px 20px 30px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: var(--forest-pale);
-        text-align: center;
-      }
-
       .section {
         width: 100%;
         min-height: 100vh;
@@ -353,34 +339,16 @@
       }
 
       /* Remove outline/focus ring from Leaflet paths */
-      .leaflet-interactive {
-        outline: none !important;
-      }
-
-      .leaflet-interactive:focus {
-        outline: none !important;
-      }
-
-      svg path {
-        outline: none !important;
-      }
-
+      .leaflet-interactive,
+      .leaflet-interactive:focus,
+      svg path,
       svg path:focus {
         outline: none !important;
       }
 
-      #data-table-section {
-        background: var(--forest-pale);
-      }
-
-      #about-section {
-        background: var(--forest-pale);
-      }
-
-      #methodology-section {
-        background: var(--forest-pale);
-      }
-
+      #data-table-section,
+      #about-section,
+      #methodology-section,
       #investigations-section {
         background: var(--forest-pale);
       }
@@ -455,23 +423,8 @@
       }
 
       .download-button {
-        background: var(--forest-light);
-        color: var(--text-dark);
         padding: 4px 8px;
-        border: solid 2px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 0.8rem;
-        font-weight: 500;
-        transition: all var(--transition-speed) ease;
-        font-family: inherit;
         align-self: flex-start;
-      }
-
-      .download-button:hover {
-        background: var(--forest-medium);
-        color: var(--text-light);
-        border-color: var(--forest-pale);
       }
 
       #table-content {
@@ -481,15 +434,22 @@
         min-height: 0;
       }
 
-      #table-content::-webkit-scrollbar {
+      #table-content::-webkit-scrollbar,
+      .data-table-scroll::-webkit-scrollbar,
+      .panel-content::-webkit-scrollbar {
         width: 6px;
+        height: 6px;
       }
 
-      #table-content::-webkit-scrollbar-track {
+      #table-content::-webkit-scrollbar-track,
+      .data-table-scroll::-webkit-scrollbar-track,
+      .panel-content::-webkit-scrollbar-track {
         background: var(--text-dark);
       }
 
-      #table-content::-webkit-scrollbar-thumb {
+      #table-content::-webkit-scrollbar-thumb,
+      .data-table-scroll::-webkit-scrollbar-thumb,
+      .panel-content::-webkit-scrollbar-thumb {
         background: var(--forest-light);
       }
 
@@ -546,24 +506,6 @@
         font-style: italic;
       }
 
-      .table-footer {
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 1px solid #dddddd2b;
-        text-align: center;
-        color: var(--text-light);
-        font-size: 0.9rem;
-      }
-
-      .table-footer a {
-        color: var(--forest-light);
-        text-decoration: none;
-        font-weight: 600;
-      }
-
-      .table-footer a:hover {
-        text-decoration: underline;
-      }
 
       /* Data Table Section */
       .data-table-container {
@@ -707,18 +649,6 @@
         border-radius: var(--border-radius);
       }
 
-      .data-table-scroll::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-
-      .data-table-scroll::-webkit-scrollbar-track {
-        background: var(--text-dark);
-      }
-
-      .data-table-scroll::-webkit-scrollbar-thumb {
-        background: var(--forest-light);
-      }
 
       #all-changes-table th {
         background-color: #2d6a4f;
@@ -844,10 +774,6 @@
           height: 10px;
         }
 
-        .recent-changes-section {
-          padding: 7vh 10px 30px 10px;
-        }
-
         .table-container {
           padding: 2vh 1vw;
           width: 100%;
@@ -872,7 +798,6 @@
         }
 
         .navigation {
-          -webkit-overflow-scrolling: touch;
           justify-content: left;
         }
 
@@ -1072,20 +997,7 @@
       }
 
       .reset-map-button {
-        background: var(--forest-light);
-        color: var(--text-dark);
         padding: 4px 8px;
-        border: solid 2px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-
-      .reset-map-button:hover {
-        background: var(--forest-medium);
-        color: var(--text-light);
-        border-color: var(--forest-pale);
       }
 
       .panel-content {
@@ -1094,17 +1006,6 @@
         flex: 1;
       }
 
-      .panel-content::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      .panel-content::-webkit-scrollbar-track {
-        background: var(--text-dark);
-      }
-
-      .panel-content::-webkit-scrollbar-thumb {
-        background: var(--forest-light);
-      }
 
       .stat-card {
         background: var(--text-light);
@@ -1233,18 +1134,12 @@
 
       .table-card th {
         padding: 8px 6px;
-        text-align: center;
-        font-weight: 600;
         font-size: 0.8rem;
         color: var(--text-light);
-        text-transform: capitalize;
       }
 
       .table-card td {
         padding: 8px 6px;
-        border-bottom: 1px solid #dddddd2b;
-        color: var(--text-light);
-        text-align: center;
       }
 
       .table-card td.change-add {
@@ -1359,12 +1254,6 @@
         color: rgba(239, 236, 232, 0.5);
         font-size: 0.82rem;
         font-style: italic;
-      }
-
-      @media (max-width: 768px) {
-        .leaflet-control-search {
-          width: 180px;
-        }
       }
 
       /* Leaflet label customization */
@@ -1832,11 +1721,6 @@
               </table>
             </div>
 
-            <div class="table-footer">
-              Note: Click
-              <a id="dt-csv-link" href="" target="_blank">here</a> to download
-              full data.
-            </div>
           </div>
         </div>
       </section>
@@ -2856,7 +2740,7 @@
           html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeFormatted}</td><td>${stateDistrict}</td><td>${gazetteNum}</td></tr>`;
         });
 
-        html += `</tbody></table><div class="table-footer">Note: Area rounded off. Click <a href="${CONFIG.CSV_URL}" target="_blank">here</a> to download full data.</div>`;
+        html += `</tbody></table>`;
         tableContent.innerHTML = html;
       }
 
@@ -3760,9 +3644,6 @@
             yearContainer.classList.toggle("expanded");
           });
 
-        // Set CSV download link
-        const csvLink = document.getElementById("dt-csv-link");
-        if (csvLink) csvLink.href = CONFIG.CSV_URL;
 
         // Download buttons
         document
