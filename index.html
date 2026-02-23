@@ -23,7 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Rufina:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Forest Reserve Tracker</title>
+    <title>P. Malaysia Forest Reserve Tracker</title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -308,16 +308,26 @@
         width: 100%;
         min-height: 100vh;
         padding: 60px 20px 30px 20px;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         background: var(--forest-pale);
-        /* text-align: center;
-        min-height: 100vh;
-        padding: 60px 20px 30px 20px;
+      }
+
+      .section.active {
         display: flex;
-        flex-direction: column;
-        align-items: center; */
+        animation: sectionFadeIn 1s ease;
+      }
+
+      @keyframes sectionFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .section-content {
@@ -506,7 +516,6 @@
         font-style: italic;
       }
 
-
       /* Data Table Section */
       .data-table-container {
         background: var(--text-dark);
@@ -648,7 +657,6 @@
         max-height: 70vh;
         border-radius: var(--border-radius);
       }
-
 
       #all-changes-table th {
         background-color: #2d6a4f;
@@ -1005,7 +1013,6 @@
         overflow-y: auto;
         flex: 1;
       }
-
 
       .stat-card {
         background: var(--text-light);
@@ -1371,34 +1378,31 @@
           <div class="nav-buttons">
             <button
               class="nav-button"
-              onclick="scrollToSection('recent-changes-section')"
+              onclick="showSection('recent-changes-section')"
             >
               Recent Changes
             </button>
-            <button class="nav-button" onclick="scrollToSection('map-section')">
+            <button class="nav-button" onclick="showSection('map-section')">
               Map (All Changes)
             </button>
             <button
               class="nav-button"
-              onclick="scrollToSection('data-table-section')"
+              onclick="showSection('data-table-section')"
             >
               Table (All Changes)
             </button>
-            <button
-              class="nav-button"
-              onclick="scrollToSection('about-section')"
-            >
+            <button class="nav-button" onclick="showSection('about-section')">
               About
             </button>
             <button
               class="nav-button"
-              onclick="scrollToSection('methodology-section')"
+              onclick="showSection('methodology-section')"
             >
               Methodology
             </button>
             <button
               class="nav-button"
-              onclick="scrollToSection('investigations-section')"
+              onclick="showSection('investigations-section')"
             >
               Puzzles
             </button>
@@ -1415,50 +1419,164 @@
       <div class="landing-section" id="landing">
         <div class="landing-left">
           <div class="header">
-            <h1>Forest Reserve Tracker</h1>
+            <h1>Peninsular Malaysia Forest Reserve Tracker</h1>
             <p>
               Addition and removal of forest reserves in Peninsular Malaysia as
               published in government gazettes.
             </p>
             <br />
-            <p style="text-decoration: underline">
-              Coverage: Jan 1, 2002 to <span id="update-date1"></span>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 283.5 283.500005"
+                preserveAspectRatio="xMidYMid meet"
+                style="
+                  height: 1em;
+                  width: 1em;
+                  vertical-align: -0.15em;
+                  margin-right: 4px;
+                "
+              >
+                <defs>
+                  <clipPath id="cal-a">
+                    <path
+                      d="M 0.480469 25 L 283 25 L 283 283 L 0.480469 283 Z M 0.480469 25 "
+                      clip-rule="nonzero"
+                    />
+                  </clipPath>
+                  <clipPath id="cal-b">
+                    <rect x="0" width="283" y="0" height="283" />
+                  </clipPath>
+                </defs>
+                <g transform="matrix(1,0,0,1,0,0)">
+                  <g clip-path="url(#cal-b)">
+                    <g clip-path="url(#cal-a)">
+                      <path
+                        fill="#ffffff"
+                        d="M 257.007812 25.042969 L 239.164062 25.042969 L 239.164062 46.015625 C 239.164062 57.285156 229.773438 66.679688 218.503906 66.679688 L 217.25 66.679688 C 205.980469 66.679688 196.589844 57.285156 196.589844 46.015625 L 196.589844 25.042969 L 84.207031 25.042969 L 84.207031 46.015625 C 84.207031 57.285156 74.816406 66.679688 63.546875 66.679688 L 62.296875 66.679688 C 51.027344 66.679688 41.632812 57.285156 41.632812 46.015625 L 41.632812 25.042969 L 25.984375 25.042969 C 11.894531 25.042969 0.625 36.3125 0.625 50.398438 L 0.625 257.632812 C 0.625 271.71875 11.894531 282.988281 25.984375 282.988281 L 226.015625 282.988281 L 228.832031 282.363281 C 229.460938 282.050781 230.398438 281.425781 231.023438 280.796875 L 277.667969 231.652344 C 280.796875 228.519531 282.363281 224.449219 282.363281 220.382812 L 282.363281 50.398438 C 282.363281 36.3125 271.09375 25.042969 257.007812 25.042969 Z M 267.964844 222.574219 L 225.078125 267.335938 L 225.078125 233.527344 C 225.078125 226.953125 230.398438 221.632812 236.972656 221.632812 L 268.589844 221.632812 C 268.277344 221.945312 267.964844 222.257812 267.964844 222.574219 Z M 268.902344 208.171875 L 236.972656 208.171875 C 222.886719 208.171875 211.617188 219.441406 211.617188 233.527344 L 211.617188 269.214844 L 25.984375 269.214844 C 19.410156 269.214844 14.085938 263.894531 14.085938 257.320312 L 14.085938 95.789062 L 268.589844 95.789062 L 268.589844 208.171875 Z"
+                        fill-opacity="1"
+                        fill-rule="nonzero"
+                      />
+                    </g>
+                    <path
+                      fill="#ffffff"
+                      d="M 63.546875 57.601562 C 70.121094 57.601562 75.441406 52.277344 75.441406 45.703125 L 75.441406 11.894531 C 75.441406 5.320312 70.121094 0 63.546875 0 L 62.296875 0 C 55.722656 0 50.398438 5.320312 50.398438 11.894531 L 50.398438 45.703125 C 50.398438 52.277344 55.722656 57.601562 62.296875 57.601562 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 218.503906 57.601562 C 225.078125 57.601562 230.398438 52.277344 230.398438 45.703125 L 230.398438 11.894531 C 230.398438 5.320312 225.078125 0 218.503906 0 L 217.25 0 C 210.675781 0 205.355469 5.320312 205.355469 11.894531 L 205.355469 45.703125 C 205.355469 52.277344 210.675781 57.601562 217.25 57.601562 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 49.148438 123.964844 L 72.9375 123.964844 L 72.9375 147.753906 L 49.148438 147.753906 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 102.992188 123.964844 L 126.78125 123.964844 L 126.78125 147.753906 L 102.992188 147.753906 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 156.832031 123.964844 L 180.625 123.964844 L 180.625 147.753906 L 156.832031 147.753906 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 210.363281 123.964844 L 234.15625 123.964844 L 234.15625 147.753906 L 210.363281 147.753906 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 49.148438 169.667969 L 72.9375 169.667969 L 72.9375 193.460938 L 49.148438 193.460938 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 102.992188 169.667969 L 126.78125 169.667969 L 126.78125 193.460938 L 102.992188 193.460938 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 156.832031 169.667969 L 180.625 169.667969 L 180.625 193.460938 L 156.832031 193.460938 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 210.363281 169.667969 L 234.15625 169.667969 L 234.15625 193.460938 L 210.363281 193.460938 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 49.148438 215.6875 L 72.9375 215.6875 L 72.9375 239.476562 L 49.148438 239.476562 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 102.992188 215.6875 L 126.78125 215.6875 L 126.78125 239.476562 L 102.992188 239.476562 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                    <path
+                      fill="#ffffff"
+                      d="M 156.832031 215.6875 L 180.625 215.6875 L 180.625 239.476562 L 156.832031 239.476562 Z"
+                      fill-opacity="1"
+                      fill-rule="nonzero"
+                    />
+                  </g>
+                </g>
+              </svg>
+              Jan 1, 2002 to <span id="update-date1"></span>
             </p>
           </div>
           <div class="landing-nav-buttons">
             <button
               class="landing-nav-button"
-              onclick="scrollToSection('recent-changes-section')"
+              onclick="showSection('recent-changes-section')"
             >
               Recent Changes
             </button>
             <button
               class="landing-nav-button"
-              onclick="scrollToSection('map-section')"
+              onclick="showSection('map-section')"
             >
               Map (All Changes)
             </button>
             <button
               class="landing-nav-button"
-              onclick="scrollToSection('data-table-section')"
+              onclick="showSection('data-table-section')"
             >
               Table (All Changes)
             </button>
             <button
               class="landing-nav-button"
-              onclick="scrollToSection('about-section')"
+              onclick="showSection('about-section')"
             >
               About
             </button>
             <button
               class="landing-nav-button"
-              onclick="scrollToSection('methodology-section')"
+              onclick="showSection('methodology-section')"
             >
               Methodology
             </button>
             <button
               class="landing-nav-button"
-              onclick="scrollToSection('investigations-section')"
+              onclick="showSection('investigations-section')"
             >
               Puzzles
             </button>
@@ -1668,7 +1786,9 @@
                   <button class="year-toggle-btn" id="dt-deselect-all-years">
                     None
                   </button>
-                  <button class="year-accordion-btn" id="dt-year-accordion">&#9660;</button>
+                  <button class="year-accordion-btn" id="dt-year-accordion">
+                    &#9660;
+                  </button>
                 </label>
                 <div class="year-checkboxes" id="dt-year-checkboxes"></div>
               </div>
@@ -1720,7 +1840,6 @@
                 <tbody id="dt-table-body"></tbody>
               </table>
             </div>
-
           </div>
         </div>
       </section>
@@ -2352,15 +2471,29 @@
         };
       }
 
-      function scrollToSection(sectionId) {
+      function showSection(sectionId, scroll = true) {
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-button")
+          .forEach((btn) => btn.classList.remove("active"));
+
         const section = document.getElementById(sectionId);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-          document
-            .querySelectorAll(".nav-button")
-            .forEach((btn) => btn.classList.remove("active"));
-          event.target.classList.add("active");
+          section.classList.add("active");
+          if (scroll) section.scrollIntoView({ behavior: "smooth" });
         }
+
+        if (sectionId === "map-section" && appState.map) {
+          setTimeout(() => appState.map.invalidateSize(), 0);
+        }
+
+        document.querySelectorAll(".nav-button").forEach((btn) => {
+          if (btn.getAttribute("onclick") === `showSection('${sectionId}')`) {
+            btn.classList.add("active");
+          }
+        });
       }
 
       function updateScrollIndicators() {
@@ -2517,6 +2650,9 @@
 
       // Initialize carousel on page load
       initCarousel();
+
+      // Show default section (no scroll — keep user on landing)
+      showSection("recent-changes-section", false);
 
       // Load and parse CSV data
       Papa.parse(CONFIG.CSV_URL, {
@@ -3643,7 +3779,6 @@
             this.classList.toggle("expanded");
             yearContainer.classList.toggle("expanded");
           });
-
 
         // Download buttons
         document
