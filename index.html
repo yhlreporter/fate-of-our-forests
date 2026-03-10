@@ -1634,7 +1634,7 @@
               class="nav-button"
               onclick="showSection('map-others-section')"
             >
-              Context Map
+              Map Others
             </button>
             <button class="nav-button" onclick="showSection('about-section')">
               About
@@ -1811,7 +1811,7 @@
               class="landing-nav-button"
               onclick="showSection('map-others-section')"
             >
-              Context Map
+              Map Others
             </button>
             <button
               class="landing-nav-button"
@@ -2095,7 +2095,7 @@
         </div>
       </section>
 
-      <!-- Context Map Section -->
+      <!-- Map Others Section -->
       <section id="map-others-section" class="section">
         <div class="map-container-wrapper">
           <!-- Left: Map (60%) -->
@@ -2170,7 +2170,8 @@
         MAPBOX_TRACKER_BASEMAP_STYLE_URL:
           "https://api.mapbox.com/styles/v1/yhlreporter/cmkn2sb5b00a701qm8uo8aiol/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoieWhscmVwb3J0ZXIiLCJhIjoiY21rdDB5MWZyMW5sdTNmb2ZzejdneWRsbyJ9.yMkXycg47C2hQG20mqKoAw",
         MAPBOX_OTHERS_BASEMAP_STYLE_URL:
-          "https://api.mapbox.com/styles/v1/yhlsteam/cmmje9qkf003d01qpf22hg7tj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoieWhsc3RlYW0iLCJhIjoiY21tamRtY2Z3MDBwNTJyb3FsNnF0aHA3dCJ9.NfqV6y2cf5thIE_BylQs3Q",
+          "https://api.mapbox.com/styles/v1/yhlsteam/cmmjycqkc002g01s16mg97vkk/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoieWhsc3RlYW0iLCJhIjoiY21tamRtY2Z3MDBwNTJyb3FsNnF0aHA3dCJ9.NfqV6y2cf5thIE_BylQs3Q",
+
         MAPBOX_ATLAS1977_URL:
           "https://api.mapbox.com/v4/yhlsteam.7wbo26iy/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoieWhsc3RlYW0iLCJhIjoiY21tamRtY2Z3MDBwNTJyb3FsNnF0aHA3dCJ9.NfqV6y2cf5thIE_BylQs3Q",
 
@@ -4372,7 +4373,7 @@
       }
 
       // ─────────────────────────────────────────────────
-      // Context Map (map2) — Layer Definitions
+      // Map Others (map2) — Layer Definitions
       // ─────────────────────────────────────────────────
       const MAP2_LAYER_DEFS = [
         {
@@ -4382,48 +4383,49 @@
           // Mapbox tileset served as raster tiles via Leaflet
           url: CONFIG.MAPBOX_ATLAS1977_URL,
           caveat:
-            "This raster layer is served from a Mapbox tileset. It may not reflect the most recent updates to the source data.",
+            "Georeferenced and digitised maps from the National Atlas 1977. Each state's map was processed separately and stitched together. Misalignments are obvious along state borders. Such handling introduces errors and maps cannot be used for legal purposes.",
           defaultOn: false,
           style: null,
         },
         {
-          id: "reserves",
-          name: "Forest Reserves",
+          id: "reserves-jpsm",
+          name: "Forest Reserves (Dept Forestry P. Malaysia; circa 2022)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/reserves.geojson",
+          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_jpsm.geojson",
           caveat:
-            "Reserve boundaries are compiled from government gazette maps and may not perfectly align with the latest gazetted changes. Boundary accuracy varies by source.",
+            "Forest reserve boundaries scraped from Dept of Forestry Peninsular Malaysia geospatial servers. Original source wasn't dated. My assessment dates it around 2022, and I found parts of the map outdated even for 2022.",
           defaultOn: true,
           searchProp: "reserve",
           style: {
-            fillColor: "#52b788",
+            fillColor: "#2d6a4f",
             weight: 1.5,
-            opacity: 0.9,
-            color: "#1a3a0f",
-            fillOpacity: 0.3,
+            opacity: 1,
+            color: "#19B399",
+            fillOpacity: 0.6,
           },
         },
         {
-          id: "states",
-          name: "State Boundaries",
+          id: "reserves-others",
+          name: "Forest reserves (Other sources; post 2021)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/states.geojson",
+          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_others.geojson",
           caveat:
-            "Administrative boundaries shown are for reference only. Not suitable for legal or surveying purposes.",
+            "Forest reserves locations found in other sources published after 2021.",
           defaultOn: true,
           searchProp: "name",
           style: {
-            fillColor: "#307255",
-            weight: 2,
+            fillColor: "#f26df9",
+            weight: 1.5,
             opacity: 1,
-            color: "#1a3a0f",
-            fillOpacity: 0,
+            color: "#19B399",
+            fillOpacity: 0.6,
           },
         },
       ];
+      //Colours to choose from {"Forest-medium":"2d6a4f","Brick Ember":"b80c09",Outline->"Ocean mist ":"19B399","Bright Peony":"f26df9","Pale Oak":"d9c5b2"}
 
       // ─────────────────────────────────────────────────
-      // Context Map — Geocoding Control (Nominatim)
+      // Map Others — Geocoding Control (Nominatim)
       // ─────────────────────────────────────────────────
       const Map2GeocodeControl = L.Control.extend({
         options: { position: "topright" },
@@ -4527,7 +4529,7 @@
       });
 
       // ─────────────────────────────────────────────────
-      // Context Map — Locate Me Control
+      // Map Others — Locate Me Control
       // ─────────────────────────────────────────────────
       const Map2LocateControl = L.Control.extend({
         options: { position: "bottomleft" },
@@ -4559,7 +4561,7 @@
       });
 
       // ─────────────────────────────────────────────────
-      // Context Map — GeoJSON Layer Loader
+      // Map Others — GeoJSON Layer Loader
       // ─────────────────────────────────────────────────
       function loadMap2GeoJSONLayer(def) {
         fetch(def.url)
@@ -4587,7 +4589,7 @@
 
                 // Hover highlight
                 featureLayer.on("mouseover", function () {
-                  featureLayer.setStyle({ fillOpacity: 0.6, weight: 3 });
+                  featureLayer.setStyle({ fillOpacity: 0.1, weight: 5 });
                 });
                 featureLayer.on("mouseout", function () {
                   featureLayer.setStyle({
@@ -4621,7 +4623,7 @@
       }
 
       // ─────────────────────────────────────────────────
-      // Context Map — TIFF Layer Loader
+      // Map Others — TIFF Layer Loader
       // ─────────────────────────────────────────────────
       function loadMap2TileLayer(def) {
         const layer = L.tileLayer(def.url, {
@@ -4639,7 +4641,7 @@
       }
 
       // ─────────────────────────────────────────────────
-      // Context Map — Layer Toggle Panel Builder
+      // Map Others — Layer Toggle Panel Builder
       // ─────────────────────────────────────────────────
       function buildMap2LayerPanel() {
         const container = document.getElementById("map-others-layers");
@@ -4708,7 +4710,7 @@
       }
 
       // ─────────────────────────────────────────────────
-      // Context Map — Feature Search Builder
+      // Map Others — Feature Search Builder
       // ─────────────────────────────────────────────────
       function buildMap2FeatureSearch(container) {
         const wrapper = document.createElement("div");
@@ -4797,7 +4799,7 @@
       }
 
       // ─────────────────────────────────────────────────
-      // Context Map — Main Initializer (lazy, on first visit)
+      // Map Others — Main Initializer (lazy, on first visit)
       // ─────────────────────────────────────────────────
       function initializeMap2() {
         appState.map2 = L.map("map-others", {
@@ -4835,4 +4837,3 @@
     </script>
   </body>
 </html>
-
