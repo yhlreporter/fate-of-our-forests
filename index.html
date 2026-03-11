@@ -2104,7 +2104,7 @@
           <!-- Right: Layer Panel (40%) -->
           <div class="map-data-panel">
             <div class="panel-header">
-              <h3>Layers</h3>
+              <h3>Pick and explore</h3>
             </div>
             <div class="panel-content">
               <div id="map-others-layers" class="layer-toggle-list"></div>
@@ -2162,8 +2162,8 @@
           "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260120.csv",
         STATE_GEOJSON_URL:
           "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/states.geojson",
-        RESERVES_URL:
-          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/reserves.geojson",
+        // RESERVES_URL:
+        //   "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/reserves.geojson",
 
         MAPBOX_TRACKER_BASEMAP_TOKEN:
           "pk.eyJ1IjoieWhscmVwb3J0ZXIiLCJhIjoiY21rdDB5MWZyMW5sdTNmb2ZzejdneWRsbyJ9.yMkXycg47C2hQG20mqKoAw",
@@ -2174,6 +2174,8 @@
 
         MAPBOX_ATLAS1977_URL:
           "https://api.mapbox.com/v4/yhlsteam.7wbo26iy/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoieWhsc3RlYW0iLCJhIjoiY21tamRtY2Z3MDBwNTJyb3FsNnF0aHA3dCJ9.NfqV6y2cf5thIE_BylQs3Q",
+        MAPBOX_SATELLITE_URL:
+          "https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoieWhsc3RlYW0iLCJhIjoiY21tamRtY2Z3MDBwNTJyb3FsNnF0aHA3dCJ9.NfqV6y2cf5thIE_BylQs3Q",
 
         MAP_CENTER: [4.2105, 101.9758], // Peninsular Malaysia center
         MAP_ZOOM: 6.5,
@@ -4377,8 +4379,8 @@
       // ─────────────────────────────────────────────────
       const MAP2_LAYER_DEFS = [
         {
-          id: "tileset",
-          name: "National Atlas 1977",
+          id: "atlas1977",
+          name: "National Atlas Peninsular Malaysia (published 1977)",
           type: "tile",
           // Mapbox tileset served as raster tiles via Leaflet
           url: CONFIG.MAPBOX_ATLAS1977_URL,
@@ -4388,16 +4390,29 @@
           style: null,
         },
         {
+          id: "mapbox_satellite",
+          name: "Satellite (Zoom in to show)",
+          type: "tile",
+          // Mapbox satellite imagery tileset served as raster tiles via Leaflet
+          url: CONFIG.MAPBOX_SATELLITE_URL,
+          caveat:
+            "High resolution satellite imagery provided by Mapbox. Original sources and dates of images vary across locations and zoom levels. Safer to assume that images are 1-2 years old, often more.",
+          defaultOn: false,
+          minZoom: 10,
+          style: null,
+        },
+
+        {
           id: "reserves-jpsm",
-          name: "Forest Reserves (Dept Forestry P. Malaysia; circa 2022)",
+          name: "Forest Reserves (published around 2022)",
           type: "geojson",
           url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_jpsm.geojson",
           caveat:
-            "Forest reserve boundaries scraped from Dept of Forestry Peninsular Malaysia geospatial servers. Original source wasn't dated. My assessment dates it around 2022, and I found parts of the map outdated even for 2022.",
+            "Forest reserve boundaries scraped from Dept of Forestry Peninsular Malaysia geospatial servers. Original source wasn't dated. My assessment dates it around 2022, and I found parts of the map outdated even for 2022. I cannot vouch for its accuracy and precision.",
           defaultOn: true,
           searchProp: "reserve",
           style: {
-            fillColor: "#2d6a4f",
+            fillColor: "#2d6a4f", //Forest-medium
             weight: 1.5,
             opacity: 1,
             color: "#19B399",
@@ -4406,7 +4421,7 @@
         },
         {
           id: "reserves-others",
-          name: "Forest reserves (Other sources; post 2021)",
+          name: "Forest reserves (published 2021 and after)",
           type: "geojson",
           url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_others.geojson",
           caveat:
@@ -4414,7 +4429,41 @@
           defaultOn: true,
           searchProp: "name",
           style: {
-            fillColor: "#f26df9",
+            fillColor: "#d9c5b2", //pale oak
+            weight: 1.5,
+            opacity: 1,
+            color: "#19B399",
+            fillOpacity: 0.6,
+          },
+        },
+        {
+          id: "reserves-2012vs2022",
+          name: "Forest reserves (2012 vs 2022)",
+          type: "geojson",
+          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_2012vs2022.geojson",
+          caveat:
+            "Forest reserves locations found on the 2008-2012 map (Dept. Env server) but missing from the 2022 map (Dept Forestry server). I show here only the bigger blocks. Some blocks are verified removals of forest reserves (e.g., Jemaluang & Tenggaroh), while others might be due to misalignment of maps. Do not use for legal purposes.",
+          defaultOn: false,
+          searchProp: "name",
+          style: {
+            fillColor: "#f26df9", //bright peony
+            weight: 1.5,
+            opacity: 1,
+            color: "#19B399",
+            fillOpacity: 0.6,
+          },
+        },
+        {
+          id: "reserves-2012",
+          name: "Forest reserves (2008-2012?)",
+          type: "geojson",
+          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_doe.geojson",
+          caveat:
+            "Forest reserves locations found on Dept of Environment Malaysia's geospatial server. Original source wasn't dated. My assessment dates it between 2008 and 2012. I cannot vouch for its accuracy and precision.",
+          defaultOn: false,
+          searchProp: "name",
+          style: {
+            fillColor: "#b80c09", //brick ember
             weight: 1.5,
             opacity: 1,
             color: "#19B399",
@@ -4443,8 +4492,8 @@
 
           this._input = L.DomUtil.create("input", "mo-geocode-input", wrapper);
           this._input.type = "text";
-          this._input.placeholder = "Search address...";
-          this._input.autocomplete = "off";
+          this._input.placeholder = "Type location, click Go";
+          this._input.autocomplete = "on";
 
           const btn = L.DomUtil.create("button", "mo-geocode-btn", wrapper);
           btn.textContent = "Go";
@@ -4514,10 +4563,16 @@
                     this._map.setView([lat, lon], 12);
                   }
 
-                  L.popup()
-                    .setLatLng([lat, lon])
-                    .setContent(result.display_name)
-                    .openOn(this._map);
+                  // Remove previous search pin if any
+                  if (this._searchMarker) {
+                    this._map.removeLayer(this._searchMarker);
+                  }
+
+                  // Place a pin with a popup
+                  this._searchMarker = L.marker([lat, lon])
+                    .addTo(this._map)
+                    .bindPopup(result.display_name)
+                    .openPopup();
 
                   this._results.innerHTML = "";
                   this._input.value = result.display_name.split(",")[0];
@@ -4628,6 +4683,7 @@
       function loadMap2TileLayer(def) {
         const layer = L.tileLayer(def.url, {
           attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>',
+          minZoom: def.minZoom || 0,
           maxZoom: 18,
           tileSize: 256,
           opacity: 1,
@@ -4803,6 +4859,10 @@
       // ─────────────────────────────────────────────────
       function initializeMap2() {
         appState.map2 = L.map("map-others", {
+          maxBounds: [
+            [0.8, 99.5], // SW corner [lat, lng]
+            [7.4, 104.7], // NE corner [lat, lng]
+          ],
           maxBoundsViscosity: 1.0,
         }).setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM);
 
