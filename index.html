@@ -366,7 +366,7 @@
         align-items: center;
         gap: 8px;
         padding: 8px 10px;
-        background: rgba(255, 255, 255, 0.05);
+        background: var(--text-dark);
         border-radius: var(--border-radius);
       }
 
@@ -376,6 +376,24 @@
         cursor: pointer;
         accent-color: var(--forest-light);
         flex-shrink: 0;
+      }
+
+      .layer-swatch {
+        width: 22px;
+        height: 14px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .layer-swatch-raster {
+        background: repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.25) 0px,
+          rgba(255, 255, 255, 0.25) 3px,
+          rgba(255, 255, 255, 0.08) 3px,
+          rgba(255, 255, 255, 0.08) 6px
+        );
+        border: 1px solid rgba(255, 255, 255, 0.3);
       }
 
       .layer-toggle-label {
@@ -558,6 +576,68 @@
 
       .mo-geocode-result-item:hover {
         background: var(--forest-pale);
+      }
+
+      /* Search control — tabs */
+      .mo-search-tabs {
+        display: flex;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .mo-search-tab {
+        flex: 1;
+        padding: 7px 6px;
+        font-size: 0.78rem;
+        font-family: inherit;
+        font-weight: 600;
+        border: none;
+        background: #f5f5f5;
+        color: #888;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        letter-spacing: 0.02em;
+      }
+
+      .mo-search-tab:first-child {
+        border-right: 1px solid #e0e0e0;
+      }
+
+      .mo-search-tab.active {
+        background: white;
+        color: var(--forest-dark);
+      }
+
+      .mo-search-tab:hover:not(.active) {
+        background: #ececec;
+        color: #555;
+      }
+
+      /* Reserve result items (two-line, on white background) */
+      .mo-result-reserve {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mo-result-reserve-name {
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        line-height: 1.3;
+      }
+
+      .mo-result-reserve-layer {
+        font-size: 0.74rem;
+        color: #888;
+      }
+
+      /* Hidden-layer results are dimmed */
+      .mo-result-hidden {
+        opacity: 0.45;
+      }
+
+      .mo-result-hidden .mo-result-reserve-layer {
+        color: #b00;
       }
 
       /* Locate me button */
@@ -1250,6 +1330,7 @@
         padding: 20px;
         overflow-y: auto;
         flex: 1;
+        color: var(--text-light);
       }
 
       .stat-card {
@@ -2107,6 +2188,7 @@
               <h3>Pick and explore</h3>
             </div>
             <div class="panel-content">
+              <p>Forest reserve layers will stack and blend colours.</p>
               <div id="map-others-layers" class="layer-toggle-list"></div>
             </div>
           </div>
@@ -2162,8 +2244,8 @@
           "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260120.csv",
         STATE_GEOJSON_URL:
           "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/states.geojson",
-        // RESERVES_URL:
-        //   "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/reserves.geojson",
+        RESERVES_URL:
+          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/reserves.geojson",
 
         MAPBOX_TRACKER_BASEMAP_TOKEN:
           "pk.eyJ1IjoieWhscmVwb3J0ZXIiLCJhIjoiY21rdDB5MWZyMW5sdTNmb2ZzejdneWRsbyJ9.yMkXycg47C2hQG20mqKoAw",
@@ -2322,7 +2404,7 @@
 
           const seen = new Set();
           appState.reservesData.features.forEach((feature) => {
-            const reserve = feature.properties.reserve;
+            const reserve = feature.properties.name;
             const state = feature.properties.state;
             const key = `${reserve}||${state}`;
             if (!seen.has(key)) {
@@ -3380,7 +3462,7 @@
             // Add filtered reserves to map with colors based on net change
             appState.reservesLayer = L.geoJSON(filteredGeoJSON, {
               style: function (feature) {
-                const reserveName = feature.properties.reserve;
+                const reserveName = feature.properties.name;
                 const stateName = feature.properties.state;
                 const netChange = getReserveNetChange(reserveName, stateName);
 
@@ -3402,7 +3484,7 @@
                 };
               },
               onEachFeature: function (feature, layer) {
-                const reserveName = feature.properties.reserve || "Unknown";
+                const reserveName = feature.properties.name || "Unknown";
                 const source = feature.properties.source || "Unknown";
                 const stateName = feature.properties.state;
 
@@ -3651,7 +3733,7 @@
         appState.reservesLayer.eachLayer(function (layer) {
           if (
             layer.feature &&
-            layer.feature.properties.reserve === reserveName &&
+            layer.feature.properties.name === reserveName &&
             layer.feature.properties.state === stateName
           ) {
             targetLayer = layer;
@@ -4404,18 +4486,18 @@
 
         {
           id: "reserves-jpsm",
-          name: "Forest Reserves (published around 2022)",
+          name: "Forest reserves (published around 2022)",
           type: "geojson",
           url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_jpsm.geojson",
           caveat:
             "Forest reserve boundaries scraped from Dept of Forestry Peninsular Malaysia geospatial servers. Original source wasn't dated. My assessment dates it around 2022, and I found parts of the map outdated even for 2022. I cannot vouch for its accuracy and precision.",
           defaultOn: true,
-          searchProp: "reserve",
+          searchProp: "name",
           style: {
             fillColor: "#2d6a4f", //Forest-medium
             weight: 1.5,
             opacity: 1,
-            color: "#19B399",
+            color: "#2d6a4f",
             fillOpacity: 0.6,
           },
         },
@@ -4429,10 +4511,10 @@
           defaultOn: true,
           searchProp: "name",
           style: {
-            fillColor: "#d9c5b2", //pale oak
+            fillColor: "#ef8e00", //pale oak
             weight: 1.5,
             opacity: 1,
-            color: "#19B399",
+            color: "#ef8e00",
             fillOpacity: 0.6,
           },
         },
@@ -4449,7 +4531,7 @@
             fillColor: "#f26df9", //bright peony
             weight: 1.5,
             opacity: 1,
-            color: "#19B399",
+            color: "#f26df9",
             fillOpacity: 0.6,
           },
         },
@@ -4463,20 +4545,20 @@
           defaultOn: false,
           searchProp: "name",
           style: {
-            fillColor: "#b80c09", //brick ember
+            fillColor: "#541388", //brick ember
             weight: 1.5,
             opacity: 1,
-            color: "#19B399",
+            color: "#541388",
             fillOpacity: 0.6,
           },
         },
       ];
-      //Colours to choose from {"Forest-medium":"2d6a4f","Brick Ember":"b80c09",Outline->"Ocean mist ":"19B399","Bright Peony":"f26df9","Pale Oak":"d9c5b2"}
+      //Colours to choose from {"Forest-medium":"2d6a4f","Brick Ember":"b80c09",Outline->"Cerulean":"437c90","Bright Peony":"f26df9","Indigo":"541388"}
 
       // ─────────────────────────────────────────────────
       // Map Others — Geocoding Control (Nominatim)
       // ─────────────────────────────────────────────────
-      const Map2GeocodeControl = L.Control.extend({
+      const Map2SearchControl = L.Control.extend({
         options: { position: "topright" },
 
         onAdd: function (map) {
@@ -4484,29 +4566,77 @@
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.disableScrollPropagation(container);
 
+          // Tab bar
+          const tabBar = L.DomUtil.create("div", "mo-search-tabs", container);
+          const tab1 = L.DomUtil.create(
+            "button",
+            "mo-search-tab active",
+            tabBar,
+          );
+          tab1.textContent = "Forest Reserves";
+          const tab2 = L.DomUtil.create("button", "mo-search-tab", tabBar);
+          tab2.textContent = "Places";
+
+          // Input
           const wrapper = L.DomUtil.create(
             "div",
             "mo-geocode-wrapper",
             container,
           );
-
           this._input = L.DomUtil.create("input", "mo-geocode-input", wrapper);
           this._input.type = "text";
-          this._input.placeholder = "Type location, click Go";
-          this._input.autocomplete = "on";
+          this._input.placeholder = "Search forest reserves...";
+          this._input.autocomplete = "off";
 
-          const btn = L.DomUtil.create("button", "mo-geocode-btn", wrapper);
-          btn.textContent = "Go";
-
+          // Results
           this._results = L.DomUtil.create(
             "div",
             "mo-geocode-results",
             container,
           );
 
-          btn.addEventListener("click", () => this._search());
+          // State
+          this._activeTab = "reserves";
+          this._searchMarker = null;
+
+          // Tab switching
+          tab1.addEventListener("click", () => {
+            this._activeTab = "reserves";
+            tab1.classList.add("active");
+            tab2.classList.remove("active");
+            this._input.placeholder = "Search forest reserves...";
+            this._results.innerHTML = "";
+            this._input.value = "";
+            this._input.focus();
+          });
+
+          tab2.addEventListener("click", () => {
+            this._activeTab = "places";
+            tab2.classList.add("active");
+            tab1.classList.remove("active");
+            this._input.placeholder = "Search address or place...";
+            this._results.innerHTML = "";
+            this._input.value = "";
+            this._input.focus();
+          });
+
+          // Unified input handler
+          this._input.addEventListener(
+            "input",
+            debounce(() => {
+              const q = this._input.value.trim();
+              if (this._activeTab === "reserves") {
+                this._searchReserves();
+              } else if (q.length > 2) {
+                this._searchPlaces();
+              }
+            }, 300),
+          );
+
           this._input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") this._search();
+            if (e.key === "Enter" && this._activeTab === "places") {
+              this._searchPlaces();
+            }
           });
 
           document.addEventListener("click", (e) => {
@@ -4518,7 +4648,69 @@
           return container;
         },
 
-        _search: function () {
+        _searchReserves: function () {
+          const query = this._input.value.trim().toLowerCase();
+          this._results.innerHTML = "";
+
+          if (query.length < 2) return;
+
+          const matches = appState.map2FeatureIndex
+            .filter((item) => item.name.toLowerCase().includes(query))
+            .slice(0, 15);
+
+          if (!matches.length) {
+            const noResult = L.DomUtil.create(
+              "div",
+              "mo-geocode-result-item",
+              this._results,
+            );
+            noResult.textContent = "No results found";
+            return;
+          }
+
+          matches.forEach((match) => {
+            const layerObj = appState.map2LayerObjects[match.layerId];
+            const isVisible = layerObj && appState.map2.hasLayer(layerObj);
+
+            const item = L.DomUtil.create(
+              "div",
+              "mo-geocode-result-item mo-result-reserve" +
+                (isVisible ? "" : " mo-result-hidden"),
+              this._results,
+            );
+
+            const nameEl = document.createElement("span");
+            nameEl.className = "mo-result-reserve-name";
+            nameEl.textContent = match.name;
+
+            const layerEl = document.createElement("span");
+            layerEl.className = "mo-result-reserve-layer";
+            layerEl.textContent = isVisible
+              ? match.layerName
+              : match.layerName + " · layer hidden";
+
+            item.appendChild(nameEl);
+            item.appendChild(layerEl);
+
+            item.addEventListener("click", () => {
+              const fl = match.featureLayer;
+              if (fl.getBounds && fl.getBounds().isValid()) {
+                appState.map2.fitBounds(fl.getBounds(), { padding: [30, 30] });
+              }
+              fl.setStyle({ fillOpacity: 0.8, weight: 4 });
+              setTimeout(() => {
+                fl.setStyle({
+                  fillOpacity: match.defaultStyle.fillOpacity,
+                  weight: match.defaultStyle.weight,
+                });
+              }, 2000);
+              this._results.innerHTML = "";
+              this._input.value = match.name;
+            });
+          });
+        },
+
+        _searchPlaces: function () {
           const query = this._input.value.trim();
           if (!query) return;
           this._results.innerHTML = "";
@@ -4563,12 +4755,10 @@
                     this._map.setView([lat, lon], 12);
                   }
 
-                  // Remove previous search pin if any
                   if (this._searchMarker) {
                     this._map.removeLayer(this._searchMarker);
                   }
 
-                  // Place a pin with a popup
                   this._searchMarker = L.marker([lat, lon])
                     .addTo(this._map)
                     .bindPopup(result.display_name)
@@ -4644,7 +4834,7 @@
 
                 // Hover highlight
                 featureLayer.on("mouseover", function () {
-                  featureLayer.setStyle({ fillOpacity: 0.1, weight: 5 });
+                  featureLayer.setStyle({ fillOpacity: 0.3, weight: 5 });
                 });
                 featureLayer.on("mouseout", function () {
                   featureLayer.setStyle({
@@ -4699,6 +4889,13 @@
       // ─────────────────────────────────────────────────
       // Map Others — Layer Toggle Panel Builder
       // ─────────────────────────────────────────────────
+      function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
+      }
+
       function buildMap2LayerPanel() {
         const container = document.getElementById("map-others-layers");
         container.innerHTML = "";
@@ -4714,6 +4911,19 @@
           checkbox.type = "checkbox";
           checkbox.id = "layer-toggle-" + def.id;
           checkbox.checked = def.defaultOn;
+
+          // Colour swatch
+          const swatch = document.createElement("div");
+          swatch.className = "layer-swatch";
+          if (def.type === "geojson" && def.style) {
+            swatch.style.backgroundColor = hexToRgba(
+              def.style.fillColor,
+              def.style.fillOpacity,
+            );
+            swatch.style.border = "2px solid " + def.style.color;
+          } else {
+            swatch.classList.add("layer-swatch-raster");
+          }
 
           const label = document.createElement("label");
           label.htmlFor = "layer-toggle-" + def.id;
@@ -4747,6 +4957,7 @@
           });
 
           row.appendChild(checkbox);
+          row.appendChild(swatch);
           row.appendChild(label);
           row.appendChild(infoBtn);
           itemWrapper.appendChild(row);
@@ -4760,98 +4971,6 @@
             loadMap2TileLayer(def);
           }
         });
-
-        // Feature search (below layer toggles)
-        buildMap2FeatureSearch(container);
-      }
-
-      // ─────────────────────────────────────────────────
-      // Map Others — Feature Search Builder
-      // ─────────────────────────────────────────────────
-      function buildMap2FeatureSearch(container) {
-        const wrapper = document.createElement("div");
-        wrapper.className = "mo-feature-search";
-
-        const title = document.createElement("p");
-        title.className = "mo-feature-search-title";
-        title.textContent = "Search Features";
-
-        const input = document.createElement("input");
-        input.type = "text";
-        input.className = "mo-feature-search-input";
-        input.placeholder = "Type a polygon name...";
-
-        const resultsList = document.createElement("div");
-        resultsList.className = "mo-feature-results";
-
-        input.addEventListener(
-          "input",
-          debounce(function () {
-            const query = input.value.trim().toLowerCase();
-            resultsList.innerHTML = "";
-
-            if (query.length < 2) return;
-
-            const matches = appState.map2FeatureIndex
-              .filter((item) => item.name.toLowerCase().includes(query))
-              .slice(0, 15);
-
-            if (!matches.length) {
-              const noResult = document.createElement("div");
-              noResult.className = "mo-feature-result-item";
-              const noName = document.createElement("span");
-              noName.className = "mo-feature-result-name";
-              noName.textContent = "No results found";
-              noResult.appendChild(noName);
-              resultsList.appendChild(noResult);
-              return;
-            }
-
-            matches.forEach(function (match) {
-              const item = document.createElement("div");
-              item.className = "mo-feature-result-item";
-
-              const nameSpan = document.createElement("span");
-              nameSpan.className = "mo-feature-result-name";
-              nameSpan.textContent = match.name;
-
-              const layerSpan = document.createElement("span");
-              layerSpan.className = "mo-feature-result-layer";
-              layerSpan.textContent = match.layerName;
-
-              item.appendChild(nameSpan);
-              item.appendChild(layerSpan);
-
-              item.addEventListener("click", function () {
-                const fl = match.featureLayer;
-                // Zoom to feature
-                if (fl.getBounds && fl.getBounds().isValid()) {
-                  appState.map2.fitBounds(fl.getBounds(), {
-                    padding: [30, 30],
-                  });
-                }
-                // Flash highlight
-                fl.setStyle({ fillOpacity: 0.8, weight: 4 });
-                setTimeout(function () {
-                  fl.setStyle({
-                    fillOpacity: match.defaultStyle.fillOpacity,
-                    weight: match.defaultStyle.weight,
-                  });
-                }, 2000);
-
-                resultsList.innerHTML = "";
-                input.value = match.name;
-              });
-
-              resultsList.appendChild(item);
-            });
-          }, 200),
-        );
-
-        wrapper.appendChild(title);
-        wrapper.appendChild(input);
-        wrapper.appendChild(resultsList);
-        container.appendChild(wrapper);
       }
 
       // ─────────────────────────────────────────────────
@@ -4878,7 +4997,7 @@
         buildMap2LayerPanel();
 
         // Address geocoding search control
-        new Map2GeocodeControl().addTo(appState.map2);
+        new Map2SearchControl().addTo(appState.map2);
 
         // Locate me button
         new Map2LocateControl().addTo(appState.map2);
