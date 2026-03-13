@@ -121,7 +121,7 @@
       .reset-map-button {
         background: var(--forest-light);
         color: var(--text-dark);
-        border: solid 2px;
+        border: solid 0px;
         border-radius: var(--border-radius);
         cursor: pointer;
         font-size: 0.8rem;
@@ -676,9 +676,117 @@
 
       #data-table-section,
       #about-section,
-      #methodology-section,
       #investigations-section {
         background: var(--forest-pale);
+      }
+
+      #methodology-section {
+        background: var(--text-dark);
+      }
+
+      #methodology-section h2 {
+        color: var(--text-light);
+      }
+
+      /* ── Methodology Section ─────────────────────────────────── */
+      .methodology-body {
+        max-width: 680px;
+        width: 100%;
+        margin: 0 auto;
+        font-family: "Nunito", sans-serif;
+        font-size: 1rem;
+        line-height: 1.4;
+        color: var(--text-light);
+      }
+
+      .methodology-body h3 {
+        font-family: "Rufina", serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--forest-light);
+        margin-top: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .methodology-body h4 {
+        font-family: "Rufina", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--forest-pale);
+        margin-top: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .methodology-body p {
+        margin-bottom: 0.9rem;
+      }
+
+      .methodology-body p:last-child {
+        margin-bottom: 0;
+      }
+
+      .methodology-body ol,
+      .methodology-body ul {
+        padding-left: 1.4rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .methodology-body li {
+        margin-bottom: 0.35rem;
+      }
+
+      .methodology-body a {
+        color: var(--forest-light);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .methodology-body a:hover {
+        color: var(--forest-pale);
+      }
+
+      .methodology-box {
+        background: var(--text-light);
+        color: var(--text-dark);
+        border-radius: var(--border-radius);
+        border-left: 4px solid var(--forest-medium);
+        padding: 1.4rem 1.6rem;
+        margin: 0.5rem 0 0.5rem 0;
+      }
+
+      .methodology-box p,
+      .methodology-box li {
+        color: var(--text-dark);
+      }
+
+      .methodology-box h4 {
+        color: var(--forest-dark);
+      }
+
+      .methodology-box a {
+        color: var(--forest-medium);
+        text-underline-offset: 3px;
+      }
+
+      .methodology-box a:hover {
+        color: var(--forest-dark);
+      }
+
+      .methodology-box strong {
+        color: var(--forest-dark);
+        font-weight: 700;
+      }
+
+      .methodology-img-placeholder {
+        border: 2px dashed var(--forest-medium);
+        border-radius: var(--border-radius);
+        padding: 1.4rem 1rem;
+        text-align: center;
+        color: var(--forest-medium);
+        font-style: italic;
+        font-size: 0.88rem;
+        margin-top: 1rem;
+        background: rgba(82, 183, 136, 0.08);
       }
 
       .table-container {
@@ -1715,7 +1823,7 @@
               class="nav-button"
               onclick="showSection('map-others-section')"
             >
-              Map Others
+              Map (Explore)
             </button>
             <button class="nav-button" onclick="showSection('about-section')">
               About
@@ -1731,6 +1839,30 @@
               onclick="showSection('investigations-section')"
             >
               Puzzles
+            </button>
+            <button
+              class="nav-button"
+              style="color: var(--text-light)"
+              onclick="
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSfUANjG2xymX-3anQ7nJqJ7hCc8yzT3D2Od6ytdbaSUxI8ygA/viewform?usp=dialog',
+                  '_blank',
+                )
+              "
+            >
+              Feedback/Question
+            </button>
+            <button
+              class="nav-button"
+              style="color: var(--text-light)"
+              onclick="
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSdD3SDG-9gIJADN4ACQY87Y4xGlj9qZeWEnor7Np66m6Wy5tA/viewform?usp=publish-editor',
+                  '_blank',
+                )
+              "
+            >
+              Stay Updated
             </button>
           </div>
         </div>
@@ -1750,6 +1882,7 @@
               Addition and removal of forest reserves in Peninsular Malaysia as
               published in government gazettes.
             </p>
+            <p>Created and updated regularly by Law Yao Hua.</p>
             <br />
             <p>
               <svg
@@ -1892,7 +2025,7 @@
               class="landing-nav-button"
               onclick="showSection('map-others-section')"
             >
-              Map Others
+              Map (Explore)
             </button>
             <button
               class="landing-nav-button"
@@ -1912,8 +2045,33 @@
             >
               Puzzles
             </button>
+            <button
+              class="landing-nav-button"
+              style="color: var(--text-light)"
+              onclick="
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSfUANjG2xymX-3anQ7nJqJ7hCc8yzT3D2Od6ytdbaSUxI8ygA/viewform?usp=dialog',
+                  '_blank',
+                )
+              "
+            >
+              Feedback/Question
+            </button>
+            <button
+              class="landing-nav-button"
+              style="color: var(--text-light)"
+              onclick="
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSdD3SDG-9gIJADN4ACQY87Y4xGlj9qZeWEnor7Np66m6Wy5tA/viewform?usp=publish-editor',
+                  '_blank',
+                )
+              "
+            >
+              Stay Updated
+            </button>
           </div>
         </div>
+        <div></div>
 
         <div class="landing-right">
           <div class="carousel-container" id="carousel">
@@ -2210,12 +2368,121 @@
       <!-- Methodology Section -->
       <section id="methodology-section" class="section">
         <h2>Data Methodology</h2>
-        <div class="section-content">
-          <p style="text-align: center; color: #666; font-size: 1.2rem">
-            This section will explain how the data is collected, processed, and
-            updated. It will detail the sources, validation processes, and any
-            limitations.
-          </p>
+        <div class="section-content methodology-body">
+          <h3>Overview</h3>
+          <div class="methodology-box">
+            <p>
+              I created this platform to provide historical and regularly
+              updated changes in forest reserves in Peninsular Malaysia. I aim
+              to create an experience where any user can:
+            </p>
+            <ol>
+              <li>Access the platform and its data for free</li>
+              <li>
+                Use the platform without prior knowledge or experience with
+                forest data (though some familiarity with local geography)
+              </li>
+              <li>
+                Download all and full datasets shown on the platform for own use
+                (except datasets with restrictive rights)
+              </li>
+              <li>
+                Easily find and understand explanation on the limits and gaps in
+                the datasets, and caveats to their interpretation
+              </li>
+              <li>Share feedback to better achieve these goals</li>
+            </ol>
+          </div>
+
+          <h3>Structure and Processes</h3>
+          <div class="methodology-box">
+            <p>
+              <strong>What and where is it:</strong> This platform is a single
+              static webpage with HTML, CSS, and JS components -- like most
+              websites. I am hosting it for free as a GitHub Page on my GitHub
+              repository.
+            </p>
+            <p>
+              <strong>User data:</strong> All data and processes are loaded on
+              the user's Internet browser. The platform has a Google Analytics
+              tag that records user visit information: country, duration of
+              visit, etc. I cannot pinpoint identity of any visitor.
+            </p>
+            <p>
+              <strong>Data structure:</strong> This platform is built on several
+              datasets -- everything else serves to help you find and make sense
+              of the data. The most essential dataset is a dynamic
+              <em>list</em> of forest reserve changes (addition and removal)
+              since 1 Jan 2002 based on gazettes. Then there are
+              <em>maps</em> of forest reserves (boundaries).
+            </p>
+            <p>
+              The list and the maps share two parameters: the names of the
+              forest reserves (e.g. Bukit Tinggi), and the states where the
+              reserves are located in (e.g., Pahang). The code uses these two
+              parameters to connect a specific forest reserve or state in the
+              list to its location on the maps.
+            </p>
+            <p>
+              When you click on a state or forest reserve on a map, the code
+              sees your choice, goes into the list, finds all changes recorded
+              of that state or forest reserve, and presents them to the user. If
+              you pick options in a table, the code only queries the list.
+            </p>
+          </div>
+
+          <h3>Datasets</h3>
+          <h4>List of Forest Reserve Changes</h4>
+          <div class="methodology-box">
+            <p>
+              <strong>Sources: </strong>All gazettes of forest reserve changes
+              since 2001 are available in PDF format via
+              <a href="https://www.lawnet.com.my/" target="_blank">Lawnet</a>, a
+              unit under Percetakan Nasional Malaysia Berhad, the "licensed
+              security printer" for the Malaysian government. I paid RM1620 for
+              an annual subscription.
+            </p>
+            <p>
+              <strong>Process: </strong>On Lawnet, I searched for forest reserve
+              gazettes in each Peninsular Malaysia state by querying the
+              "E-Gazettes" list using "perhutanan" ('forestry') in "Title". This
+              query returns all forest reserve gazettes because the gazettes
+              print the legislation "Akta Perhutanan" ('Forestry Act') in their
+              titles. I downloaded every gazette since 1 Jan 2002, read them,
+              and transcribed the data into a list.
+            </p>
+            <p>
+              <strong>Components: </strong>The data comprise: date of gazette
+              publication, the forest reserve's name, state, district, and
+              mukim, change in area, and the ID of the Pelan Warta, which is a
+              separate state government document that shows the boundaries of
+              the area implicated in the change. From the gazettes, I also
+              recorded the effective dates of the changes, which in some states
+              could be long before the gazettes were published.
+            </p>
+            <p>
+              <strong>Notes: </strong>The gazettes on Lawnet do not show the
+              boundaries of the changed area, so I do not know the exact
+              locations added or removed in the forest reserves.
+            </p>
+            <div class="methodology-img-placeholder">
+              Image 1: Lawnet E-gazette interface
+            </div>
+            <div class="methodology-img-placeholder">
+              Image 2: A typical gazette on forest reserve change
+            </div>
+          </div>
+
+          <h3>Tools Used</h3>
+          <div class="methodology-box">
+            <ol>
+              <li>QGIS (version 3.44.3-Solothurn) on Windows 11</li>
+              <li>Claude Code</li>
+              <li>MS Excel</li>
+              <li>Canva</li>
+              <li>Mapbox</li>
+            </ol>
+          </div>
         </div>
       </section>
 
