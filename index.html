@@ -238,6 +238,14 @@
         justify-content: center;
       }
 
+      .carousel-slide picture {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .carousel-slide img {
         width: 100%;
         height: 100%;
@@ -1181,23 +1189,14 @@
         }
 
         .landing-right {
-          flex: 0 0 auto;
-          height: 45%;
+          flex: 0 0 50vh;
+          height: 50vh;
           width: 100%;
+          padding: 0;
         }
 
         .carousel-arrow {
-          width: 36px;
-          height: 36px;
-          font-size: 1rem;
-        }
-
-        .carousel-arrow-left {
-          left: 10px;
-        }
-
-        .carousel-arrow-right {
-          right: 10px;
+          display: none;
         }
 
         .carousel-dots {
@@ -2105,22 +2104,31 @@
           <div class="carousel-container" id="carousel">
             <div class="carousel-slides" id="carousel-slides">
               <div class="carousel-slide">
-                <img
-                  src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_1.webp"
-                  alt="Carousel Image 1"
-                />
+                <picture>
+                  <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_mobile_1.webp" />
+                  <img
+                    src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_1.webp"
+                    alt="Carousel Image 1"
+                  />
+                </picture>
               </div>
               <div class="carousel-slide">
-                <img
-                  src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_2.webp"
-                  alt="Carousel Image 2"
-                />
+                <picture>
+                  <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_mobile_2.webp" />
+                  <img
+                    src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_2.webp"
+                    alt="Carousel Image 2"
+                  />
+                </picture>
               </div>
               <div class="carousel-slide">
-                <img
-                  src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_3.webp"
-                  alt="Carousel Image 3"
-                />
+                <picture>
+                  <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_mobile_3.webp" />
+                  <img
+                    src="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/primer_3.webp"
+                    alt="Carousel Image 3"
+                  />
+                </picture>
               </div>
             </div>
             <button
@@ -2478,7 +2486,15 @@
               Malaysia and the Department of Environment, and documents like
               Local Plans, State Structural Plans, and state agencies
               developmental plans. For details on the data and methodology, head
-              to Methodology TKTK.
+              to
+              <a
+                href="#"
+                onclick="
+                  showSection('methodology-section');
+                  return false;
+                "
+                >Methodology</a
+              >.
             </p>
           </div>
           <h3>Thank You</h3>
