@@ -457,81 +457,13 @@
         display: block;
       }
 
-      /* Feature search in panel */
-      .mo-feature-search {
-        margin-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 16px;
-      }
-
-      .mo-feature-search-title {
-        color: var(--text-light);
-        font-size: 0.78rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
-        opacity: 0.7;
-      }
-
-      .mo-feature-search-input {
-        width: 100%;
-        padding: 7px 10px;
-        border: 1px solid rgba(82, 183, 136, 0.5);
-        border-radius: var(--border-radius);
-        background: rgba(255, 255, 255, 0.07);
-        color: var(--text-light);
-        font-family: inherit;
-        font-size: 0.9rem;
-        outline: none;
-        transition: border-color var(--transition-speed) ease;
-      }
-
-      .mo-feature-search-input:focus {
-        border-color: var(--forest-light);
-      }
-
-      .mo-feature-search-input::placeholder {
-        color: rgba(239, 236, 232, 0.4);
-      }
-
-      .mo-feature-results {
-        margin-top: 6px;
-        max-height: 200px;
-        overflow-y: auto;
-      }
-
-      .mo-feature-result-item {
-        padding: 7px 10px;
-        color: var(--text-light);
-        font-size: 0.85rem;
-        cursor: pointer;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        transition: background var(--transition-speed) ease;
-      }
-
-      .mo-feature-result-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .mo-feature-result-name {
-        font-weight: 600;
-      }
-
-      .mo-feature-result-layer {
-        font-size: 0.75rem;
-        color: var(--forest-light);
-      }
-
       /* Geocoding search control (on map) */
       .mo-geocode-control {
-        background: white;
+        background: #f4f4f4;
         border-radius: var(--border-radius);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        min-width: 230px;
+        border: 2px solid #b1b1b1;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        max-width: 250px;
         overflow: hidden;
       }
 
@@ -544,8 +476,8 @@
         border: none;
         outline: none;
         font-family: inherit;
-        font-size: 0.88rem;
-        padding: 8px 10px;
+        font-size: 0.7rem;
+        padding: 6px 6px;
         flex: 1;
         min-width: 0;
         color: var(--text-dark);
@@ -596,12 +528,12 @@
 
       .mo-search-tab {
         flex: 1;
-        padding: 7px 6px;
-        font-size: 0.78rem;
+        padding: 3px 5px;
+        font-size: 0.7rem;
         font-family: inherit;
         font-weight: 600;
         border: none;
-        background: #f5f5f5;
+        background: #f4f4f4;
         color: #888;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -1605,7 +1537,7 @@
       .leaflet-control-search {
         background: #f4f4f4;
         border-radius: var(--border-radius);
-        border: 2px solid var(--forest-medium);
+        border: 2px solid #b1b1b1;
         padding: 0;
         width: 180px;
         font-family: "Nunito", sans-serif;
@@ -1705,7 +1637,7 @@
       .leaflet-control-caveat {
         background: #f4f4f4;
         border-radius: var(--border-radius);
-        border: 2px solid var(--forest-medium);
+        border: 2px solid #b1b1b1;
         padding: 6px 10px;
         width: 180px;
         font-family: "Nunito", sans-serif;
@@ -1825,6 +1757,64 @@
         .table-card th,
         .table-card td {
           padding: 6px 4px;
+        }
+
+        /* Styling for Map Others data panel */
+        .layer-toggle-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 4px 10px;
+          background: var(--text-dark);
+          border-radius: var(--border-radius);
+        }
+
+        .leaflet-control-caveat,
+        .leaflet-control-search {
+          margin-bottom: 2px !important;
+          margin-top: 2px !important;
+        }
+
+        .leaflet-control-caveat {
+          max-width: 200px;
+          padding: 2px;
+          font-size: 0.6rem;
+        }
+
+        .leaflet-control-search {
+          max-width: 100px;
+        }
+        .leaflet-control-search .search-input-wrapper {
+          padding: 2px 2px;
+          gap: 2px;
+        }
+
+        .leaflet-control-search .search-icon {
+          font-size: 0.8rem;
+        }
+
+        .leaflet-control-search input[type="text"] {
+          width: 100%;
+
+          font-size: 0.6rem;
+        }
+
+        /*Styling for Leaflet feature search in Map Others */
+
+        .mo-geocode-control {
+          background: #f4f4f4;
+          border-radius: var(--border-radius);
+          border: 2px solid #b1b1b1;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+          min-width: 200px;
+          overflow: hidden;
+          margin-top: 2px !important;
+          margin-bottom: 0px !important;
+        }
+
+        .mo-search-tab {
+          padding: 3px 3px;
+          font-size: 0.65rem;
         }
       }
 
@@ -4062,7 +4052,7 @@
             const el = L.DomUtil.create("div", "leaflet-control-caveat");
             L.DomEvent.disableClickPropagation(el);
             el.innerHTML =
-              "Forest reserve boundaries might be inaccurate or outdated. <a onclick=\"showSection('methodology-section')\">Methodology</a>";
+              "Forest reserve boundaries might be inaccurate or outdated. <a onclick=\"showSection('methodology-section')\">(Methodology)</a>";
             // Insert above the search control (which moves to firstChild at t=0)
             setTimeout(() => {
               const corner = el.parentNode;
@@ -5350,7 +5340,7 @@
       // Map Others — Geocoding Control (Nominatim)
       // ─────────────────────────────────────────────────
       const Map2SearchControl = L.Control.extend({
-        options: { position: "topright" },
+        options: { position: "topleft" },
 
         onAdd: function (map) {
           const container = L.DomUtil.create("div", "mo-geocode-control");
@@ -5435,6 +5425,12 @@
               this._results.innerHTML = "";
             }
           });
+
+          // Insert above the zoom control (topleft firstChild)
+          setTimeout(() => {
+            const corner = container.parentNode;
+            if (corner) corner.insertBefore(container, corner.firstChild);
+          }, 50);
 
           return container;
         },
