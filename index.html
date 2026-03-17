@@ -1180,12 +1180,26 @@
         }
 
         .landing-nav-buttons {
-          justify-content: center;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+          width: 100%;
+          position: relative;
+          mask-image: linear-gradient(to right, black 80%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+        }
+
+        .landing-nav-buttons::-webkit-scrollbar {
+          display: none;
         }
 
         .landing-nav-button {
           font-size: 0.8rem;
           padding: 6px 12px;
+          flex-shrink: 0;
         }
 
         .landing-right {
