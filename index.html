@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script
+    <!-- <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-8T8S9X8309"
     ></script>
@@ -14,7 +14,7 @@
       gtag("js", new Date());
 
       gtag("config", "G-8T8S9X8309");
-    </script>
+    </script> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -675,15 +675,16 @@
       }
 
       #data-table-section,
-      #about-section,
       #investigations-section {
         background: var(--forest-pale);
       }
 
+      #about-section,
       #methodology-section {
         background: var(--text-dark);
       }
 
+      #about-section h2,
       #methodology-section h2 {
         color: var(--text-light);
       }
@@ -1690,6 +1691,33 @@
         font-style: italic;
       }
 
+      /* Boundary caveat control (above search box) */
+      .leaflet-control-caveat {
+        background: #f4f4f4;
+        border-radius: var(--border-radius);
+        border: 2px solid var(--forest-medium);
+        padding: 6px 10px;
+        width: 180px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: var(--text-dark);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        box-sizing: border-box;
+      }
+
+      .leaflet-control-caveat a {
+        color: var(--forest-dark);
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        cursor: pointer;
+      }
+
+      .leaflet-control-caveat a:hover {
+        color: var(--forest-medium);
+      }
+
       /* Leaflet label customization */
       .state-label {
         background-color: var(--text-light) !important;
@@ -2155,10 +2183,10 @@
                 class="download-button"
                 id="download-table-recent-changes"
               >
-                Download Table
+                Download This Table
               </button>
               <button class="download-button" id="download-full-csv">
-                Download All Changes
+                Download Entire Dataset
               </button>
             </div>
           </div>
@@ -2287,10 +2315,10 @@
             <div class="data-table-status">
               <span id="dt-result-count">Loading...</span>
               <button class="download-button" id="download-table-all-changes">
-                Download Table
+                Download This Table
               </button>
               <button class="download-button" id="download-full-csv-2">
-                Download All Changes
+                Download Entire Dataset
               </button>
             </div>
 
@@ -2355,32 +2383,139 @@
 
       <!-- About Section -->
       <section id="about-section" class="section">
-        <h2>About Forest Reserves</h2>
-        <div class="section-content">
-          <p style="text-align: center; color: #666; font-size: 1.2rem">
-            This section will contain an article explaining what forest reserves
-            are, their importance, and the legal framework governing them in
-            Malaysia.
-          </p>
+        <h2>What's This About</h2>
+        <div class="section-content methodology-body">
+          <h3>What's here?</h3>
+          <div class="methodology-box">
+            <p>
+              This platform shows <strong>all official changes</strong> in areas
+              of forest reserves in Peninsular Malaysia since January 1, 2002 to
+              (the last updated date TKTK). All changes reported here were
+              published in government <em>gazettes</em>.
+            </p>
+            <p>
+              The changes are presented in tables, charts, and maps. You can
+              also review and retrieve the original gazettes for every change.
+            </p>
+          </div>
+
+          <h3>Why Gazettes?</h3>
+          <div class="methodology-box">
+            <p>
+              In Malaysia, only state governments have the authority to add,
+              remove, or classify forest reserves.
+            </p>
+            <p>
+              As per the National Forestry Act 1984 and the corresponding
+              enactments in the states, when state governments add or remove
+              forest reserves, they must:
+            </p>
+
+            <ul>
+              <li>
+                publish the change in a government document called 'gazette',
+                and
+              </li>
+              <li>
+                the change would take effect on the date indicated in the
+                gazette.
+              </li>
+            </ul>
+
+            <p>
+              Therefore, gazettes are the
+              <strong
+                >essential, ultimate, and legally binding documents</strong
+              >
+              on the status of forest reserves. We need gazettes to monitor or
+              verify forest reserve area changes. A map of forest reserves would
+              be helpful too.
+            </p>
+          </div>
+          <h3>The Need</h3>
+          <div class="methodology-box">
+            <p>
+              But most gazettes and forest reserve maps are inaccessible, even
+              to many government agencies, universities, and auditors. The
+              documents are kept behind paywalls or demand time and expertise to
+              use. As I reported on forest use in Peninsular Malaysia and began
+              amassing data and documents, people reached out to me for
+              information. They included auditors, researchers, consultants,
+              environmental NGOs, reporters, and even government officers.
+            </p>
+
+            <p>
+              One would think that the federal government and state governments
+              have complete and updated forestry data, but my experience
+              suggests otherwise. Our forest data is a
+              <a
+                href="https://www.macaranga.org/navigating-the-multiverse-of-forest-data-peninsular-malaysia/"
+                target="_blank"
+                >multiverse-level obstacle</a
+              >
+              in our pursuit of just, holistic, and progressive forest
+              management.
+            </p>
+          </div>
+          <h3>For You</h3>
+          <div class="methodology-box">
+            <p>
+              I collected, compiled, and cleaned those documents, and visualised
+              the data for you.
+            </p>
+          </div>
+          <h3>Building This Platform</h3>
+          <div class="methodology-box">
+            <p>
+              This platform draws from two datasets: gazettes and forest reserve
+              maps. I paid to access and download gazettes in Peninsular
+              Malaysia, then extracted information on forest reserve changes.
+              There are nearly 1,000 entries in my gazette dataset.
+            </p>
+            <p>
+              Separately, I compiled forest reserve maps from various sources:
+              the geospatial servers of the Department of Forestry Peninsular
+              Malaysia and the Department of Environment, and documents like
+              Local Plans, State Structural Plans, and state agencies
+              developmental plans. For details on the data and methodology, head
+              to Methodology TKTK.
+            </p>
+          </div>
+          <h3>Thank You</h3>
+          <div class="methodology-box">
+            <p>
+              I built this platform as a side project during my Nieman
+              Fellowship (2025/2026) at Harvard University, USA. It is the
+              culmination of my forest reporting for Macaranga, advice from
+              Belle Lipton of the Harvard Map Collection, and generous feedback,
+              encouragement, and materials from friends in Malaysia and beyond.
+              I thank the Nieman Foundation, the Harvard Map Collection, and
+              everyone who has taught me everything I know about Malaysian
+              forestry.
+            </p>
+          </div>
         </div>
       </section>
 
       <!-- Methodology Section -->
       <section id="methodology-section" class="section">
-        <h2>Data Methodology</h2>
+        <h2>How I Put It Together</h2>
         <div class="section-content methodology-body">
           <h3>Overview</h3>
           <div class="methodology-box">
             <p>
               I created this platform to provide historical and regularly
-              updated changes in forest reserves in Peninsular Malaysia. I aim
-              to create an experience where any user can:
+              updated additions and removals in forest reserves in Peninsular
+              Malaysia. It's something which would have been of great use in my
+              reporting on forest use for Macaranga. Other forest-related
+              information will be provided when I could get to them.
             </p>
+            <p>Any user would be able to:</p>
             <ol>
-              <li>Access the platform and its data for free</li>
+              <li>Access the platform for free</li>
               <li>
                 Use the platform without prior knowledge or experience with
-                forest data (though some familiarity with local geography)
+                forest data (though familiarity with local geography is helpful)
               </li>
               <li>
                 Download all and full datasets shown on the platform for own use
@@ -2392,6 +2527,16 @@
               </li>
               <li>Share feedback to better achieve these goals</li>
             </ol>
+            <p>
+              <strong>User data:</strong> All data and processes are loaded on
+              the user's Internet browser. The platform has a Google Analytics
+              tag that records user visit information: country, duration of
+              visit, etc. I cannot pinpoint identity of any visitor.
+            </p>
+            <p>
+              <strong>Data Repository:</strong> Sources and materials mentioned
+              below can be found <a href="" target="_blank">here</a>.
+            </p>
           </div>
 
           <h3>Structure and Processes</h3>
@@ -2400,21 +2545,29 @@
               <strong>What and where is it:</strong> This platform is a single
               static webpage with HTML, CSS, and JS components -- like most
               websites. I am hosting it for free as a GitHub Page on my GitHub
-              repository.
+              repository. I built the platform using Claude Code in Visual
+              Studio Code. I used
+              <a href="https://leafletjs.com/" target="_blank">Leaflet</a> for
+              webmapping functions, designed the basemap on
+              <a href=" https://www.mapbox.com" target="_blank">Mapbox</a>, and
+              used the latter's
+              <a
+                href="https://docs.mapbox.com/data/tilesets/reference/mapbox-satellite/"
+                target="_blank"
+                >satellite imagery layer</a
+              >
+              too.
+            </p>
+
+            <p>
+              <strong>Data structure:</strong>
             </p>
             <p>
-              <strong>User data:</strong> All data and processes are loaded on
-              the user's Internet browser. The platform has a Google Analytics
-              tag that records user visit information: country, duration of
-              visit, etc. I cannot pinpoint identity of any visitor.
-            </p>
-            <p>
-              <strong>Data structure:</strong> This platform is built on several
-              datasets -- everything else serves to help you find and make sense
-              of the data. The most essential dataset is a dynamic
-              <em>list</em> of forest reserve changes (addition and removal)
-              since 1 Jan 2002 based on gazettes. Then there are
-              <em>maps</em> of forest reserves (boundaries).
+              This platform is built on several datasets -- everything else
+              serves to help you find and make sense of the data. The most
+              essential dataset is a dynamic <em>list</em> of forest reserve
+              changes (addition and removal) since 1 Jan 2002 based on gazettes.
+              Then there are <em>maps</em> of forest reserves (boundaries).
             </p>
             <p>
               The list and the maps share two parameters: the names of the
@@ -2423,6 +2576,7 @@
               parameters to connect a specific forest reserve or state in the
               list to its location on the maps.
             </p>
+
             <p>
               When you click on a state or forest reserve on a map, the code
               sees your choice, goes into the list, finds all changes recorded
@@ -2432,6 +2586,8 @@
           </div>
 
           <h3>Datasets</h3>
+          <strong>Data Repository:</strong> Sources and materials mentioned
+          below can be found <a href="" target="_blank">here</a>.
           <h4>List of Forest Reserve Changes</h4>
           <div class="methodology-box">
             <p>
@@ -2443,27 +2599,43 @@
               an annual subscription.
             </p>
             <p>
-              <strong>Process: </strong>On Lawnet, I searched for forest reserve
-              gazettes in each Peninsular Malaysia state by querying the
-              "E-Gazettes" list using "perhutanan" ('forestry') in "Title". This
-              query returns all forest reserve gazettes because the gazettes
-              print the legislation "Akta Perhutanan" ('Forestry Act') in their
-              titles. I downloaded every gazette since 1 Jan 2002, read them,
-              and transcribed the data into a list.
+              <strong>In Data Repository: </strong>The list is
+              "gazette[date].csv". All gazettes used in this project can be
+              found here -- to find a specific gazette, look up the issuing
+              state, year, and gazette number, as the PDF is named as
+              "State.Year.GazetteNumber.PDF".
             </p>
             <p>
-              <strong>Components: </strong>The data comprise: date of gazette
-              publication, the forest reserve's name, state, district, and
-              mukim, change in area, and the ID of the Pelan Warta, which is a
-              separate state government document that shows the boundaries of
-              the area implicated in the change. From the gazettes, I also
-              recorded the effective dates of the changes, which in some states
-              could be long before the gazettes were published.
+              <strong>Process: </strong>On Lawnet, I searched for forest reserve
+              gazettes in each Peninsular Malaysia state by querying the
+              "E-Gazettes" interface using "perhutanan" ('forestry') in "Title".
+              This query returns all forest reserve gazettes because their
+              titles contain the words "Akta Perhutanan" ('Forestry Act'). I
+              downloaded every gazette since 1 Jan 2002, read them, and
+              transcribed the data into an Excel spreadsheet. If the gazettes
+              carry variations of the same forest reserve name (e.g., Air Hitam
+              vs Ayer Hitam), I standardised them to the most recent spelling as
+              of 31 December 2025.
+            </p>
+            <p>
+              <strong>Components: </strong> A total of 371 forest reserves were
+              named in the gazettes since 1 Jan 2002. Some gazettes did not name
+              the forest reserves affected, and I couldn't verify their names
+              without checking with the land offices. Data components comprise
+              date of gazette publication, the forest reserve's name, state,
+              district, and mukim, change in area, and the ID of the Pelan
+              Warta, which is a separate state government document that shows
+              the boundaries of the area implicated in the change. From the
+              gazettes, I also recorded the effective dates of the changes,
+              which in some states could be long before the gazettes were
+              published.
             </p>
             <p>
               <strong>Notes: </strong>The gazettes on Lawnet do not show the
               boundaries of the changed area, so I do not know the exact
-              locations added or removed in the forest reserves.
+              locations added or removed in the forest reserves. For the few
+              gazettes (typically those from Melaka) that do not mention the
+              names of the forest reserves affected, I wrote "Not stated".
             </p>
             <div class="methodology-img-placeholder">
               Image 1: Lawnet E-gazette interface
@@ -2473,14 +2645,236 @@
             </div>
           </div>
 
+          <h4>
+            Maps: Forest Reserves (Dept Forestry Peninsular Malaysia and Dept
+            Environment Malaysia)
+          </h4>
+          <div class="methodology-box">
+            <p>
+              <strong>Sources: </strong>The Department of Forestry Peninsular
+              Malaysia and the Department of Environment Malaysia had (have?)
+              websites that stored geospatial datasets. Both servers could be
+              accessed without login and had options to display the geospatial
+              data in tables or maps. The vector shapefiles used on this
+              platform were originally downloaded from the Departments'
+              geospatial servers and given to me in 2021 (Dept Environment) and
+              2024 (Dept Forestry). The websites and files had no description on
+              dates of publication or last update.
+            </p>
+            <p>
+              <strong>In Data Repository:</strong> DeptForestryPMsia_2022
+              "forest_jpsm.geojson"; DeptEnvMsia_2012 "forest_doe.geojson"
+            </p>
+            <p>
+              <strong>Process: </strong>The original shapefiles contained
+              hundreds of individual forest reserves each. Each forest reserve
+              carried information such as state, mukim, forestry district, area,
+              gazetted date, etc. I removed all information except for the
+              forest reserve's boundary, name (e.g. Kledang Saiong), and state
+              (e.g., Perak). I fixed the geometries of the shapefile (QGIS
+              function: "Vector->Fix Geometries, Repair Structure"). Some forest
+              reserves were fragmented items (e.g., the same forest reserve has
+              east and west sections) and I merged them into one item with one
+              name (QGIS function: "Vector->Dissolve" by forest reserve name).
+              Because the platform searches all datasets using names of forest
+              reserves, it's essential to use a standardised list of names. I
+              chose to use names printed in the legally-binding gazettes as the
+              standard. Therefore, when these maps had names different from
+              those in the gazettes, I changed them to match the gazettes'. For
+              forest reserves not mentioned in gazettes, I used the Dept of
+              Forestry's map as the standard.
+            </p>
+            <p>
+              <strong>Components: </strong>A total of 523 forest reserves in the
+              Department of Forestry Peninsular Malaysia's map, and 474 reserves
+              in the Department of Environment's. Data includes forest reserve's
+              boundary, name (e.g. Kledang Saiong), state (e.g., Perak), and
+              source ("DeptForPMsia_2022" or "DeptEnvMsia_2012").
+            </p>
+            <p>
+              <strong>Notes: </strong>The Master List of forest reserve names
+              used on this platform can be found in the data repository. One
+              forest reserve in Perak on the Dept Forestry Peninsular Malaysia's
+              map is not named and could not be identified after comparisons
+              across datasets, so I left it as "Z - Not named".
+            </p>
+          </div>
+
+          <h4>Maps: Forest Reserves (2012 vs 2022)</h4>
+          <div class="methodology-box">
+            <p>
+              <strong>Sources: </strong>This layer is simply the areas of forest
+              reserves found in the Department of Environment's map (2012) but
+              not in the Department of Forestry Peninsular Malaysia's (2022). I
+              created this layer to draw attention to the areas that suggest big
+              removals of forest reserves between 2012 and 2022.
+            </p>
+            <p>
+              <strong>In Data Repository:</strong> "forest_2012vs2022.geojson"
+            </p>
+            <p>
+              <strong>Process: </strong>I used QGIS to extract the parts of
+              forest reserves in the Dept Env's map that are not found in the
+              Department of Forestry's (QGIS function "Vector->Difference" with
+              the former as the Input Layer and the latter as the Overlay
+              Layer). Because the two layers do not fully align and the same
+              forest reserves often diverge slightly, this extraction produced
+              many narrow strips (often just a line) along borders of forest
+              reserves. To focus attention on the bigger blocs -- which I assume
+              are more likely to be true differences between 2012 and 2022 -- I
+              manually removed all narrow strips from the extracted layer.
+            </p>
+            <p>
+              <strong>Components: </strong>Forest reserve boundary, and state.
+            </p>
+            <p>
+              <strong>Notes: </strong>The remaining blocs likely still retain
+              some artefacts of the processing; further verification is
+              warranted.
+            </p>
+          </div>
+
+          <h4>Maps: Forest Reserves (Others)</h4>
+          <div class="methodology-box">
+            <p>
+              <strong>Sources: </strong>As of 31 December 2025, the gazette
+              dataset mentioned 115 forest reserves (excluding the unnamed ones)
+              that were not found in the maps from the Department of Forestry or
+              Department of Environment's websites. I tried to reduce this gap
+              by looking for recent maps outside of the two Departments. My
+              heuristic search yielded results that were more opportunistic than
+              the fruit of systematic efforts. Full list of sources in Data
+              Repository.
+            </p>
+            <p><strong>In Data Repository:</strong> "forest_others.geojson"</p>
+            <p>
+              <strong>Process: </strong>I downloaded the original maps either in
+              PDF format or screenshot into PNG format. Then I georeferenced the
+              PDF/PNG by matching geographic features with Open Street Map
+              basemap in QGIS. After georeferencing, I traced the forest
+              reserves in these maps and added them as vector polygons, also in
+              QGIS.
+            </p>
+            <p>
+              <strong>Components: </strong>Forest reserve boundary, state, and
+              sources.
+            </p>
+            <p>
+              <strong>Notes: </strong>
+            </p>
+          </div>
+
+          <h4>Maps: Forest Reserves (National Atlas 1977)</h4>
+          <div class="methodology-box">
+            <p>
+              <strong>Sources: </strong>"Atlas Kebangsaan Malaysia", 1977,
+              published by Dewan Bahasa dan Pustaka. Accessed
+              <a
+                href="https://id.lib.harvard.edu/alma/990008141140203941/catalog"
+                target="_blank"
+                >hardcopy at the Harvard Map Collection</a
+              >
+              between September 2025 - January 2026.
+            </p>
+            <p><strong>In Data Repository:</strong> "TKTK"</p>
+            <p>
+              <strong>Process: </strong>After producing the raster GeoTIFF (see
+              below) for state maps from the Atlas, I produced vector shapefiles
+              of forest reserves and wildlife reserves found on the 1977 maps. I
+              traced every reserve using mouse and added each forest reserve as
+              an individual feature (polygon).
+            </p>
+            <p>
+              <strong>Components: </strong>Forest reserve boundaries, name of
+              forest reserves (if not printed on maps, then "Not stated"), state
+              of forest reserve
+            </p>
+            <p>
+              <strong>Notes: </strong>
+            </p>
+          </div>
+
+          <h4>Map: National Atlas 1977 (raster)</h4>
+          <div class="methodology-box">
+            <p>
+              <strong>Sources: </strong>"Atlas Kebangsaan Malaysia", 1977,
+              published by Dewan Bahasa dan Pustaka. Accessed
+              <a
+                href="https://id.lib.harvard.edu/alma/990008141140203941/catalog"
+                target="_blank"
+                >hardcopy at the Harvard Map Collection</a
+              >
+              between September 2025 - January 2026. The book has 152 pages,
+              excluding front cover matter and preface. Part 8 of the atlas
+              contains two maps for each state in Peninsular Malaysia -- a land
+              use map, and a "development" map showing agriculture and main
+              public infrastructure.
+            </p>
+            <p><strong>In Data Repository:</strong> "TKTK"</p>
+            <p>
+              <strong>Process: </strong>I scanned the land use maps for each
+              state using the library's scanner
+              <a href="https://www.imageaccess.com/kic-bookeye4" target="_blank"
+                >Bookeye 4 Basic</a
+              >. Each state's map is an individual PDF of 300 dpi in colour. I
+              then georeferenced each state map PDF in the software QGIS, using
+              the gridlines and coordinates on the PDF map and a Coordinate
+              Reference System of
+              <a href="https://epsg.io/4751" target="_blank"
+                >EPSG 4751 (Kertau (RSO))</a
+              >. The georeferenced PDF is now a 8-bit GeoTIFF raster and
+              contains not just the state map, but also many items beyond the
+              state border such as legends, text, and graphics of neighbouring
+              states. To extract ONLY the state and everything within, I place a
+              separate state border vector shapefile above the raster and clip
+              the underlying raster (QGIS function: "Clip raster by mask
+              layer"), yielding a raster file such as
+              'Atlas1977clipped_Perak_4751CRS.tiff'. I then stitch all 11
+              clipped state maps into a single Peninsular Malaysia map (QGIS
+              function: "Raster->Merge").
+            </p>
+            <p><strong>Components: </strong>One 8-bit GeoTIFF file</p>
+            <p>
+              <strong>Notes: </strong>This processing introduces errors in
+              alignments, including during georeferencing, CRS projections, and
+              clipping, and also differences in scale across the individual
+              state maps. Consequently, the final stitched-up Peninsular
+              Malaysia map is most unreliable along state borders and sports
+              variation in resolution. But it is instructive as a secondary
+              reference or crude check on the land use situation in the 1970s.
+              Regardless, I cannot do better than this for now.
+            </p>
+          </div>
+
+          <h4>List of Forest Reserve Changes</h4>
+          <div class="methodology-box"></div>
+
+          <h4>List of Forest Reserve Changes</h4>
+          <div class="methodology-box"></div>
+
           <h3>Tools Used</h3>
           <div class="methodology-box">
             <ol>
-              <li>QGIS (version 3.44.3-Solothurn) on Windows 11</li>
-              <li>Claude Code</li>
+              <li>
+                <a href="https://qgis.org/" target="_blank"
+                  >QGIS(version 3.44.3-Solothurn) on Windows 11</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://code.claude.com/docs/en/overview"
+                  target="_blank"
+                  >Claude Code</a
+                >
+              </li>
               <li>MS Excel</li>
               <li>Canva</li>
-              <li>Mapbox</li>
+              <li>
+                <a href="https://www.mapbox.com/" target="_blank">Mapbox</a>
+              </li>
+              <li>
+                <a href="https://leafletjs.com/" target="_blank">Leaflet</a>
+              </li>
             </ol>
           </div>
         </div>
@@ -3548,6 +3942,24 @@
         const searchControl = new ReserveSearchControl();
         searchControl.addTo(appState.map);
         appState.searchControl = searchControl;
+
+        // Add boundary caveat notice above search box
+        const BoundaryCaveatControl = L.Control.extend({
+          options: { position: "topleft" },
+          onAdd: function () {
+            const el = L.DomUtil.create("div", "leaflet-control-caveat");
+            L.DomEvent.disableClickPropagation(el);
+            el.innerHTML =
+              "Forest reserve boundaries might be inaccurate or outdated. <a onclick=\"showSection('methodology-section')\">Methodology</a>";
+            // Insert above the search control (which moves to firstChild at t=0)
+            setTimeout(() => {
+              const corner = el.parentNode;
+              if (corner) corner.insertBefore(el, corner.firstChild);
+            }, 50);
+            return el;
+          },
+        });
+        new BoundaryCaveatControl().addTo(appState.map);
 
         // Build search index once reserves data has loaded
         loadReservesData().then(() => {
