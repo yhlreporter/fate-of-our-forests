@@ -3639,6 +3639,22 @@
         if (section) {
           section.classList.add("active");
           if (scroll) section.scrollIntoView({ behavior: "smooth" });
+
+          // ── GA4 virtual pageview ──────────────────────────────────────
+          const sectionNames = {
+            "recent-changes-section": "Recent Changes",
+            "map-section": "Map: Forest Reserves",
+            "data-table-section": "Data Table",
+            "map-others-section": "Map: Other Areas",
+            "about-section": "About",
+            "methodology-section": "Methodology",
+            "investigations-section": "Investigations",
+          };
+          gtag("event", "page_view", {
+            page_path: "/" + sectionId,
+            page_title: sectionNames[sectionId] || sectionId,
+          });
+          // ─────────────────────────────────────────────────────────────
         }
 
         if (sectionId === "map-section" && appState.map) {
