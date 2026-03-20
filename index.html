@@ -885,6 +885,30 @@
         font-style: italic;
       }
 
+      #table-content a,
+      .data-table-scroll a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      #table-content a:hover,
+      .data-table-scroll a:hover {
+        color: var(--forest-light);
+        text-decoration: underline;
+      }
+
+      /* .data-table-scroll a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .data-table-scroll a:hover {
+        color: var(--forest-pale);
+        text-decoration: underline;
+      } */
+
       /* Data Table Section */
       .data-table-container {
         background: var(--text-dark);
@@ -3005,6 +3029,11 @@
               <li>
                 <a href="https://leafletjs.com/" target="_blank">Leaflet</a>
               </li>
+              <li>
+                <a href="https://tools.pdf24.org/en/creator" target="_blank"
+                  >PDF24 Creator</a
+                >
+              </li>
             </ol>
           </div>
         </div>
@@ -3015,8 +3044,9 @@
         <h2>What You Can Investigate</h2>
         <div class="section-content">
           <p style="text-align: center; color: #666; font-size: 1.2rem">
-            This section will provide suggestions on using the data for research questions and demonstrate potential
-            investigations.
+            This section will provide guidance on how users can analyze the
+            data, suggest research questions, and demonstrate potential
+            investigations using the dataset.
           </p>
         </div>
       </section>
@@ -4007,6 +4037,17 @@
         document.body.removeChild(link);
       }
 
+      // Helper function: Build GitHub PDF URL for a gazette row
+      function buildGazetteUrl(row) {
+        const base =
+          "https://github.com/yhlreporter/frt_data_repository/raw/refs/heads/main/gazettes/";
+        const state = (row.state || "").replace(/\s+/g, "");
+        const year = row.gaz_year;
+        const gaznum = row.gaznum;
+        if (!state || !year || !gaznum) return null;
+        return `${base}${state}.${year}.${gaznum}.extract.pdf`;
+      }
+
       function displayTable(data) {
         const tableContent = document.getElementById("table-content");
         if (data.length === 0) {
@@ -4015,7 +4056,7 @@
           return;
         }
 
-        let html = `<table><thead><tr><th>Gazette Date</th><th>Forest Reserve</th><th>Area (ha)</th><th>State | District</th><th>Gazette Number</th></tr></thead><tbody>`;
+        let html = `<table><thead><tr><th>Gazette Date</th><th>Forest Reserve</th><th>Area (ha)</th><th>State | District</th><th>Gazette</th></tr></thead><tbody>`;
 
         data.forEach((row) => {
           const gazetteDate = formatGazetteDate(row);
@@ -4057,7 +4098,12 @@
             stateDistrict = `${row.state || "-"} | ${row.district}`;
           }
 
-          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeFormatted}</td><td>${stateDistrict}</td><td>${gazetteNum}</td></tr>`;
+          const pdfUrl = buildGazetteUrl(row);
+          const gazetteCell = pdfUrl
+            ? `<a href="${pdfUrl}" target="_blank" rel="noopener" title="Download gazette PDF">${gazetteNum} ↓</a>`
+            : gazetteNum;
+
+          html += `<tr><td>${dateStr}</td><td>${row.reserve || "-"}</td><td class="${changeInfo.cssClass}">${changeFormatted}</td><td>${stateDistrict}</td><td>${gazetteCell}</td></tr>`;
         });
 
         html += `</tbody></table>`;
@@ -5195,7 +5241,17 @@
             changeFormatted +
             "</td>" +
             "<td>" +
-            (row.gaznum || "-") +
+            (function () {
+              const pdfUrl = buildGazetteUrl(row);
+              const gazNum = row.gaznum ? String(row.gaznum) : "-";
+              return pdfUrl
+                ? '<a href="' +
+                    pdfUrl +
+                    '" target="_blank" rel="noopener" title="Download gazette PDF">' +
+                    gazNum +
+                    " ↓</a>"
+                : gazNum;
+            })() +
             "</td>" +
             "<td>" +
             (row.state || "-") +
