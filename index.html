@@ -28,6 +28,10 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-measure-ext/dist/leaflet-measure.css"
+    />
     <style>
       * {
         margin: 0;
@@ -1702,6 +1706,82 @@
         display: none !important;
       }
 
+      /*==Styling for Leaflet-Measure Control Panel==*/
+      .leaflet-control-measure {
+        font-family: "Nunito", sans-serif;
+        font-size: 0.7rem;
+        color: var(--text-dark);
+        background-color: var(--text-light);
+      }
+
+      /* Both labels and values together */
+      .leaflet-control-measure .results {
+        color: var(--text-dark);
+      }
+
+      /* Label text: "Last Point", "Path Distance", "Area" */
+      .leaflet-control-measure .results .heading {
+        color: var(--text-dark);
+      }
+
+      .leaflet-control-measure a.start,
+      .leaflet-control-measure a.finish,
+      .leaflet-control-measure a.cancel {
+        filter: brightness(0);
+      }
+      /*==End of Styling for Leaflet-Measure Control Panel==*/
+
+      /*==Styling for Leaflet-Measure Popup==*/
+      .leaflet-measure-resultpopup {
+        font-family: "Nunito", sans-serif;
+        font-size: 0.7rem;
+        line-height: 0.8rem;
+        color: var(--text-dark);
+      }
+
+      /* Padding of the white popup box */
+      .leaflet-measure-resultpopup .leaflet-popup-content-wrapper {
+        padding: 5px 10px;
+        background-color: var(--text-light);
+      }
+
+      /* Padding of the inner content area */
+      .leaflet-measure-resultpopup .leaflet-popup-content {
+        padding: 0px 0px;
+        margin: 0;
+        background-color: var(--text-light);
+      }
+
+      /* Popup heading */
+      .leaflet-measure-resultpopup h3 {
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      /* Popup Zoom and Delete links */
+      .leaflet-measure-resultpopup a.zoomto,
+      a.deletemarkup {
+        color: var(--text-dark);
+        filter: brightness(0);
+        font-weight: 400;
+      }
+
+      /* The lighter "divider" text (e.g. coordinates separator) */
+      .leaflet-measure-resultpopup .coorddivider {
+        color: var(--text-dark);
+        font-style: italic;
+      }
+
+      /* Action links (Zoom to / Delete) */
+      .leaflet-measure-resultpopup a {
+        font-size: 0.7rem;
+        color: var(--text-dark);
+      }
+      /*==End of Styling for Leaflet-Measure Popup==*/
+
       /* Mobile responsiveness for map section */
       @media (max-width: 768px) {
         #map-section,
@@ -3054,10 +3134,26 @@
 
     <!-- External JavaScript Libraries -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-measure-ext/dist/leaflet-measure.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
     <script>
+      // Fix for leaflet-measure + Leaflet 1.8+ incompatibility (github.com/ljagis/leaflet-measure/issues/171):
+      // The plugin creates a large invisible capture marker covering the whole map to intercept
+      // clicks. In Leaflet 1.8+, markers auto-pan on focus by default, causing the map to shift
+      // south/southeast on every measurement click. Patch the method to disable autoPanOnFocus.
+      L.Control.Measure.include({
+        _setCaptureMarkerIcon: function () {
+          this._captureMarker.options.autoPanOnFocus = false;
+          this._captureMarker.setIcon(
+            L.divIcon({
+              iconSize: this._map.getSize().multiplyBy(2),
+            }),
+          );
+        },
+      });
+
       // Configuration Constants
       const CONFIG = {
         CSV_URL:
@@ -3132,6 +3228,8 @@
         selectedLayer: null,
         selectedReserve: null,
         selectedReserveLayer: null,
+        measureControl: null,
+        measureControl2: null,
         // Context map (map2)
         map2: null,
         map2Initialized: false,
@@ -4183,6 +4281,30 @@
             button.classList.toggle("expanded");
           });
 
+        // Measurement tool — store reference so click guards can check _measuring directly
+        appState.measureControl = new L.Control.Measure({
+          position: "topright",
+          primaryLengthUnit: "kilometers",
+          secondaryLengthUnit: undefined,
+          primaryAreaUnit: "hectares",
+          secondaryAreaUnit: undefined,
+          activeColor: "#e86f4a",
+          completedColor: "#e4572e",
+          backgroundColor: "#f4f4f4",
+          labels: {
+            measureDistancesAndAreas: "Measure", // the heading in the panel
+            measure: "Measure", // tooltip on the button
+            createNewMeasurement: "New measurement", // the link to start
+            startCreating: "Click to start measuring", // instruction text
+            finishMeasurement: "Finish",
+            cancel: "Cancel",
+            // unit labels
+            hectares: "ha",
+            kilometers: "km",
+          },
+        });
+        appState.measureControl.addTo(appState.map);
+
         // Update map panel with initial data
         updateMapPanel("Peninsular Malaysia");
       }
@@ -4398,6 +4520,8 @@
       }
 
       function onStateClick(stateName, layer) {
+        if (appState.measureControl && appState.measureControl._measuring)
+          return;
         appState.mapSelectedState = stateName;
         appState.selectedReserveLayer = null;
 
@@ -4483,6 +4607,8 @@
       }
 
       function onReserveClick(reserveName, stateName, layer) {
+        if (appState.measureControl && appState.measureControl._measuring)
+          return;
         // Reset previous selected reserve layer styling if exists
         if (appState.selectedReserveLayer && appState.selectedReserve) {
           const prevNetChange = getReserveNetChange(
@@ -5887,6 +6013,18 @@
 
         // Locate me button
         new Map2LocateControl().addTo(appState.map2);
+
+        // Measurement tool
+        appState.measureControl2 = new L.Control.Measure({
+          position: "topright",
+          primaryLengthUnit: "kilometers",
+          secondaryLengthUnit: undefined,
+          primaryAreaUnit: "hectares",
+          secondaryAreaUnit: undefined,
+          activeColor: "#e86f4a",
+          completedColor: "#e4572e",
+        });
+        appState.measureControl2.addTo(appState.map2);
       }
 
       // Initialize map when data is loaded
