@@ -1130,9 +1130,8 @@
       @media (max-width: 768px) {
         .landing-section {
           flex-direction: column;
-
-          padding: 7vh 15px 20px 15px;
-          gap: 3vh;
+          padding: 7vh 15px 0 15px;
+          gap: 0;
         }
 
         .section h2 {
@@ -1146,7 +1145,7 @@
 
         .landing-left {
           flex: 0 0 auto;
-          height: 45%;
+          height: 43vh;
           align-items: center;
           text-align: center;
 
@@ -1816,8 +1815,8 @@
 
         .map-container-wrapper {
           flex-direction: column;
-          height: 100vh;
-          max-height: 100vh;
+          height: calc(100vh - 8vh);
+          max-height: calc(100vh - 8vh);
           overflow: hidden;
           gap: 0;
         }
@@ -3946,6 +3945,29 @@
             goToSlide(index);
           });
         });
+
+        // Touch swipe support
+        const carouselEl = document.getElementById("carousel");
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        carouselEl.addEventListener("touchstart", function (e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        carouselEl.addEventListener("touchend", function (e) {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          const dy = e.changedTouches[0].clientY - touchStartY;
+          // Only treat as a horizontal swipe if it's more horizontal than vertical
+          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+            if (dx < 0) {
+              goToSlide(carouselState.currentIndex + 1); // swipe left → next
+            } else {
+              goToSlide(carouselState.currentIndex - 1); // swipe right → prev
+            }
+          }
+        }, { passive: true });
 
         // Keyboard navigation
         document.addEventListener("keydown", function (e) {
