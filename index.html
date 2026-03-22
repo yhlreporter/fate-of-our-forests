@@ -3871,9 +3871,14 @@
       function handleNavVisibility() {
         const landing = document.getElementById("landing");
         const wrapper = document.getElementById("nav-wrapper");
+        const bodi = document.querySelector(".bodi");
         const threshold = landing.offsetHeight * 0.6;
 
-        if (window.scrollY >= threshold) {
+        // On mobile, .bodi is the scroll container; on desktop, window is.
+        const scrollTop =
+          bodi && bodi.scrollTop > 0 ? bodi.scrollTop : window.scrollY;
+
+        if (scrollTop >= threshold) {
           wrapper.classList.add("nav-visible");
         } else {
           wrapper.classList.remove("nav-visible");
@@ -3882,6 +3887,7 @@
 
       const debouncedNavHandler = debounce(handleNavVisibility, 50);
       window.addEventListener("scroll", debouncedNavHandler);
+      document.querySelector(".bodi").addEventListener("scroll", debouncedNavHandler);
       window.addEventListener("load", handleNavVisibility);
 
       // Set up dropdown event listeners once
