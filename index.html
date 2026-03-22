@@ -62,7 +62,8 @@
       }
 
       @media (max-width: 768px) {
-        html, body {
+        html,
+        body {
           height: 100%;
           overflow: hidden;
         }
@@ -222,17 +223,170 @@
         max-width: 80%;
       }
 
-      .landing-nav-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
       .landing-nav-button {
         border-color: var(--forest-light);
         padding: 8px 16px;
         font-size: 0.9rem;
       }
+
+      /* ── Two-row landing nav ───────────────────────────── */
+      .landing-nav-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .lnb-row {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .lnb-group {
+        position: relative;
+      }
+
+      .lnb-filled {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--forest-light);
+        color: var(--text-light);
+        border: none;
+        border-radius: var(--border-radius);
+        padding: 8px 14px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: inherit;
+        white-space: nowrap;
+        transition:
+          background var(--transition-speed) ease,
+          color var(--transition-speed) ease;
+      }
+
+      .lnb-filled:hover,
+      .lnb-filled.open {
+        background: var(--forest-medium);
+        color: var(--text-light);
+        .lnb-chev {
+          color: var(--forest-pale);
+        }
+      }
+
+      .lnb-chev {
+        font-size: 1rem;
+        opacity: 1;
+        display: inline-block;
+        transition: transform 0.2s ease;
+        color: var(--forest-medium);
+      }
+
+      .lnb-filled.open .lnb-chev {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+
+      .lnb-ghost {
+        display: inline-flex;
+        align-items: center;
+        background: var(--forest-light);
+        color: var(--text-dark);
+        border: 1px solid rgba(82, 183, 136, 0.4);
+        border-radius: var(--border-radius);
+        padding: 8px 14px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        font-family: inherit;
+        white-space: nowrap;
+        transition:
+          background var(--transition-speed) ease,
+          border-color var(--transition-speed) ease;
+      }
+
+      .lnb-ghost:hover {
+        background: var(--forest-medium);
+        color: var(--text-light);
+      }
+
+      .lnb-submenu {
+        display: none;
+        flex-direction: column;
+        gap: 3px;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        padding: 6px;
+        background: #111230;
+        border: 1px solid rgba(82, 183, 136, 0.25);
+        border-radius: var(--border-radius);
+        min-width: 210px;
+        z-index: 500;
+      }
+
+      .lnb-submenu.open {
+        display: flex;
+      }
+
+      .lnb-sub-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 4px;
+        font-size: 1rem;
+        color: var(--text-light);
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        text-align: left;
+        transition: background 0.15s ease;
+        width: 100%;
+      }
+
+      .lnb-sub-item:hover {
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .lnb-sub-item.lnb-sub-featured {
+        background: rgba(82, 183, 136, 0.12);
+        border: 1px solid rgba(82, 183, 136, 0.3);
+        color: #a8e6c8;
+      }
+
+      .lnb-sub-item.lnb-sub-featured:hover {
+        background: rgba(82, 183, 136, 0.22);
+      }
+
+      .lnb-badge {
+        font-size: 10px;
+        padding: 2px 7px;
+        background: rgba(82, 183, 136, 0.2);
+        color: var(--forest-light);
+        border-radius: 20px;
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      .lnb-divider {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin: 3px 0;
+      }
+
+      @media (max-width: 768px) {
+        .lnb-row {
+          flex-wrap: wrap;
+        }
+        .lnb-filled,
+        .lnb-ghost {
+          font-size: 0.8rem;
+          padding: 6px 12px;
+        }
+      }
+      /* ── End two-row landing nav ───────────────────────── */
 
       .landing-right {
         flex: 0 0 36%;
@@ -1169,6 +1323,10 @@
         }
 
         .landing-nav-buttons {
+          align-items: center;
+        }
+
+        .lnb-row {
           justify-content: center;
         }
 
@@ -2157,72 +2315,93 @@
             </p>
           </div>
           <div class="landing-nav-buttons">
-            <button
-              class="landing-nav-button"
-              onclick="showSection('recent-changes-section')"
-            >
-              Recent Changes
-            </button>
-            <button
-              class="landing-nav-button"
-              onclick="showSection('map-section')"
-            >
-              All Changes (Map)
-            </button>
-            <!-- <button
-              class="landing-nav-button"
-              onclick="showSection('data-table-section')"
-            >
-              All Changes (Table)
-            </button> -->
-            <!-- <button
-              class="landing-nav-button"
-              onclick="showSection('map-others-section')"
-            >
-              Map (Explore)
-            </button> -->
-            <button
-              class="landing-nav-button"
-              onclick="showSection('about-section')"
-            >
-              About
-            </button>
-            <!-- <button
-              class="landing-nav-button"
-              onclick="showSection('methodology-section')"
-            >
-              Methodology
-            </button> -->
-            <!-- <button
-              class="landing-nav-button"
-              onclick="showSection('investigations-section')"
-            >
-              Puzzles
-            </button> -->
-            <button
-              class="landing-nav-button"
-              style="color: var(--text-light)"
-              onclick="
-                window.open(
-                  'https://docs.google.com/forms/d/e/1FAIpQLSfUANjG2xymX-3anQ7nJqJ7hCc8yzT3D2Od6ytdbaSUxI8ygA/viewform?usp=dialog',
-                  '_blank',
-                )
-              "
-            >
-              Feedback/Question
-            </button>
-            <button
-              class="landing-nav-button"
-              style="color: var(--text-light)"
-              onclick="
-                window.open(
-                  'https://docs.google.com/forms/d/e/1FAIpQLSdD3SDG-9gIJADN4ACQY87Y4xGlj9qZeWEnor7Np66m6Wy5tA/viewform?usp=publish-editor',
-                  '_blank',
-                )
-              "
-            >
-              Stay Updated
-            </button>
+            <!-- Row 1: accordion buttons -->
+            <div class="lnb-row lnb-row-1">
+              <div class="lnb-group" id="lnb-grp-changes">
+                <button class="lnb-filled" onclick="lnbToggle('changes')">
+                  Changes to forest reserves
+                  <span class="lnb-chev">&#9660;</span>
+                </button>
+                <div class="lnb-submenu" id="lnb-sub-changes">
+                  <button
+                    class="lnb-sub-item lnb-sub-featured"
+                    onclick="lnbNav('recent-changes-section')"
+                  >
+                    Recent changes
+                    <span class="lnb-badge">start here</span>
+                  </button>
+                  <hr class="lnb-divider" />
+                  <button class="lnb-sub-item" onclick="lnbNav('map-section')">
+                    All changes (map)
+                  </button>
+                  <button
+                    class="lnb-sub-item"
+                    onclick="lnbNav('data-table-section')"
+                  >
+                    All changes (table)
+                  </button>
+                </div>
+              </div>
+
+              <div class="lnb-group" id="lnb-grp-learn">
+                <button class="lnb-filled" onclick="lnbToggle('learn')">
+                  Learn more
+                  <span class="lnb-chev">&#9660;</span>
+                </button>
+                <div class="lnb-submenu" id="lnb-sub-learn">
+                  <button
+                    class="lnb-sub-item"
+                    onclick="lnbNav('about-section')"
+                  >
+                    About
+                  </button>
+                  <button
+                    class="lnb-sub-item"
+                    onclick="lnbNav('methodology-section')"
+                  >
+                    Methodology
+                  </button>
+                  <button
+                    class="lnb-sub-item"
+                    onclick="lnbNav('investigations-section')"
+                  >
+                    Puzzles
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: direct action ghost buttons -->
+            <div class="lnb-row lnb-row-2">
+              <button
+                class="lnb-ghost"
+                onclick="showSection('map-others-section')"
+              >
+                Map (explore)
+              </button>
+              <button
+                class="lnb-ghost"
+                onclick="
+                  window.open(
+                    'https://docs.google.com/forms/d/e/1FAIpQLSfUANjG2xymX-3anQ7nJqJ7hCc8yzT3D2Od6ytdbaSUxI8ygA/viewform?usp=dialog',
+                    '_blank',
+                  )
+                "
+              >
+                Feedback/Question
+              </button>
+              <button
+                class="lnb-ghost"
+                onclick="
+                  window.open(
+                    'https://docs.google.com/forms/d/e/1FAIpQLSdD3SDG-9gIJADN4ACQY87Y4xGlj9qZeWEnor7Np66m6Wy5tA/viewform?usp=publish-editor',
+                    '_blank',
+                  )
+                "
+              >
+                Stay updated
+              </button>
+            </div>
           </div>
           <div
             style="
@@ -3886,7 +4065,9 @@
 
       const debouncedNavHandler = debounce(handleNavVisibility, 50);
       window.addEventListener("scroll", debouncedNavHandler);
-      document.querySelector(".bodi").addEventListener("scroll", debouncedNavHandler);
+      document
+        .querySelector(".bodi")
+        .addEventListener("scroll", debouncedNavHandler);
       window.addEventListener("load", handleNavVisibility);
 
       // Set up dropdown event listeners once
@@ -3917,6 +4098,48 @@
         });
 
       // Primer overlay functionality
+
+      // ── Two-row landing nav accordion ──────────────────
+      function lnbToggle(id) {
+        const allSubs = document.querySelectorAll(".lnb-submenu");
+        const allBtns = document.querySelectorAll(".lnb-filled");
+        const sub = document.getElementById("lnb-sub-" + id);
+        const grp = document.getElementById("lnb-grp-" + id);
+        const btn = grp.querySelector(".lnb-filled");
+        const isOpen = sub.classList.contains("open");
+        allSubs.forEach(function (s) {
+          s.classList.remove("open");
+        });
+        allBtns.forEach(function (b) {
+          b.classList.remove("open");
+        });
+        if (!isOpen) {
+          sub.classList.add("open");
+          btn.classList.add("open");
+        }
+      }
+
+      function lnbNav(sectionId) {
+        document.querySelectorAll(".lnb-submenu").forEach(function (s) {
+          s.classList.remove("open");
+        });
+        document.querySelectorAll(".lnb-filled").forEach(function (b) {
+          b.classList.remove("open");
+        });
+        showSection(sectionId);
+      }
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".lnb-group")) {
+          document.querySelectorAll(".lnb-submenu").forEach(function (s) {
+            s.classList.remove("open");
+          });
+          document.querySelectorAll(".lnb-filled").forEach(function (b) {
+            b.classList.remove("open");
+          });
+        }
+      });
+      // ── End two-row landing nav ─────────────────────────
 
       // Carousel functionality
       const carouselState = {
@@ -3951,23 +4174,31 @@
         let touchStartX = 0;
         let touchStartY = 0;
 
-        carouselEl.addEventListener("touchstart", function (e) {
-          touchStartX = e.touches[0].clientX;
-          touchStartY = e.touches[0].clientY;
-        }, { passive: true });
+        carouselEl.addEventListener(
+          "touchstart",
+          function (e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+          },
+          { passive: true },
+        );
 
-        carouselEl.addEventListener("touchend", function (e) {
-          const dx = e.changedTouches[0].clientX - touchStartX;
-          const dy = e.changedTouches[0].clientY - touchStartY;
-          // Only treat as a horizontal swipe if it's more horizontal than vertical
-          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-            if (dx < 0) {
-              goToSlide(carouselState.currentIndex + 1); // swipe left → next
-            } else {
-              goToSlide(carouselState.currentIndex - 1); // swipe right → prev
+        carouselEl.addEventListener(
+          "touchend",
+          function (e) {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            // Only treat as a horizontal swipe if it's more horizontal than vertical
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+              if (dx < 0) {
+                goToSlide(carouselState.currentIndex + 1); // swipe left → next
+              } else {
+                goToSlide(carouselState.currentIndex - 1); // swipe right → prev
+              }
             }
-          }
-        }, { passive: true });
+          },
+          { passive: true },
+        );
 
         // Keyboard navigation
         document.addEventListener("keydown", function (e) {
