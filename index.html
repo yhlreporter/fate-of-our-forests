@@ -73,16 +73,6 @@
           overflow-y: auto;
           overflow-x: hidden;
         }
-
-        .landing-section {
-          overflow: hidden;
-          height: 100vh;
-          max-height: 100vh;
-        }
-
-        .section.active {
-          overflow: visible;
-        }
       }
       /*-START- Style for Scrollbar on top */
       .nav-wrapper {
@@ -1286,6 +1276,13 @@
           flex-direction: column;
           padding: 7vh 15px 0 15px;
           gap: 0;
+          overflow: hidden;
+          height: 100vh;
+          max-height: 100vh;
+        }
+
+        .section.active {
+          overflow: visible;
         }
 
         .section h2 {
@@ -1299,11 +1296,10 @@
 
         .landing-left {
           flex: 0 0 auto;
-          height: 43vh;
+          height: 40vh;
           align-items: center;
           text-align: center;
-
-          padding-top: 5vh;
+          padding-top: 2vh;
           justify-content: start;
         }
 
@@ -1513,7 +1509,6 @@
           max-width: 100px;
         }
 
-        /*put in @media */
         #data-table-section {
           padding: 7vh 10px 1vh 10px;
         }
@@ -2102,7 +2097,7 @@
         }
       }
 
-      /*end of @media styling */
+      /*end of @media for map styling */
     </style>
   </head>
   <body>
