@@ -797,18 +797,19 @@
         outline: none !important;
       }
 
-      #data-table-section,
-      #investigations-section {
+      #data-table-section {
         background: var(--forest-pale);
       }
 
       #about-section,
-      #methodology-section {
+      #methodology-section,
+      #investigations-section {
         background: var(--text-dark);
       }
 
       #about-section h2,
-      #methodology-section h2 {
+      #methodology-section h2,
+      #investigations-section h2 {
         color: var(--text-light);
       }
 
@@ -3320,15 +3321,169 @@
         </div>
       </section>
 
-      <!-- Investigations Section -->
+      <!-- Puzzles Section -->
+
       <section id="investigations-section" class="section">
-        <h2>What You Can Investigate</h2>
-        <div class="section-content">
-          <p style="text-align: center; color: #666; font-size: 1.2rem">
-            This section will provide guidance on how users can analyze the
-            data, suggest research questions, and demonstrate potential
-            investigations using the dataset.
-          </p>
+        <h2>Puzzles to Solve</h2>
+        <div class="section-content methodology-body">
+          <div class="methodology-box">
+            <p>
+              The many gaps and discrepancies in Malaysian forest data pose many
+              puzzles. It's an unfortunate situation, but exciting. Unfortunate,
+              because these puzzles often hide the true picture of our forests;
+              exciting, because solving these interesting puzzles is often a fun
+              challenge that rewards you with surprising answers.
+            </p>
+            <p>
+              Here are several I have spotted while building this platform. I
+              hope you will tackle them and share your findings with us.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-content methodology-body">
+          <h3>When was Belungkor reserve in Johor excised?</h3>
+          <div class="methodology-box">
+            <div class="methodology-img-placeholder">
+              Image caption / placeholder text
+            </div>
+            <ul>
+              <li>
+                Look up Belungkor forest reserve (Johor) in the "Map (Explore)"
+                section. Compare the reserve between the maps of 2022 and 2012.
+              </li>
+              <li>
+                Notice that Belungkor in the 2022 map was half the size of the
+                one in the 2012 map. This suggests that about half of Belungkur
+                was excised since 2012.
+              </li>
+              <li>
+                <strong
+                  >Puzzle: There is no gazette recording any change in Belungkor
+                  since 2002. So, when was the western half of Belungkor
+                  excised?</strong
+                >
+              </li>
+              <li>
+                Or perhaps, it was never excised, and the 2022 boundary was
+                inaccurately smaller. But -- check the satellite image layer and
+                you will see that the western half contains aquaculture ponds
+                which is prohibited in forest reserves. If that half remains a
+                reserve, what explains the aquaculture there?
+              </li>
+              <li>
+                Even stranger: Official documents (Rancangan Tempatan Daerah
+                Kota Tinggi 2030 (Penggantian) and the Johor Forestry Department
+                Annual Report 2023) show Belungkor with the bigger boundary on
+                map but report just half its size in statistics -- thereby
+                presenting conflicting data.
+              </li>
+              <li>
+                No end to stranger things: The annual audit reports for Johor
+                Malaysian Timber Certification Scheme -- which is undertaken by
+                auditors to check that Johor forest management meets
+                sustainability criteria -- in 2020, 2021 and 2022 show Belungkor
+                with the bigger boundary. Then starting in 2023, the reports
+                show a smaller Belungkor in their maps. The audit reports
+                mention other reserves that were excised but not Belungkor.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-content methodology-body">
+          <h3>When was Ulu Temiang in Kelantan excised?</h3>
+          <div class="methodology-box">
+            <ul>
+              <li>A puzzle similiar to Belungkor in Johor</li>
+              <li>
+                Look up Ulu Temiang forest reserve (Kelantan) in the &quot;Map
+                (Explore)&quot; section. Compare the reserve between the maps of
+                2022 and 2012. Notice that the southern part of Ulu Temiang
+                reserve is present in the 2012 map but missing in the 2022 map.
+                This suggests that the southern part was excised since 2012.
+              </li>
+              <li>
+                Use the measurement tool to estimate the area of this
+                &#39;excised&#39; part -- it&#39;s about 6,100 hectares.
+              </li>
+              <li>
+                Check it on the satellite image layer -- it has been cleared
+                some time ago and it&#39;s now covered in either shrubs or
+                planted trees.
+              </li>
+              <li>
+                But there are only two gazettes on Ulu Temiang since 2002, both
+                removals: 2,023 ha in 2007 and 125 ha in 2014, for a total of
+                2,148 ha.
+              </li>
+              <li>
+                <strong
+                  >Puzzle: What happened to the 6,100 ha southern part of Ulu
+                  Temiang? Is it still a reserve that&#39;s been turned into
+                  tree plantations? Or was it &#39;excised&#39; without a
+                  gazette...waiting to be &#39;backdated&#39; in a future
+                  gazette (see below)?</strong
+                >
+              </li>
+            </ul>
+
+            <div class="methodology-img-placeholder">
+              Image caption / placeholder text
+            </div>
+          </div>
+        </div>
+
+        <div class="section-content methodology-body">
+          <h3>What explains the 'backdating' of gazettes?</h3>
+          <div class="methodology-box">
+            <ul>
+              <li>
+                This is a puzzle that I would love to crack but haven&#39;t got
+                the time to!
+              </li>
+              <li>
+                Every gazette on addition or removal of forest reserves will
+                give a date for the change to take effect. For most gazettes,
+                the gazette says that the change takes effect on the date the
+                gazette is published.
+              </li>
+              <li>
+                But for some gazettes, the effective dates could be weeks,
+                months, or even years ago. This &#39;backdating&#39; practice is
+                most common among Kelantan, Kedah, Terengganu, and Melaka. The
+                most extreme cases is the gazette issued by Terengganu in 2018
+                (#1431) that excised parts of three reserves with effective
+                dates in 1972 -- 46 years ago!
+              </li>
+              <li>
+                I wrote about this practice for
+                <a
+                  href="https://www.macaranga.org/navigating-the-multiverse-of-forest-data-peninsular-malaysia/"
+                  target="_blank"
+                  >Macaranga</a
+                >.
+              </li>
+              <li>
+                You can check effective dates using the &quot;All Changes
+                (Table)&quot; section. Download the entire data in CSV to
+                analyse the data.
+              </li>
+              <li>
+                <strong
+                  >Puzzle: Is there any pattern or motivation that explains this
+                  backdating practice? Why do some states do it but others
+                  don&#39;t? Why do the states do it for some gazettes but not
+                  all? It appears that backdating is more common among excision
+                  than addition -- why?</strong
+                >
+              </li>
+            </ul>
+
+            <div class="methodology-img-placeholder">
+              Image caption / placeholder text
+            </div>
+          </div>
         </div>
       </section>
     </div>
