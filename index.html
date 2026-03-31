@@ -828,9 +828,8 @@
         font-family: "Rufina", serif;
         font-size: 1.7rem;
         font-weight: 700;
+
         color: var(--forest-light);
-        margin-top: 2.5rem;
-        margin-bottom: 0.5rem;
       }
 
       .methodology-body h4 {
@@ -874,9 +873,9 @@
         background: var(--text-light);
         color: var(--text-dark);
         border-radius: var(--border-radius);
-        border-left: 4px solid var(--forest-medium);
+        /*border-left: 4px solid var(--forest-medium);*/
         padding: 1.4rem 1.6rem;
-        margin: 0.5rem 0 0.5rem 0;
+        margin: 0.5rem 0 2rem 0;
       }
 
       .methodology-box p,
@@ -2971,7 +2970,12 @@
             </p>
             <p>
               <strong>Data Repository:</strong> Sources and materials mentioned
-              below can be found <a href="https://github.com/yhlreporter/frt_data_repository/tree/main" target="_blank">here</a>.
+              below can be found
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository"
+                target="_blank"
+                >here</a
+              >.
             </p>
           </div>
 
@@ -3023,7 +3027,12 @@
 
           <h3>Datasets</h3>
           <strong>Data Repository:</strong> Sources and materials mentioned
-          below can be found <a href="" target="_blank">here</a>.
+          below can be found
+          <a
+            href="https://github.com/yhlreporter/frt_data_repository"
+            target="_blank"
+            >here</a
+          >.
           <h4>List of Forest Reserve Changes</h4>
           <div class="methodology-box">
             <p>
@@ -3513,7 +3522,7 @@
       // Configuration Constants
       const CONFIG = {
         CSV_URL:
-          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260120.csv",
+          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260321.csv",
         STATE_GEOJSON_URL:
           "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/states.geojson",
         RESERVES_URL:
@@ -4441,7 +4450,7 @@
 
       function setUpdateDate() {
         // Note: Currently using hardcoded date - will be replaced with dynamic calculation
-        const updateDateToChange = "2025,12,31";
+        const updateDateToChange = "2026,3,21";
         appState.lastUpdatedDate = new Date(updateDateToChange);
       }
 
