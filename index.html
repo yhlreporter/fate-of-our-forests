@@ -924,7 +924,7 @@
         flex-direction: row;
         gap: 5rem;
         flex-shrink: 0;
-        align-items: center;
+        align-items: start;
         justify-content: center;
       }
 
@@ -977,9 +977,9 @@
       .update-date-row {
         color: var(--text-light);
         font-size: 1rem;
-        display: flex;
+        /* display: flex;
         flex-direction: column;
-        gap: 8px;
+        align-items: */
       }
 
       .table-icon {
@@ -1419,10 +1419,31 @@
           padding: 6px 10px;
         }
 
+        /* Styling for small screen Recent Changes table-header */
+
+        .table-header {
+          gap: 1rem;
+          align-items: start;
+        }
+
         .table-title-row {
           font-size: 1rem;
-          justify-content: center;
+          line-height: 0.7rem;
           text-align: center;
+          flex-wrap: nowrap;
+        }
+
+        .table-title-text {
+          white-space: nowrap; /*keeps the updated date text on one line*/
+        }
+
+        .update-date-row {
+          gap: 0.7rem;
+        }
+
+        #download-table-recent-changes {
+          font-size: 0.7rem;
+          padding: 4px 4px;
         }
 
         .filter-dropdown {
@@ -1430,6 +1451,8 @@
           padding: 2px 8px;
           padding-right: 28px;
         }
+
+        /* End of styling for Recent Changes table-header */
 
         table {
           font-size: 0.75rem;
@@ -2610,6 +2633,7 @@
                   />
                 </svg>
                 <select class="filter-dropdown" id="period-dropdown">
+                  full-csv
                   <option value="60">2 months</option>
                   <option value="180">6 months</option>
                   <option value="365">12 months</option>
@@ -2625,11 +2649,12 @@
                 class="download-button"
                 id="download-table-recent-changes"
               >
-                Download This Table
+                Download Table
               </button>
-              <button class="download-button" id="download-full-csv">
+              <!-- Let's remove the download entire dataset from recent changes section -->
+              <!-- <button class="download-button" id="download-full-csv">
                 Download Entire Dataset
-              </button>
+              </button> -->
             </div>
           </div>
 
@@ -2757,7 +2782,7 @@
             <div class="data-table-status">
               <span id="dt-result-count">Loading...</span>
               <button class="download-button" id="download-table-all-changes">
-                Download This Table
+                Download Table
               </button>
               <button class="download-button" id="download-full-csv-2">
                 Download Entire Dataset
@@ -4335,11 +4360,13 @@
           downloadRecentChangesAsCSV();
         });
 
+      /* Remove this button from recent changes section
       document
         .getElementById("download-full-csv")
         .addEventListener("click", function () {
           window.open(CONFIG.CSV_URL, "_blank");
         });
+*/
 
       // Primer overlay functionality
 
