@@ -2784,7 +2784,7 @@
             <p>
               This platform shows <strong>all official changes</strong> in areas
               of forest reserves in Peninsular Malaysia since January 1, 2002 to
-              (the last updated date TKTK). All changes reported here were
+              <span id="update-date4"></span>. All changes reported here were
               published in government <em>gazettes</em>.
             </p>
             <p>
@@ -3039,10 +3039,20 @@
               an annual subscription.
             </p>
             <p>
-              <strong>In Data Repository: </strong>The list is
-              "gazette[date].csv". All gazettes used in this project can be
-              found here -- to find a specific gazette, look up the issuing
-              state, year, and gazette number, as the PDF is named as
+              <strong>In Data Repository: </strong
+              ><a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/datasheets"
+                target="_blank"
+              >
+                The list is "gazette[date].csv".</a
+              >
+              If you want the <strong>download the gazette itself</strong>,
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/gazettes"
+                target="_blank"
+                >click here</a
+              >. To find a specific gazette, look up the issuing state, year,
+              and gazette number, as the PDF is named as
               "State.Year.GazetteNumber.PDF".
             </p>
             <p>
@@ -3103,7 +3113,12 @@
             </p>
             <p>
               <strong>In Data Repository:</strong> DeptForestryPMsia_2022
-              "forest_jpsm.geojson"; DeptEnvMsia_2012 "forest_doe.geojson"
+              "forest_jpsm.geojson"; DeptEnvMsia_2012 "forest_doe.geojson".
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/maps"
+                target="_blank"
+                >Download here.</a
+              >
             </p>
             <p>
               <strong>Process: </strong>The original shapefiles contained
@@ -3151,6 +3166,11 @@
             </p>
             <p>
               <strong>In Data Repository:</strong> "forest_2012vs2022.geojson"
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/maps"
+                target="_blank"
+                >Download here.</a
+              >
             </p>
             <p>
               <strong>Process: </strong>I used QGIS to extract the parts of
@@ -3177,16 +3197,24 @@
           <h4>Maps: Forest Reserves (Others)</h4>
           <div class="methodology-box">
             <p>
-              <strong>Sources: </strong>As of 31 December 2025, the gazette
-              dataset mentioned 115 forest reserves (excluding the unnamed ones)
-              that were not found in the maps from the Department of Forestry or
+              <strong>Sources: </strong>As of 21 March 2026, the gazette dataset
+              mentioned 118 forest reserves (excluding the unnamed ones) that
+              were not found in the maps from the Department of Forestry or
               Department of Environment's websites. I tried to reduce this gap
               by looking for recent maps outside of the two Departments. My
               heuristic search yielded results that were more opportunistic than
               the fruit of systematic efforts. Full list of sources in Data
               Repository.
             </p>
-            <p><strong>In Data Repository:</strong> "forest_others.geojson"</p>
+            <p>
+              <strong>In Data Repository:</strong>
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/maps"
+                target="_blank"
+              >
+                "forest_others.geojson".</a
+              >
+            </p>
             <p>
               <strong>Process: </strong>I downloaded the original maps either in
               PDF format or screenshot into PNG format. Then I georeferenced the
@@ -3216,7 +3244,14 @@
               >
               between September 2025 - January 2026.
             </p>
-            <p><strong>In Data Repository:</strong> "TKTK"</p>
+            <p>
+              <strong>In Data Repository:</strong>
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/maps"
+                target="_blank"
+                >forest_atlas1977.geojson</a
+              >
+            </p>
             <p>
               <strong>Process: </strong>After producing the raster GeoTIFF (see
               below) for state maps from the Atlas, I produced vector shapefiles
@@ -3250,7 +3285,15 @@
               use map, and a "development" map showing agriculture and main
               public infrastructure.
             </p>
-            <p><strong>In Data Repository:</strong> "TKTK"</p>
+            <p>
+              <strong>In Data Repository:</strong> TIF files of each state
+              (higher resolution) and entire peninsula (lower resolution).
+              <a
+                href="https://github.com/yhlreporter/frt_data_repository/tree/main/maps/Atlas%201977"
+                target="_blank"
+                >Download here.</a
+              >
+            </p>
             <p>
               <strong>Process: </strong>I scanned the land use maps for each
               state using the library's scanner
@@ -3285,12 +3328,6 @@
               Regardless, I cannot do better than this for now.
             </p>
           </div>
-
-          <h4>List of Forest Reserve Changes</h4>
-          <div class="methodology-box"></div>
-
-          <h4>List of Forest Reserve Changes</h4>
-          <div class="methodology-box"></div>
 
           <h3>Tools Used</h3>
           <div class="methodology-box">
@@ -4453,6 +4490,7 @@
         const updateDateEl1 = document.getElementById("update-date1");
         const updateDateEl2 = document.getElementById("update-date2");
         const updateDateEl3 = document.getElementById("update-date3");
+        const updateDateEl4 = document.getElementById("update-date4");
         const primerDateEl = document.getElementById("primer-update-date");
         const formattedDate = appState.lastUpdatedDate.toLocaleDateString(
           "en-US",
@@ -4461,6 +4499,7 @@
         updateDateEl1.textContent = formattedDate;
         updateDateEl2.textContent = formattedDate;
         updateDateEl3.textContent = formattedDate;
+        updateDateEl4.textContent = formattedDate;
         if (primerDateEl) {
           primerDateEl.textContent = formattedDate;
         }
@@ -6004,6 +6043,24 @@
             fillOpacity: 0.6,
           },
         },
+        {
+          id: "reserves-1977",
+          name: "Forest reserves (1977)",
+          type: "geojson",
+          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_atlas1977.geojson",
+          caveat:
+            "Forest reserves locations found in maps of the National Atlas 1977. Digitised from physical maps.",
+          defaultOn: false,
+          searchProp: "name",
+          filter: (f) => f.properties && f.properties.Type === "Forest reserve",
+          style: {
+            fillColor: "#754423", //brick ember
+            weight: 1.5,
+            opacity: 1,
+            color: "#754423",
+            fillOpacity: 0.6,
+          },
+        },
       ];
       //Colours to choose from {"Forest-medium":"2d6a4f","Brick Ember":"b80c09",Outline->"Cerulean":"437c90","Bright Peony":"f26df9","Indigo":"541388"}
 
@@ -6272,6 +6329,7 @@
           .then((data) => {
             const layer = L.geoJSON(data, {
               style: def.style,
+              filter: def.filter || undefined,
               onEachFeature: function (feature, featureLayer) {
                 // Hover tooltip: show all non-empty properties
                 const props = feature.properties || {};
