@@ -350,7 +350,7 @@
         background: rgba(82, 183, 136, 0.22);
       }
 
-      .lnb-badge {
+      /*.lnb-badge {
         font-size: 10px;
         padding: 2px 7px;
         background: rgba(82, 183, 136, 0.2);
@@ -358,7 +358,7 @@
         border-radius: 20px;
         margin-left: auto;
         white-space: nowrap;
-      }
+      }*/
 
       .lnb-divider {
         border: none;
@@ -488,7 +488,7 @@
       .section {
         width: 100%;
         min-height: 100vh;
-        padding: 60px 20px 30px 20px;
+        padding: 60px 0px 30px 0px;
         display: none;
         flex-direction: column;
         align-items: center;
@@ -982,6 +982,10 @@
         align-items: */
       }
 
+      #download-table-recent-changes {
+        font-weight: 800;
+      }
+
       .table-icon {
         display: inline-block;
         vertical-align: middle;
@@ -1288,6 +1292,9 @@
       }
 
       @media (max-width: 768px) {
+        .section {
+          padding: 60px 10px 30px 10px;
+        }
         .landing-section {
           flex-direction: column;
           padding: 0vh 15px 0 15px;
@@ -1424,6 +1431,7 @@
         .table-header {
           gap: 1rem;
           align-items: start;
+          /* flex-direction: column; */
         }
 
         .table-title-row {
@@ -1442,7 +1450,8 @@
         }
 
         #download-table-recent-changes {
-          font-size: 0.7rem;
+          font-size: 0.2rem;
+
           padding: 4px 4px;
         }
 
@@ -2362,7 +2371,7 @@
                     onclick="lnbNav('recent-changes-section')"
                   >
                     Recent changes
-                    <span class="lnb-badge">start here</span>
+                    <!-- <span class="lnb-badge">start here</span> -->
                   </button>
                   <hr class="lnb-divider" />
                   <button class="lnb-sub-item" onclick="lnbNav('map-section')">
@@ -2649,7 +2658,7 @@
                 class="download-button"
                 id="download-table-recent-changes"
               >
-                Download Table
+                Table ↓
               </button>
               <!-- Let's remove the download entire dataset from recent changes section -->
               <!-- <button class="download-button" id="download-full-csv">
