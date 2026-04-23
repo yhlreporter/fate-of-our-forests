@@ -1,4 +1,4 @@
-Data repository for Fate of Our Forests (https://yhlreporter.github.io/frt/)
+Repository for Fate of Our Forests (https://yhlreporter.github.io/frt/)
 
 Created by Law Yao Hua. License: CC-BY-4.0 You can use the assets in this folder for free as long as you give credit to "Fate of Our Forests" with URL link.
 
