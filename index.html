@@ -4624,13 +4624,14 @@
 
       //This older code for setUpdateDate() causes problem in Safari Browser. According to Claude... "new Date("2026,6,21") is passing a string to the Date constructor, which forces JS to parse it as a date string — and "2026,6,21" is not a standard, spec-defined format. Chrome's parser is lenient and guesses what you meant (treating it like 2026-6-21), but Safari's stricter parser doesn't recognize this comma-separated format at all, so it returns Invalid Date." Claude suggested a new code which I paste below this old one.
       // function setUpdateDate() {
-      //   // Note: This is the most RECENT date I checked Lawnet gazettes
+      //
       //   const updateDateToChange = "2026,6,21";
       //   appState.lastUpdatedDate = new Date(updateDateToChange);
       // }
 
       function setUpdateDate() {
-        const updateDateToChange = "2026,6,21"; // year, month(1-indexed), day
+        // Note: This is the most RECENT date I checked Lawnet gazettes
+        const updateDateToChange = "2026,6,25"; // year, month(1-indexed), day
         const [year, month, day] = updateDateToChange.split(",").map(Number);
         appState.lastUpdatedDate = new Date(year, month - 1, day);
       }
