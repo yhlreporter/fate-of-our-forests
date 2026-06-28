@@ -1272,10 +1272,21 @@
       .data-table-status {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 12px;
         font-size: 0.9rem;
         color: var(--text-light);
         padding: 4px 0;
+      }
+
+      .dt-sum {
+        padding-left: 12px;
+        border-left: 1px solid rgba(239, 236, 232, 0.25);
+        white-space: nowrap;
+      }
+
+      .dt-sum strong {
+        font-weight: 700;
       }
 
       .data-table-scroll {
@@ -2848,6 +2859,7 @@
 
             <div class="data-table-status">
               <span id="dt-result-count">Loading...</span>
+              <span class="dt-sum" id="dt-sum-change"></span>
               <button class="download-button" id="download-table-all-changes">
                 Download Table
               </button>
@@ -2931,6 +2943,28 @@
               The changes are presented in tables, charts, and maps. You can
               also review and retrieve the original gazettes for every change.
             </p>
+          </div>
+
+          <h3>Video explainers</h3>
+          <div class="methodology-box">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/heTC5_08kPs?si=Jr9ElFMbjTSAxS7f"
+              title="YouTube video player"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share;
+              "
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
 
           <h3>Why Gazettes?</h3>
@@ -5954,6 +5988,26 @@
           " of " +
           data.length.toLocaleString() +
           " records";
+
+        // Update net change sum (reflects current filters, full precision summed, 2dp display)
+        const netChange = filtered.reduce(function (acc, row) {
+          return acc + getChangeValue(row);
+        }, 0);
+        const sumEl = document.getElementById("dt-sum-change");
+        const sumSign = netChange > 0 ? "+" : netChange < 0 ? "-" : "";
+        const sumClass =
+          netChange > 0 ? "change-add" : netChange < 0 ? "change-remove" : "";
+        const sumAbs = Math.abs(netChange).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+        sumEl.innerHTML =
+          'Net change (table): <strong class="' +
+          sumClass +
+          '">' +
+          sumSign +
+          sumAbs +
+          " ha</strong>";
 
         // Build rows
         if (filtered.length === 0) {
