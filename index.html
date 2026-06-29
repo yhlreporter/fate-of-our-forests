@@ -911,6 +911,15 @@
         margin: 0.5rem 0 2rem 0;
       }
 
+      .methodology-box iframe {
+        width: 100%;
+        /*max-width: 560px;*/
+        height: auto;
+        aspect-ratio: 16 / 9;
+        display: block;
+        border: 0;
+      }
+
       .methodology-box p,
       .methodology-box li {
         color: var(--text-dark);
@@ -6002,7 +6011,7 @@
           maximumFractionDigits: 2,
         });
         sumEl.innerHTML =
-          'Net change (table): <strong class="' +
+          'Net change: <strong class="' +
           sumClass +
           '">' +
           sumSign +
