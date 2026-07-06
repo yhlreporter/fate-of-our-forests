@@ -3737,7 +3737,7 @@
       // Configuration Constants
       const CONFIG = {
         CSV_URL:
-          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260527.csv",
+          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260705.csv",
         STATE_GEOJSON_URL:
           "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/states.geojson",
         RESERVES_URL:
@@ -4674,7 +4674,7 @@
 
       function setUpdateDate() {
         // Note: This is the most RECENT date I checked Lawnet gazettes
-        const updateDateToChange = "2026,6,25"; // year, month(1-indexed), day
+        const updateDateToChange = "2026,7,5"; // year, month(1-indexed), day
         const [year, month, day] = updateDateToChange.split(",").map(Number);
         appState.lastUpdatedDate = new Date(year, month - 1, day);
       }
