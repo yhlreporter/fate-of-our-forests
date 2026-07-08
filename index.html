@@ -35,7 +35,7 @@
     />
     <meta
       property="og:image"
-      content="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/socmed_image.jpg"
+      content="https://yhlreporter.github.io/fate-of-our-forests/socmed_image.jpg"
     />
 
     <!-- Twitter -->
@@ -51,7 +51,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/socmed_image.jpg"
+      content="https://yhlreporter.github.io/fate-of-our-forests/socmed_image.jpg"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2604,27 +2604,42 @@
                 <picture>
                   <source
                     media="(max-width: 768px)"
-                    srcset="primer_mobile_1.webp"
+                    srcset="
+                      primer_mobile_1.webp
+                    "
                   />
-                  <img src="primer_1.webp" alt="Carousel Image 1" />
+                  <img
+                    src="primer_1.webp"
+                    alt="Carousel Image 1"
+                  />
                 </picture>
               </div>
               <div class="carousel-slide">
                 <picture>
                   <source
                     media="(max-width: 768px)"
-                    srcset="primer_mobile_2.webp"
+                    srcset="
+                      primer_mobile_2.webp
+                    "
                   />
-                  <img src="primer_2.webp" alt="Carousel Image 2" />
+                  <img
+                    src="primer_2.webp"
+                    alt="Carousel Image 2"
+                  />
                 </picture>
               </div>
               <div class="carousel-slide">
                 <picture>
                   <source
                     media="(max-width: 768px)"
-                    srcset="primer_mobile_3.webp"
+                    srcset="
+                      primer_mobile_3.webp
+                    "
                   />
-                  <img src="primer_3.webp" alt="Carousel Image 3" />
+                  <img
+                    src="primer_3.webp"
+                    alt="Carousel Image 3"
+                  />
                 </picture>
               </div>
             </div>
@@ -3721,12 +3736,9 @@
 
       // Configuration Constants
       const CONFIG = {
-        CSV_URL:
-          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/gazettes_20260705.csv",
-        STATE_GEOJSON_URL:
-          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/states.geojson",
-        RESERVES_URL:
-          "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/reserves.geojson",
+        CSV_URL: "gazettes_20260705.csv",
+        STATE_GEOJSON_URL: "states.geojson",
+        RESERVES_URL: "reserves.geojson",
 
         MAPBOX_TRACKER_BASEMAP_TOKEN:
           "pk.eyJ1IjoieWhscmVwb3J0ZXIiLCJhIjoiY21rdDB5MWZyMW5sdTNmb2ZzejdneWRsbyJ9.yMkXycg47C2hQG20mqKoAw",
@@ -4456,12 +4468,12 @@
         });
 
       /* Remove this button from recent changes section
-      document
-        .getElementById("download-full-csv")
-        .addEventListener("click", function () {
-          window.open(CONFIG.CSV_URL, "_blank");
-        });
-*/
+            document
+              .getElementById("download-full-csv")
+              .addEventListener("click", function () {
+                window.open(CONFIG.CSV_URL, "_blank");
+              });
+      */
 
       // Primer overlay functionality
 
@@ -6177,7 +6189,7 @@
           id: "reserves-jpsm",
           name: "Forest reserves (published around 2022)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_jpsm.geojson",
+          url: "forest_jpsm.geojson",
           caveat:
             "Forest reserve boundaries scraped from Dept of Forestry Peninsular Malaysia geospatial servers. Original source wasn't dated. My assessment dates it around 2022, and I found parts of the map outdated even for 2022. I cannot vouch for its accuracy and precision.",
           defaultOn: true,
@@ -6194,7 +6206,7 @@
           id: "reserves-others",
           name: "Forest reserves (published 2021 and after)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_others.geojson",
+          url: "forest_others.geojson",
           caveat:
             "Forest reserves locations found in other sources published after 2021.",
           defaultOn: true,
@@ -6211,7 +6223,7 @@
           id: "reserves-2012vs2022",
           name: "Forest reserves (2012 vs 2022)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_2012vs2022.geojson",
+          url: "forest_2012vs2022.geojson",
           caveat:
             "Forest reserves locations found on the 2008-2012 map (Dept. Env server) but missing from the 2022 map (Dept Forestry server). I show here only the bigger blocks. Some blocks are verified removals of forest reserves (e.g., Jemaluang & Tenggaroh), while others might be due to misalignment of maps. Do not use for legal purposes.",
           defaultOn: false,
@@ -6228,7 +6240,7 @@
           id: "reserves-2012",
           name: "Forest reserves (2008-2012?)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_doe.geojson",
+          url: "forest_doe.geojson",
           caveat:
             "Forest reserves locations found on Dept of Environment Malaysia's geospatial server. Original source wasn't dated. My assessment dates it between 2008 and 2012. I cannot vouch for its accuracy and precision.",
           defaultOn: false,
@@ -6245,7 +6257,7 @@
           id: "reserves-1977",
           name: "Forest reserves (1977)",
           type: "geojson",
-          url: "https://raw.githubusercontent.com/yhlreporter/frt/refs/heads/main/forest_atlas1977.geojson",
+          url: "forest_atlas1977.geojson",
           caveat:
             "Forest reserves locations found in maps of the National Atlas 1977. Digitised from physical maps.",
           defaultOn: false,
