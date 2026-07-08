@@ -2209,6 +2209,135 @@
       }
 
       /*end of @media for map styling */
+
+      /*-START- Style for Feedback/Contribute Pop-up */
+      .feedback-popup-overlay {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(8, 8, 38, 0.75);
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity var(--transition-speed) ease,
+          visibility var(--transition-speed) ease;
+        padding: 20px;
+      }
+
+      .feedback-popup-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .feedback-popup {
+        position: relative;
+        background: var(--text-dark);
+        color: var(--text-light);
+        border-top: 4px solid var(--forest-light);
+        border-radius: var(--border-radius);
+        max-width: 420px;
+        width: 100%;
+        padding: 2rem 1.8rem 1.8rem 1.8rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        transform: translateY(10px);
+        transition: transform var(--transition-speed) ease;
+      }
+
+      .feedback-popup-overlay.visible .feedback-popup {
+        transform: translateY(0);
+      }
+
+      .feedback-popup h3 {
+        font-family: "Rufina", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--forest-light);
+        margin-bottom: 0.8rem;
+      }
+
+      .feedback-popup p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+
+      .feedback-popup-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .feedback-popup-cta {
+        background: var(--forest-light);
+        color: var(--text-dark);
+        border: none;
+        border-radius: var(--border-radius);
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        width: 100%;
+        transition: all var(--transition-speed) ease;
+      }
+
+      .feedback-popup-cta:hover {
+        background: var(--forest-medium);
+        color: var(--text-light);
+      }
+
+      .feedback-popup-dismiss {
+        background: none;
+        border: none;
+        color: var(--text-light);
+        opacity: 0.7;
+        font-size: 0.85rem;
+        font-family: inherit;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        padding: 4px;
+      }
+
+      .feedback-popup-dismiss:hover {
+        opacity: 1;
+      }
+
+      .feedback-popup-close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        background: none;
+        border: none;
+        color: var(--text-light);
+        opacity: 0.6;
+        font-size: 1.4rem;
+        line-height: 1;
+        cursor: pointer;
+        padding: 4px;
+      }
+
+      .feedback-popup-close:hover {
+        opacity: 1;
+        color: var(--forest-light);
+      }
+
+      @media (max-width: 768px) {
+        .feedback-popup {
+          padding: 1.6rem 1.4rem 1.4rem 1.4rem;
+        }
+
+        .feedback-popup h3 {
+          font-size: 1.3rem;
+        }
+      }
+      /*-END- Style for Feedback/Contribute Pop-up */
     </style>
   </head>
   <body>
@@ -2268,7 +2397,7 @@
                 )
               "
             >
-              Feedback/Question
+              Contact/Contribute
             </button>
             <button
               class="nav-button"
@@ -2509,7 +2638,7 @@
                   )
                 "
               >
-                Feedback/Question
+                Contact/Contribute
               </button>
               <button
                 class="lnb-ghost"
@@ -2604,42 +2733,27 @@
                 <picture>
                   <source
                     media="(max-width: 768px)"
-                    srcset="
-                      primer_mobile_1.webp
-                    "
+                    srcset="primer_mobile_1.webp"
                   />
-                  <img
-                    src="primer_1.webp"
-                    alt="Carousel Image 1"
-                  />
+                  <img src="primer_1.webp" alt="Carousel Image 1" />
                 </picture>
               </div>
               <div class="carousel-slide">
                 <picture>
                   <source
                     media="(max-width: 768px)"
-                    srcset="
-                      primer_mobile_2.webp
-                    "
+                    srcset="primer_mobile_2.webp"
                   />
-                  <img
-                    src="primer_2.webp"
-                    alt="Carousel Image 2"
-                  />
+                  <img src="primer_2.webp" alt="Carousel Image 2" />
                 </picture>
               </div>
               <div class="carousel-slide">
                 <picture>
                   <source
                     media="(max-width: 768px)"
-                    srcset="
-                      primer_mobile_3.webp
-                    "
+                    srcset="primer_mobile_3.webp"
                   />
-                  <img
-                    src="primer_3.webp"
-                    alt="Carousel Image 3"
-                  />
+                  <img src="primer_3.webp" alt="Carousel Image 3" />
                 </picture>
               </div>
             </div>
@@ -6751,6 +6865,86 @@
           }
         }, 100);
       });
+    </script>
+
+    <!-- Feedback / Contribute Pop-up -->
+    <div class="feedback-popup-overlay" id="feedbackPopupOverlay">
+      <div
+        class="feedback-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="feedbackPopupTitle"
+      >
+        <button
+          class="feedback-popup-close"
+          id="feedbackPopupClose"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <h3 id="feedbackPopupTitle">Enjoying this project?</h3>
+        <p>
+          Have you found Fate of Our Forests useful? I built and paid for it
+          myself, but there's plenty more to do! If you have questions, data to
+          share, or would like to help fund this effort to make data and
+          resource management transparent, I'd love to hear from you.
+          <br />
+          - Yao Hua
+        </p>
+        <div class="feedback-popup-actions">
+          <button class="feedback-popup-cta" onclick="handleFeedbackPopupCTA()">
+            Contact / Contribute
+          </button>
+          <button class="feedback-popup-dismiss" id="feedbackPopupDismiss">
+            Maybe later
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const POPUP_DELAY_MS = 60000;
+        const STORAGE_KEY = "fofFeedbackPopupDismissed";
+        const FORM_URL =
+          "https://docs.google.com/forms/d/e/1FAIpQLSfUANjG2xymX-3anQ7nJqJ7hCc8yzT3D2Od6ytdbaSUxI8ygA/viewform?usp=dialog";
+
+        function hidePopup() {
+          const overlay = document.getElementById("feedbackPopupOverlay");
+          if (overlay) overlay.classList.remove("visible");
+          sessionStorage.setItem(STORAGE_KEY, "1");
+        }
+
+        window.handleFeedbackPopupCTA = function () {
+          window.open(FORM_URL, "_blank");
+          hidePopup();
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+          const overlay = document.getElementById("feedbackPopupOverlay");
+          const closeBtn = document.getElementById("feedbackPopupClose");
+          const dismissBtn = document.getElementById("feedbackPopupDismiss");
+
+          if (closeBtn) closeBtn.addEventListener("click", hidePopup);
+          if (dismissBtn) dismissBtn.addEventListener("click", hidePopup);
+          if (overlay) {
+            overlay.addEventListener("click", function (e) {
+              if (e.target === overlay) hidePopup();
+            });
+          }
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") hidePopup();
+          });
+        });
+
+        window.addEventListener("load", function () {
+          if (sessionStorage.getItem(STORAGE_KEY)) return;
+          setTimeout(function () {
+            if (sessionStorage.getItem(STORAGE_KEY)) return;
+            const overlay = document.getElementById("feedbackPopupOverlay");
+            if (overlay) overlay.classList.add("visible");
+          }, POPUP_DELAY_MS);
+        });
+      })();
     </script>
   </body>
 </html>
