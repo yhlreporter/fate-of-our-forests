@@ -4920,9 +4920,20 @@
       }
 
       // Helper function: Build GitHub PDF URL for a gazette row
+      // Fallback (raw.githubusercontent.com) — restore this if jsDelivr ever
+      // becomes unavailable or unsuitable:
+      // function buildGazetteUrl(row) {
+      //   const base =
+      //     "https://raw.githubusercontent.com/yhlreporter/fate_forest_data_repository/main/gazettes/";
+      //   const state = (row.state || "").replace(/\s+/g, "");
+      //   const year = row.gaz_year;
+      //   const gaznum = row.gaznum;
+      //   if (!state || !year || !gaznum) return null;
+      //   return `${base}${state}.${year}.${gaznum}.pdf`;
+      // }
       function buildGazetteUrl(row) {
         const base =
-          "https://github.com/yhlreporter/fate_forest_data_repository/tree/main/gazettes/";
+          "https://cdn.jsdelivr.net/gh/yhlreporter/fate_forest_data_repository@main/gazettes/";
         const state = (row.state || "").replace(/\s+/g, "");
         const year = row.gaz_year;
         const gaznum = row.gaznum;
