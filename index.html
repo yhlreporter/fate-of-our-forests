@@ -4813,7 +4813,7 @@
 
       function setUpdateDate() {
         // Note: This is the most RECENT date I checked Lawnet gazettes
-        const updateDateToChange = "2026,8,14"; // year, month(1-indexed), day
+        const updateDateToChange = "2026,8,20"; // year, month(1-indexed), day
         const [year, month, day] = updateDateToChange.split(",").map(Number);
         appState.lastUpdatedDate = new Date(year, month - 1, day);
       }
