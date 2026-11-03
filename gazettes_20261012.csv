@@ -286,6 +286,7 @@ Negeri Sembilan,Jelebu,Kenaboi,616,Kenaboi,,1,2022,9,15,2022,9,15,Gazette Plan: 
 Negeri Sembilan,Jelebu,Ulu Klawang,706,Berembun,,0.0036,2024,9,5,2024,9,5,Gazette Plan: PW 5951. 
 Negeri Sembilan,Jelebu,Pertang,75,Triang,,0.0353,2025,2,6,2025,2,6,Gazette Plan: PW 5810. 
 Negeri Sembilan,Jelebu,Kenaboi,242,Kenaboi,,40.47,2025,4,3,2025,4,3,Gazette Plan: PW 5980. 
+Negeri Sembilan,Tampin,Tampin Tengah,939,X - NOT STATED,,0.0786,2026,8,6,2026,8,6,Gazette Plan: PW 5398. Reserve isn't named; first gazetted in 1910.
 Pahang,NOT STATED,NOT STATED,182,X - NOT STATED,34.39,,2002,2,28,2002,2,28,Gazette Plan: PW 3477. Forest reserve NOT STATED
 Pahang,Lipis,NOT STATED,183,Benchah Tambahan,322,,2002,2,28,2002,2,28,Gazette Plan: PW 3538. 
 Pahang,Kuantan,Sungai Karang,366,Balok,,126,2002,5,9,2002,5,9,Gazette Plan: PW 3524. 
@@ -607,7 +608,7 @@ Pahang,Lipis,Batu Yon,829,Tanum Tambahan,24.73,,2025,5,1,2025,5,1,Gazette Plan: 
 Pahang,Lipis,Batu Yon,829,Ulu Jelai Tambahan,86.11,,2025,5,1,2025,5,1,Gazette Plan: PW 5744. 
 Pahang,Lipis,Ulu Jelai,1086,Ulu Jelai,,297.23,2025,6,5,2025,6,5,Gazette Plan: PW 5823. 
 Pahang,Bentong,Sabai,1155,Lentang Tambahan,94.2,,2025,6,19,2025,6,19,Gazette Plan: PW 5843. 
-Pahang,Bentong,Bentong,1156,Bukit Tinggi,-94.2,,2025,6,19,2025,6,19,Gazette Plan: PW 5844. 
+Pahang,Bentong,Bentong,1156,Bukit Tinggi,,94.2,2025,6,19,2025,6,19,Gazette Plan: PW 5844. 
 Pahang,Lipis,Batu Yon,1680,Ulu Jelai Tambahan,55.35,,2025,8,14,2025,8,14,Gazette Plan: PW 5825. Stated sub-district Jelai
 Pahang,Jerantut,Kuala Tembeling,1681,Som,,50.12,2025,8,14,2025,8,14,Gazette Plan: PA 305721. 
 Pahang,Pekan,Lepar,1775,Lepar Tambahan,19.08,,2025,8,21,2025,8,21,Gazette Plan: PW 5847. 
@@ -809,6 +810,7 @@ Perak,"Larut, Matang, dan Selama",Jebong,6506,Kelip-Kelip,3.116,,2025,11,27,2025
 Perak,Kerian,Selinsing,6506,Kelip-Kelip,57.96,,2025,11,27,2025,11,27,Gazette Plan: PW 5962. 
 Perak,Manjung,Lumut,6507,Teluk Meroh,,20.23,2025,11,27,2025,11,27,Gazette Plan: PW 5988. 
 Perak,Bagan Datuk,Sungau Sumun,3144,Parit Dayong,,5.512,2026,7,9,2026,7,9,"Gazette Plan: PW 6019. First mention of ""Parit Dayong"" since 2002. Not found in maps (2008 or 2022). But in the 1977 map, a strip of unnamed forest reserve along the coast of Bagan Datuk might be Parit Dayong."
+Perak,Hulu Perak,Lenggong,5076,Bintang Hijau,,280.2,2026,10,8,2026,10,8,Gazette Plan: PW 6012. 
 Perlis,Titi Tinggi,Titi Tinggi,89,Mata Ayer,,3.8119,2011,8,27,2008,9,24,Gazette Plan: GN 15/1961. PT 8484
 Perlis,Titi Tinggi,Titi Tinggi,90,Mata Ayer,,5,2011,8,27,2006,5,24,Gazette Plan: GN 15/1961. PT 8654
 Perlis,Kuala Perlis,Kuala Perlis,65,Pulau Ketam (Perlis),12.87,,2019,8,29,2019,8,29,"Gazette Plan: PW 1503. I added ""Perlis"" to differentiate from the Selangor reserve"
@@ -968,5 +970,3 @@ Terengganu,Setiu,Hulu Nerus,968,Hulu Nerus,191,,2026,7,2,2026,7,2,Gazette Plan: 
 Terengganu,Setiu,Hulu Setiu,969,Hulu Setiu,405.9,,2026,7,2,2026,7,2,"Gazette Plan: PW 1209. Gazette says ""Ulu Setiu"", but I record as Hulu Setiu"
 Terengganu,Hulu Terengganu,Hulu Telemung,1052,Hulu Telemung,,223.484,2026,7,16,2026,7,16,"Gazette Plan: PW 1219. Gazette says ""Hulu Telemong"", but I record as ""Hulu Telemung"""
 Terengganu,Kemaman,"Pasir Semut, Binjai, Cukai, Teluk Kalung, Hulu Cukai",1161,Kuala Kemaman,,2940,2026,7,30,2026,7,30,Gazette Plan: PW 472. This gazette appears to excise the entire reserve
-Negeri Sembilan,Tampin,Tampin Tengah,939,X - NOT STATED,,0.0786,2026,8,6,2026,8,6,Gazette Plan: PW 5398. Reserve isn't named; first gazetted in 1910.
-Perak,Hulu Perak,Lenggong,5076,Bintang Hijau,,280.2,2026,10,8,2026,10,8,Gazette Plan: PW 6012. 
